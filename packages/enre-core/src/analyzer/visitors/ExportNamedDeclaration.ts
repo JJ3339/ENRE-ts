@@ -33,6 +33,7 @@ import {ModifierType} from '../context/modifier';
 import moduleResolver from '../module-resolver';
 import ENREName from '@enre-ts/naming';
 
+
 type PathType = NodePath<ExportNamedDeclaration>
 
 // Alias entity should be added to container in the relation resolving phase.
@@ -64,7 +65,6 @@ export const getAliasEnt = (sp: ExportSpecifier | ExportNamespaceSpecifier | Imp
 export default {
   enter: (path: PathType, {file: {logs}, scope, modifiers}: ENREContext) => {
     const lastScope = scope.last();
-
     if (!['file', 'namespace'].includes(lastScope.type)) {
       logs.add(path.node.loc!.start.line, ENRELogEntry['An export declaration can only be used at the top level of a module']);
       return;
@@ -204,6 +204,7 @@ export default {
             validRange.push(toENRELocation(decl.id.loc, ToENRELocationPolicy.Full));
           }
         } else if ('id' in path.node.declaration) {
+          // CHAnalyzer.addClass()
           validRange.push(toENRELocation(path.node.declaration.id!.loc, ToENRELocationPolicy.Full));
         }
 

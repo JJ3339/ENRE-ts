@@ -57,7 +57,7 @@ export const analyze = async (fileEntity: ENREEntityFile) => {
      * appended or not.
      */
     if (process.env.NODE_ENV === 'test') {
-      traverse<ENREContext>(ast, traverseOpts, undefined, context);
+      //traverse<ENREContext>(ast, traverseOpts, undefined, context);
     } else {
       // @ts-ignore
       traverse.default<ENREContext>(ast, traverseOpts, undefined, context);

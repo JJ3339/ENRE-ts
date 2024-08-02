@@ -11,7 +11,8 @@ import {getFileContent} from './utils/fileUtils';
 import ENREName from '@enre-ts/naming';
 import {createLogger} from '@enre-ts/shared';
 import findFiles from '@enre-ts/path-finder';
-import { ClassHierarchyAnalyzer as CHAnalyzer } from './analyzer/callgraph/ClassHierarchyAnalysisAlgorithm';
+import { ClassHierarchyAnalyzer as CHAnalyzer} from './analyzer/callgraph/ClassHierarchyAnalysisAlgorithm';
+// const CHAnalyzer = ClassHierarchyAnalyzer
 export const logger = createLogger('core');
 export const codeLogger = createLogger('code analysis');
 

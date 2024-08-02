@@ -83,8 +83,6 @@ export default {
     if (path.node.superClass) {
       if ('name' in path.node.superClass){
         analyzer.addClass(entity, path.node.superClass.name)
-      }else{
-        analyzer.addClass(entity, undefined)
       }
         
       expressionHandler(path.node.superClass, scope, {
@@ -102,8 +100,10 @@ export default {
           }
         }
       });
+    }else{
+        analyzer.addClass(entity, undefined)
     }
-
+    analyzer.addClass(entity,undefined)
     for (const im of path.node.implements || []) {
       if (im.type === 'TSExpressionWithTypeArguments') {
         if (im.expression.type === 'Identifier') {

@@ -16,7 +16,7 @@ import { ENREEntityClass } from "@enre-ts/data";
 
 // ClassHierarchyAnalyzer  主要分析结构
 export class ClassHierarchyAnalyzer {
-    private static classes: Map<string, ENREEntityClass> = new Map();
+    static classes: Map<string, ENREEntityClass> = new Map();
 
     static addClass(cls: ENREEntityClass, baseClass?: string) {
         let clsName = cls.name.codeName
@@ -42,7 +42,7 @@ export class ClassHierarchyAnalyzer {
             console.log('Class not found.');
             return;
         }
-        console.log(' '.repeat(level * 2) + classNode.name);
+        console.log(' '.repeat(level * 2) + classNode.name.codeName);
         // classNode.children.forEach(child => this.printHierarchy(child, level + 1));
     }
 }
