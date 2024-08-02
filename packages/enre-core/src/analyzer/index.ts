@@ -6,7 +6,7 @@ import createENREContext, {ENREContext} from './context';
 import {createModifierHandler} from './context/modifier';
 import traverseOpts from './visitors';
 import {logger} from '../index';
-
+import {ClassHierarchyAnalyzer as CHAnalyzer} from './callgraph/ClassHierarchyAnalysisAlgorithm'
 /**
  * Read, parse and analyze a single file.
  */
@@ -62,5 +62,16 @@ export const analyze = async (fileEntity: ENREEntityFile) => {
       // @ts-ignore
       traverse.default<ENREContext>(ast, traverseOpts, undefined, context);
     }
+    
+    // traverse<ENREContext>(ast, {
+    //     ClassDeclaration(path) {
+    //         const className = path.node.id.name;
+    //         const baseClassName = path.node.superClass ? (path.node.superClass as t.Identifier).name : null;
+    //         CHAanalyzer.addClass(className, baseClassName);
+    //     },
+    //     undefined,context
+    // });
+
+    // CHAanalyzer.printHierarchy('A');
   }
 };

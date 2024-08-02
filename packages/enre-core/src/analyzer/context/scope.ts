@@ -2,6 +2,7 @@ import {ENREEntityCollectionScoping, ENREEntityFile, id,} from '@enre-ts/data';
 import {logger} from '@enre-ts/core';
 
 export class ENREScope extends Array<ENREEntityCollectionScoping> {
+  
   constructor(file: ENREEntityFile) {
     super();
     this.push(file);

@@ -64,6 +64,10 @@
     "@babel/polyfill": "^7.12.1",
     "@babel/traverse": "^7.21.5",
     "@babel/types": "^7.21.5",
+    "@enre-ts/core": "^0.4.3",
+    "@enre-ts/data": "^0.4.3",
+    "@enre-ts/location": "^0.4.3",
+    "@enre-ts/naming": "^0.4.3",
     "commander": "^10.0.1",
     "langchain": "^0.0.203",
     "winston": "^3.11.0"

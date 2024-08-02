@@ -11,7 +11,7 @@ import {getFileContent} from './utils/fileUtils';
 import ENREName from '@enre-ts/naming';
 import {createLogger} from '@enre-ts/shared';
 import findFiles from '@enre-ts/path-finder';
-
+import { ClassHierarchyAnalyzer as CHAnalyzer } from './analyzer/callgraph/ClassHierarchyAnalysisAlgorithm';
 export const logger = createLogger('core');
 export const codeLogger = createLogger('code analysis');
 
@@ -73,9 +73,11 @@ export default async (
     await analyze(f as ENREEntityFile);
   }
 
+
   /**
    * SECOND PASS: Work on pseudo relation container and postponed task container to link string into correlated entity object.
    */
+  CHAnalyzer.printHierarchy('B')
   logger.info('Starting pass 2: (Explicit/Implicit) Dependency resolving');
   linker();
 

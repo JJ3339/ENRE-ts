@@ -1,0 +1,225 @@
+{
+	"entities": [
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\simple_call\\type.ts>",
+			"name": "<File type.ts>",
+			"path": "D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\simple_call\\type.ts",
+			"type": "file",
+			"sourceType": "module",
+			"lang": "ts",
+			"isJsx": false,
+			"id": 0
+		},
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\simple_call\\test.ts>",
+			"name": "<File test.ts>",
+			"path": "D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\simple_call\\test.ts",
+			"type": "file",
+			"sourceType": "module",
+			"lang": "ts",
+			"isJsx": false,
+			"id": 1
+		},
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\simple_call\\type.ts>.A",
+			"name": "A",
+			"type": "class",
+			"parent": 0,
+			"location": {
+				"start": {
+					"line": 1,
+					"column": 14
+				},
+				"end": {
+					"line": 1,
+					"column": 15
+				}
+			},
+			"isAbstract": false,
+			"id": 2
+		},
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\simple_call\\type.ts>.A.foo",
+			"name": "foo",
+			"type": "method",
+			"parent": 2,
+			"location": {
+				"start": {
+					"line": 2,
+					"column": 5
+				},
+				"end": {
+					"line": 2,
+					"column": 8
+				}
+			},
+			"isStatic": false,
+			"isPrivate": false,
+			"TSVisibility": "public",
+			"isAsync": false,
+			"isGenerator": false,
+			"isAbstract": false,
+			"kind": "method",
+			"id": 3
+		},
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\simple_call\\test.ts>.B",
+			"name": "B",
+			"type": "class",
+			"parent": 1,
+			"location": {
+				"start": {
+					"line": 5,
+					"column": 7
+				},
+				"end": {
+					"line": 5,
+					"column": 8
+				}
+			},
+			"isAbstract": false,
+			"id": 4
+		},
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\simple_call\\test.ts>.B.foo",
+			"name": "foo",
+			"type": "method",
+			"parent": 4,
+			"location": {
+				"start": {
+					"line": 6,
+					"column": 5
+				},
+				"end": {
+					"line": 6,
+					"column": 8
+				}
+			},
+			"isStatic": false,
+			"isPrivate": false,
+			"TSVisibility": "public",
+			"isAsync": false,
+			"isGenerator": false,
+			"isAbstract": false,
+			"kind": "method",
+			"id": 5
+		},
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\simple_call\\test.ts>.a",
+			"name": "a",
+			"type": "variable",
+			"parent": 1,
+			"location": {
+				"start": {
+					"line": 10,
+					"column": 5
+				},
+				"end": {
+					"line": 10,
+					"column": 6
+				}
+			},
+			"kind": "let",
+			"id": 6
+		}
+	],
+	"relations": [
+		{
+			"from": 0,
+			"to": 2,
+			"location": {
+				"line": 1,
+				"column": 14
+			},
+			"isImplicit": false,
+			"type": "export",
+			"kind": "any",
+			"isDefault": false,
+			"isAll": false
+		},
+		{
+			"from": 1,
+			"to": 6,
+			"location": {
+				"line": 10,
+				"column": 5
+			},
+			"isImplicit": false,
+			"type": "set",
+			"isInit": true
+		},
+		{
+			"from": 1,
+			"to": 2,
+			"location": {
+				"line": 1,
+				"column": 10
+			},
+			"isImplicit": false,
+			"type": "import",
+			"kind": "any",
+			"sourceRange": {
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 1,
+					"column": 27
+				}
+			}
+		},
+		{
+			"from": 4,
+			"to": 2,
+			"location": {
+				"line": 5,
+				"column": 17
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 1,
+			"to": 4,
+			"location": {
+				"line": 10,
+				"column": 16
+			},
+			"isImplicit": false,
+			"type": "call",
+			"isNew": true
+		},
+		{
+			"from": 1,
+			"to": 6,
+			"location": {
+				"line": 11,
+				"column": 1
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 1,
+			"to": 5,
+			"location": {
+				"line": 11,
+				"column": 1
+			},
+			"isImplicit": true,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 2,
+			"to": 6,
+			"location": {
+				"line": 10,
+				"column": 8
+			},
+			"isImplicit": false,
+			"type": "type"
+		}
+	]
+}

@@ -24,13 +24,16 @@ import ENREName from '@enre-ts/naming';
 import {ENREContext} from '../context';
 import expressionHandler from './common/expression-handler';
 import {createJSObjRepr} from './common/literal-handler';
+import { ClassHierarchyAnalyzer as CHAnalyzer}from '../callgraph/ClassHierarchyAnalysisAlgorithm'; 
 
 type PathType = NodePath<ClassDeclaration | ClassExpression>
 
 export default {
   enter: (path: PathType, {scope}: ENREContext) => {
     let entity: ENREEntityClass;
-
+    let analyzer = CHAnalyzer;
+    let clsName: String
+    let basecls: String
     if (path.node.id) {
       entity = recordEntityClass(
         new ENREName('Norm', path.node.id.name),
@@ -43,6 +46,8 @@ export default {
           isAbstract: 'abstract' in path.node ? path.node.abstract ?? false : false,
         },
       );
+      clsName = path.node.id.name
+
     } else {
       entity = recordEntityClass(
         new ENREName<'Anon'>('Anon', 'Class'),
@@ -57,6 +62,9 @@ export default {
           isAbstract: 'abstract' in path.node ? path.node.abstract ?? false : false,
         },
       );
+      // TODO: unnamed class in CHA
+      clsName = `Anon-${path.node.start}:${path.node.end}`
+      //
     }
 
     /**
@@ -68,11 +76,17 @@ export default {
      */
     const objRepr = createJSObjRepr('obj');
     entity.pointsTo.push(objRepr);
-
+     
     scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
     scope.push(entity);
 
     if (path.node.superClass) {
+      if ('name' in path.node.superClass){
+        analyzer.addClass(entity, path.node.superClass.name)
+      }else{
+        analyzer.addClass(entity, undefined)
+      }
+        
       expressionHandler(path.node.superClass, scope, {
         onFinishEntity: (parentClasses) => {
           if (parentClasses.length >= 0) {

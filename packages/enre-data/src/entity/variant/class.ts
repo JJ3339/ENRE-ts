@@ -10,6 +10,12 @@ import {recordEntity} from '../../utils/wrapper';
 
 export interface ENREEntityClass extends ENREEntityAbilityBase, ENREEntityAbilityAbstractable {
   type: 'class';
+  // baseList放置待处理的类,在AST遍历时无法获取ENREEntityClass
+  base?: string | ENREEntityClass
+  // basecls放置已处理的类
+  // basecls: Map<string, ENREEntityClass>;
+  extcls: Map<string, ENREEntityClass>;
+  // extcls: ENREEntityClass | undefined;
 }
 
 export const createEntityClass = (
@@ -26,6 +32,8 @@ export const createEntityClass = (
     ...addAbilityAbstractable(isAbstract),
 
     type: 'class',
+    base: undefined,
+    extcls: new Map()
   };
 };
 
