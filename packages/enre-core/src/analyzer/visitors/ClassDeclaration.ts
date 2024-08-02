@@ -31,7 +31,6 @@ type PathType = NodePath<ClassDeclaration | ClassExpression>
 export default {
   enter: (path: PathType, {scope}: ENREContext) => {
     let entity: ENREEntityClass;
-    let analyzer = CHAnalyzer;
     let clsName: String
     let basecls: String
     if (path.node.id) {
@@ -82,7 +81,7 @@ export default {
 
     if (path.node.superClass) {
       if ('name' in path.node.superClass){
-        analyzer.addClass(entity, path.node.superClass.name)
+        CHAnalyzer.addClass(entity, path.node.superClass.name)
       }
         
       expressionHandler(path.node.superClass, scope, {
@@ -100,10 +99,12 @@ export default {
           }
         }
       });
-    }else{
-        analyzer.addClass(entity, undefined)
     }
-    analyzer.addClass(entity,undefined)
+    // }else{
+    //     analyzer.addClass(entity, undefined)
+    // }
+    
+    CHAnalyzer.addClass(entity,undefined)
     for (const im of path.node.implements || []) {
       if (im.type === 'TSExpressionWithTypeArguments') {
         if (im.expression.type === 'Identifier') {
