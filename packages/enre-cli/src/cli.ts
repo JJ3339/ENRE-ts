@@ -27,6 +27,32 @@ cli
   .option('-e, --exclude <name...>',
     'specify file or directory name to be excluded from analysis')
   .option('-v, --verbose',
-    'enable to print more message while processing', false);
+    'enable to print more message while processing', false)
+  .option('-g, --callgraph <file path>/false',
+    'specify where to output the callgraph\nuse extension \'.json\' (default) or \'.lsif\' to specify format',
+    (v) => {
+      if (v === 'false') {
+        return false;
+      }
+
+      const ext = path.extname(v);
+      if (['.json', '.lsif'].indexOf(ext) === -1) {
+        throw new InvalidOptionArgumentError('Output file path has to end with a valid extension name.');
+      }
+      return v;
+    })
+    .option('-R, --RTA <file path>/false',
+      'specify where to output the callgraph\nuse extension \'.json\' (default) or \'.lsif\' to specify format',
+      (v) => {
+        if (v === 'false') {
+          return false;
+        }
+  
+        const ext = path.extname(v);
+        if (['.json', '.lsif'].indexOf(ext) === -1) {
+          throw new InvalidOptionArgumentError('Output file path has to end with a valid extension name.');
+        }
+        return v;
+      });;
 
 export default cli;

@@ -1,116 +1,12 @@
-import { ENREEntityClass,ENREEntityCollectionAll,ENREEntityCollectionScoping } from "@enre-ts/data";
+import { ClassHierarchyAnalyzer } from "./ClassHierarchyAnalysisAlgorithm";
 import lookup from "../linker/lookup";
-import { CallExpression, NewExpression } from "@babel/types";
+import { ENREEntityClass, ENREEntityCollectionAll, ENREEntityCollectionScoping } from "@enre-ts/data";
 
 
-class callExprNode{
-    scope: ENREEntityCollectionScoping;
-    expr: CallExpression | NewExpression;
-    // type: string | ENREEntityClass
-    constructor(scope: ENREEntityCollectionScoping, expr: CallExpression | NewExpression){
-        this.scope = scope
-        this.expr = expr
-        // this.type = type
-    }
-}
-// interface callGraphEdge{
-//     caller: string;
-//     callee: string[];
-
-// }
-// interface callgraph {
-//     edge: Map<string, string[]>;
-// }
-// // ClassNode 类节点
-// export class ClassNode {
-//     name: string;
-//     baseClass: string | null = null;
-//     children: string[] = [];
-
-//     constructor(name: string, baseClass: string | null = null) {
-//         this.name = name;
-//         this.baseClass = baseClass;
-//     }
-// }
-
-// ClassHierarchyAnalyzer  主要分析结构
-export class ClassHierarchyAnalyzer {
-    static classes: Map<string, ENREEntityClass> = new Map();
-    static callExpr: callExprNode[] = [];
+export class RapidTypeAnalyzer extends ClassHierarchyAnalyzer{
+    // static instance: Map<string, ENREEntityClass> = new Map();
     static callGraph: Map<string, Set<string>> = new Map();
-    static jsonString: string;
-    
-    static mergeCallGraphs(graph1: Map<string, Set<string>>, graph2: Map<string, Set<string>>): Map<string, Set<string>> {
-        const mergedGraph = new Map<string, Set<string>>();
-
-        // Helper function to add entries from one graph to the merged graph
-        const addEntries = (graph: Map<string, Set<string>>) => {
-            graph.forEach((value, key) => {
-                if (!mergedGraph.has(key)) {
-                    mergedGraph.set(key, new Set(value));
-                } else {
-                    const existingSet = mergedGraph.get(key)!;
-                    value.forEach(val => existingSet.add(val));
-                }
-            });
-        };
-
-        // Add entries from both graphs
-        addEntries(graph1);
-        addEntries(graph2);
-
-        return mergedGraph;
-    }
-    static addClass(cls: ENREEntityClass, baseClass?: string) {
-        let clsName = cls.name.codeName
-        if (!this.classes.has(clsName)) {
-            this.classes.set(clsName, cls);
-        }else{
-            console.log(`dumplicate class ${clsName}`)
-        }
-        const classNode = this.classes.get(clsName)!;
-        if (baseClass){
-            classNode.base = baseClass;
-        }
-        console.log(baseClass)
-        // if (baseClass) {
-        //     if (!this.classes.has(baseClass)) {
-        //         this.classes.set(baseClass, new ClassNode(baseClass));
-        //     }
-        //     this.classes.get(baseClass)!.children.push(cls);
-        // }
-    }
-    static addExpr(scope: ENREEntityCollectionScoping, expr: CallExpression | any){
-        this.callExpr.push(new callExprNode(scope, expr))
-    }
-    static printHierarchy(className: string, level: number = 0) {
-        const classNode = this.classes.get(className);
-        if (!classNode) {
-            console.log('Class not found.');
-            return;
-        }
-        console.log(' '.repeat(level * 2) + classNode.name.codeName);
-        // classNode.children.forEach(child => this.printHierarchy(child, level + 1));
-    }
-    static getName(scope:ENREEntityCollectionAll | ENREEntityCollectionScoping):string {
-        if (!scope.parent){
-            return scope.name.codeName.split('.')[0]
-        }
-        return [this.getName(scope.parent), scope.name.codeName.split('.')[0]].join('.')
-    }
-    static processClasses(){
-        // switch to lookup
-        //lookup()
-        for (const [key, value] of this.classes.entries()) {
-            if (typeof value.base === 'string'){
-                const entity = this.classes.get(value.base)
-                entity?.extcls.set(key, value)
-                value.base = entity
-                
-                this.classes.set(key, value)
-            }
-        }
-    }
+    static newClass: ENREEntityCollectionScoping[] = [];
     static processExpr(){
         for (const node of this.callExpr){
             // const from = node.scope.name
@@ -146,6 +42,7 @@ export class ClassHierarchyAnalyzer {
                         }, true) as ENREEntityCollectionAll;
 
                     if (obj.type === 'variable'){
+                        
                         const clsTypeName = obj.clsTypeName
                         if (clsTypeName){
                             const clsType = this.classes.get(clsTypeName)
@@ -161,13 +58,17 @@ export class ClassHierarchyAnalyzer {
                                     identifier: propName, 
                                     at: type,
                                     }, true) as ENREEntityCollectionAll;
+                                for (const [key, value] of type.extcls.entries()){
+                                    clsList.push(value)
+                                }
+                                if (!this.newClass.includes(type)){
+                                    continue;
+                                }
                                 //TODO: if lookup succeed, push
                                 // to.push(`${type.name}.${prop.name}()`)
                                 let qualifiedName = temp.getQualifiedName()
                                 to.push(`${qualifiedName}`)
-                                for (const [key, value] of type.extcls.entries()){
-                                    clsList.push(value)
-                                }
+                                
                             }
                         }
                     }else{
@@ -224,11 +125,5 @@ export class ClassHierarchyAnalyzer {
         //     }
         // });
     }
+
 }
-
-
-// export const CHAanalyzer = new ClassHierarchyAnalyzer();
-
-
-
-

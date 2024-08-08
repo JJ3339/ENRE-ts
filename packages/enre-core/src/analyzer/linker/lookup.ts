@@ -63,6 +63,9 @@ export default function (sg: SearchingGuidance, omitAlias = false): ENREEntityCo
   else {
     // eslint-disable-next-line no-constant-condition
     while (true) {
+      if (!curr){
+          break;
+      }
       for (const e of curr.children) {
         // TODO: Refactor this to clearly distinguish valid identifier and string literal
         if (sg.identifier === e.name.codeName) {
@@ -77,6 +80,7 @@ export default function (sg: SearchingGuidance, omitAlias = false): ENREEntityCo
           }
         }
       }
+      
 
       // TODO: Handle TS namespace import/export
 

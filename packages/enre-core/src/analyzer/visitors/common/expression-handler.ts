@@ -20,12 +20,14 @@ import {
   SpreadElement,
   ThrowStatement
 } from '@babel/types';
-import {ENREEntityCollectionScoping, postponedTask} from '@enre-ts/data';
+import {ENREEntityCollectionAll, ENREEntityCollectionScoping, postponedTask} from '@enre-ts/data';
 import {ENRELocation, toENRELocation, ToENRELocationPolicy} from '@enre-ts/location';
 import {ENREContext} from '../../context';
 import resolveJSObj, {createJSObjRepr, JSObjRepr} from './literal-handler';
-
-
+import { ClassHierarchyAnalyzer as CHAnalyzer } from '../../callgraph/ClassHierarchyAnalysisAlgorithm';
+import { RapidTypeAnalyzer as RTAnalyzer } from '../../callgraph/RapidTypeAnalysisAlgorithm';
+import exp from 'constants';
+import lookup from '../../linker/lookup';
 /**
  * Types
  */
@@ -270,7 +272,7 @@ function recursiveTraverse(
 
     case 'OptionalCallExpression':
     case 'NewExpression':
-    case 'CallExpression': {
+    case 'CallExpression' : {
       let operation: 'call' | 'new' = 'call';
       if (node.type === 'NewExpression') {
         operation = 'new';
@@ -301,7 +303,20 @@ function recursiveTraverse(
           };
         }
       }
-
+      CHAnalyzer.addExpr(scope.last(), node)
+      if (operation === 'new'){
+        const newExpr = lookup(
+        {role: 'value', 
+          identifier: calleeTokens[0].operand1, 
+          at: scope.last(),
+        }, true) as ENREEntityCollectionScoping;
+        if (newExpr){
+          RTAnalyzer.newClass.push(newExpr)
+        }
+        
+        
+      }
+      
       tokenStream.push({
         operation,
         operand1: argsRepr,

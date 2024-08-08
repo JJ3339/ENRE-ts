@@ -1,11 +1,14 @@
 import { A } from "./type"
 
-// let a = new A()
-// a.foo()
 class B extends A{
     foo(){
         console.log('B')
     }
 }
+class C extends A{
+    foo(){
+    }
+}
 let a: A = new B()
 a.foo()
+A.func()

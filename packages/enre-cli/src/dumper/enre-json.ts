@@ -2,7 +2,8 @@ import {eGraph, release, rGraph} from '@enre-ts/data';
 import {expandENRELocation} from '@enre-ts/location';
 import fs from 'node:fs/promises';
 import {createLogger} from '@enre-ts/shared';
-
+import { ClassHierarchyAnalyzer as CHAnalyzer } from '@enre-ts/core/lib/analyzer/callgraph/ClassHierarchyAnalysisAlgorithm';
+import { RapidTypeAnalyzer as RTAnalyzer} from '@enre-ts/core/lib/analyzer/callgraph/RapidTypeAnalysisAlgorithm';
 const logger = createLogger('JSON dumper');
 
 const ignorePropList = [
@@ -67,7 +68,18 @@ export default function (opts: any) {
     }
     obj.relations.push(tmp);
   }
-
-  fs.writeFile(opts.output, JSON.stringify(obj, null, '\t'));
+  const stringify = JSON.stringify(obj,function replacer(key, value) {
+    // 过滤掉 'base' 和 'extcls' 属性
+    if (key === 'base' || key === 'extcls') {
+        return undefined;
+    }
+    return value;
+  }, '\t');
+  fs.writeFile(opts.output, stringify);
+  // CHAnalyzer.dumpToJson(opts.callgraph)
+  fs.writeFile(opts.callgraph, CHAnalyzer.dumpToJson());
+  fs.writeFile(opts.RTA, RTAnalyzer.dumpToJson())
+  console.log(...RTAnalyzer.newClass)
+  // fs.writeFile(opts.callgraph, CHAnalyzer.jsonString);
   logger.info(`Results dumped to ${opts.output} in JSON format with ${obj.entities.length} entities and ${obj.relations.length} dependencies`);
 }

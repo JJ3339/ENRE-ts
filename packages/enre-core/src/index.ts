@@ -78,7 +78,8 @@ export default async (
   /**
    * SECOND PASS: Work on pseudo relation container and postponed task container to link string into correlated entity object.
    */
-  CHAnalyzer.printHierarchy('B')
+  // CHAnalyzer.printHierarchy('B')
+  CHAnalyzer.processClasses()
   logger.info('Starting pass 2: (Explicit/Implicit) Dependency resolving');
   linker();
 

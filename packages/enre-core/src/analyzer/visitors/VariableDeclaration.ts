@@ -9,9 +9,10 @@
  */
 
 import {NodePath} from '@babel/traverse';
-import {ForOfStatement, VariableDeclaration} from '@babel/types';
+import {ForOfStatement, TSTypeAnnotation, VariableDeclaration} from '@babel/types';
 import {
   ENREEntityCollectionAnyChildren,
+  ENREEntityClass,
   ENREEntityVariable,
   postponedTask,
   recordEntityVariable,
@@ -28,13 +29,16 @@ import expressionHandler, {
   DescendPostponedTask
 } from './common/expression-handler';
 
-const buildOnRecord = (kind: variableKind, hasInit: boolean) => {
+const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceName: string|undefined ,
+  hasInit: boolean) => {
   return (name: string, location: ENRELocation, scope: ENREContext['scope']) => {
     const entity = recordEntityVariable(
       new ENREName('Norm', name),
       location,
       scope.last(),
       {kind},
+      typeName,
+      instanceName
     );
 
     scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
@@ -61,20 +65,29 @@ export default {
     for (const declarator of path.node.declarations) {
       let objRepr: JSMechanism | DescendPostponedTask | undefined = resolveJSObj(declarator.init);
       // The init value is not a literal, but an expression.
+      let instanceName = undefined
       if (declarator.init && !objRepr) {
         objRepr = expressionHandler(declarator.init, scope);
+        instanceName = undefined
       }
 
       // ForStatement is not supported due to the complexity of the AST structure.
       if (['ForOfStatement', 'ForInStatement'].includes(path.parent.type)) {
         objRepr = resolveJSObj((path.parent as ForOfStatement).right);
       }
-
+      // if ('typeAnnotation' in declarator.id){
+      //   const entity = declarator.id.typeAnnotation.typeAnnotation.typeName.name
+      // }else{
+      //   const entity = undefined
+      // }
+      const typeAnnotation: TSTypeAnnotation = Reflect.get(declarator.id, 'typeAnnotation').typeAnnotation
+      const typeName = Reflect.get(typeAnnotation, 'typeName').name
+      
       const returned = traverseBindingPattern<ENREEntityVariable>(
         declarator.id,
         scope,
         undefined,
-        buildOnRecord(kind as variableKind, !!objRepr),
+        buildOnRecord(kind as variableKind, typeName, instanceName,!!objRepr),
       );
 
       if (returned && objRepr) {

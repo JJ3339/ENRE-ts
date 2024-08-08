@@ -43,6 +43,7 @@ import {
   DescendPostponedTask
 } from '../visitors/common/expression-handler';
 import { ClassHierarchyAnalyzer as CHAnalyzer} from '../callgraph/ClassHierarchyAnalysisAlgorithm';
+import { RapidTypeAnalyzer as RTAnalyzer } from '../callgraph/RapidTypeAnalysisAlgorithm';
 // const CHAnalyzer = ClassHierarchyAnalyzer
 
 type WorkingPseudoR<T extends ENRERelationAbilityBase> = ENREPseudoRelation<T> & {
@@ -166,10 +167,13 @@ export default () => {
   }
 
   //callgraph
-  CHAnalyzer.printHierarchy('B')
+  CHAnalyzer.processExpr()
+  RTAnalyzer.processExpr()
+  
+  // CHAnalyzer.printHierarchy('B')
   // const found = lookup({
   //   role: 'value',
-  //   identifier: token.operand1,
+  //   identifier: 'A',
   //   at: task.scope,
   // }, true) as ENREEntityCollectionAll;
 
