@@ -80,8 +80,13 @@ export default {
       // }else{
       //   const entity = undefined
       // }
-      const typeAnnotation: TSTypeAnnotation = Reflect.get(declarator.id, 'typeAnnotation').typeAnnotation
-      const typeName = Reflect.get(typeAnnotation, 'typeName').name
+      const typeAnnotation: TSTypeAnnotation|undefined = Reflect.get(declarator.id, 'typeAnnotation')?.typeAnnotation
+      // const typeName = Reflect.get(typeAnnotation, 'typeName').name
+      let typeName = undefined
+      if (typeAnnotation){
+          typeName = Reflect.get(typeAnnotation, 'typeName').name
+      }
+      // const typeName = typeAnnotation?.typeName?.name ?? undefined;
       
       const returned = traverseBindingPattern<ENREEntityVariable>(
         declarator.id,

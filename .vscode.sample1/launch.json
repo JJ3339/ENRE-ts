@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch ENRE-ts",
+        "program": "${workspaceFolder}/packages/enre-cli/lib/index.js",
+        "args": 
+        [
+        "--input", "tests\\cases\\docs",
+        "--output", "${workspaceFolder}\\out\\test.json",
+        "--callgraph", "${workspaceFolder}\\out\\callGraph.json",
+        "--RTA", "${workspaceFolder}\\out\\callGraphRTA.json"
+        ],
+        "runtimeArgs": ["--experimental-specifier-resolution=node"],
+        "autoAttachChildProcesses": true,
+        "preLaunchTask": "build"
+      }
+    ]
+  }
+  
