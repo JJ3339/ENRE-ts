@@ -53,6 +53,19 @@ cli
           throw new InvalidOptionArgumentError('Output file path has to end with a valid extension name.');
         }
         return v;
-      });;
+      })
+      .option('-P, --PTA <file path>/false',
+        'specify where to output the callgraph\nuse extension \'.json\' (default) or \'.lsif\' to specify format',
+        (v) => {
+          if (v === 'false') {
+            return false;
+          }
+    
+          const ext = path.extname(v);
+          if (['.json', '.lsif'].indexOf(ext) === -1) {
+            throw new InvalidOptionArgumentError('Output file path has to end with a valid extension name.');
+          }
+          return v;
+        });;
 
 export default cli;

@@ -44,6 +44,8 @@ import {
 } from '../visitors/common/expression-handler';
 import { ClassHierarchyAnalyzer as CHAnalyzer} from '../callgraph/ClassHierarchyAnalysisAlgorithm';
 import { RapidTypeAnalyzer as RTAnalyzer } from '../callgraph/RapidTypeAnalysisAlgorithm';
+import { PointerAnalyzer as PTAnalyzer} from '../callgraph/PointerAnalysis';
+import { time } from 'console';
 // const CHAnalyzer = ClassHierarchyAnalyzer
 
 type WorkingPseudoR<T extends ENRERelationAbilityBase> = ENREPseudoRelation<T> & {
@@ -414,12 +416,19 @@ export default () => {
                       currSymbol.forEach(s => {
                         if (i === task.payload.length - 1) {
                           if (['call', 'new'].includes(nextOperation)) {
-                            recordRelationCall(
+                            let created = recordRelationCall(
                               task.scope,
                               s,
                               token.location,
                               {isNew: nextOperation === 'new'},
                             );
+                            let from = created.from.getQualifiedName()
+                            let to = created.to.getQualifiedName()
+                            if (!PTAnalyzer.callGraph.has(from)) {
+                              PTAnalyzer.callGraph.set(from, new Set());
+                            }
+                            PTAnalyzer.callGraph.get(from)?.add(to)
+                            // to.forEach(edge => PTAnalyzer.callGraph.get(from)?.add(edge)) 
                           } else {
                             recordRelationUse(
                               task.scope,
@@ -516,12 +525,26 @@ export default () => {
                         startLine: token.location.start.line,
                         startColumn: token.location.start.column,
                       }).length === 0) {
-                        recordRelationCall(
+                        // recordRelationCall(
+                        //   task.scope,
+                        //   s,
+                        //   token.location,
+                        //   {isNew: token.operation === 'new'},
+                        // ).isImplicit = true;
+                        let created = recordRelationCall(
                           task.scope,
                           s,
                           token.location,
                           {isNew: token.operation === 'new'},
-                        ).isImplicit = true;
+                        );
+                        created.isImplicit = true;
+                        let from = created.from.getQualifiedName()
+                        let to = created.to.getQualifiedName()
+                        if (!PTAnalyzer.callGraph.has(from)) {
+                          PTAnalyzer.callGraph.set(from, new Set());
+                        }
+                        PTAnalyzer.callGraph.get(from)?.add(to)
+                        // to.forEach(edge => PTAnalyzer.callGraph.get(from)?.add(edge))
                       }
                     });
                   } else {

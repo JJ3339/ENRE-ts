@@ -1,5 +1,25 @@
 {
-	"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts>": [
-		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.Foo"
-	]
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\test1.ts>": [
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.Foo"
+	],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\symbols.js>.func1": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\symbols.js>.func2": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\symbols.js>": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\prototype.js>": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\functions.js>": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\exceptions.js>.AError.constructor": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\exceptions.js>": [
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\exceptions.js>.AError"
+	],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\decorators.js>.dec1.inner": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\decorators.js>.dec2.inner": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\decorators.js>": [
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\decorators.js>.Clz"
+	],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\classes.js>": [
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\classes.js>.MyClass"
+	],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\assignments.js>": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\args.js>.func": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\args.js>": []
 }

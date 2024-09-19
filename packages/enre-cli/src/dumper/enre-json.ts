@@ -4,6 +4,7 @@ import fs from 'node:fs/promises';
 import {createLogger} from '@enre-ts/shared';
 import { ClassHierarchyAnalyzer as CHAnalyzer } from '@enre-ts/core/lib/analyzer/callgraph/ClassHierarchyAnalysisAlgorithm';
 import { RapidTypeAnalyzer as RTAnalyzer} from '@enre-ts/core/lib/analyzer/callgraph/RapidTypeAnalysisAlgorithm';
+import { PointerAnalyzer as PTAnalyzer } from '@enre-ts/core/lib/analyzer/callgraph/PointerAnalysis';
 const logger = createLogger('JSON dumper');
 
 const ignorePropList = [
@@ -79,6 +80,7 @@ export default function (opts: any) {
   // CHAnalyzer.dumpToJson(opts.callgraph)
   fs.writeFile(opts.callgraph, CHAnalyzer.dumpToJson());
   fs.writeFile(opts.RTA, RTAnalyzer.dumpToJson())
+  fs.writeFile(opts.PTA, PTAnalyzer.dumpToJson())
   console.log(...RTAnalyzer.newClass)
   // fs.writeFile(opts.callgraph, CHAnalyzer.jsonString);
   logger.info(`Results dumped to ${opts.output} in JSON format with ${obj.entities.length} entities and ${obj.relations.length} dependencies`);
