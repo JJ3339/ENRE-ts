@@ -1,57 +1,5 @@
 {
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\test1.ts>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.foo",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.bar",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.Foo",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.NewFunction",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.Foo.constructor",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.Foo.method0",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.<Anon ArrowFunction>"
-	],
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\symbols.js>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\symbols.js>.func",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\symbols.js>.func1",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\symbols.js>.func2"
-	],
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\functions.js>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\functions.js>.a",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\functions.js>.func",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\functions.js>.returnFunc"
-	],
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\exceptions.js>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\exceptions.js>.AError",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\exceptions.js>.AError.constructor"
-	],
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\decorators.js>.dec1.inner": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\decorators.js>.dec1.f"
-	],
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\decorators.js>.dec2.inner": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\decorators.js>.dec2.f"
-	],
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\decorators.js>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\decorators.js>.Clz",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\decorators.js>.Clz.method"
-	],
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\classes.js>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\classes.js>.MyClass",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\classes.js>.b",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\classes.js>.MyClass.func"
-	],
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\assignments.js>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\assignments.js>.a",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\assignments.js>.b",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\assignments.js>.x",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\assignments.js>.y",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\assignments.js>.z",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\assignments.js>.func1",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\assignments.js>.func2",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\assignments.js>.func3"
-	],
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\args.js>.func": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\args.js>.func.a",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\args.js>.paramFunc"
-	],
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\args.js>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\args.js>.func"
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>": [
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.<Anon Function>"
 	]
 }
