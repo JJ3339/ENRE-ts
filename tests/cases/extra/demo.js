@@ -10,9 +10,7 @@ struct Foo{
       }.seta(1)
     }
 }*/
-function(){
 
-}
 class foo{
     constructor(){
        Column(
