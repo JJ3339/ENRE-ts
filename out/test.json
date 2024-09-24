@@ -1,9 +1,9 @@
 {
 	"entities": [
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>",
-			"name": "<File methodChaining.js>",
-			"path": "D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\implicit\\object-mechanism.js>",
+			"name": "<File object-mechanism.js>",
+			"path": "D:\\repo\\ENRE-ts\\tests\\cases\\docs\\implicit\\object-mechanism.js",
 			"type": "file",
 			"sourceType": "script",
 			"lang": "js",
@@ -11,140 +11,64 @@
 			"id": 0
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.Obj",
-			"name": "Obj",
-			"type": "variable",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\implicit\\object-mechanism.js>.foo",
+			"name": "foo",
+			"type": "function",
 			"parent": 0,
 			"location": {
 				"start": {
 					"line": 1,
-					"column": 5
+					"column": 10
 				},
 				"end": {
 					"line": 1,
-					"column": 8
+					"column": 13
 				}
 			},
-			"kind": "var",
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": false,
 			"id": 1
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.<Anon Function>",
-			"name": "<Anon Function>",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\implicit\\object-mechanism.js>.<Anon ArrowFunction>",
+			"name": "<Anon ArrowFunction>",
 			"type": "function",
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 3,
-					"column": 16
+					"line": 5,
+					"column": 11
 				},
 				"end": {
-					"line": 3,
-					"column": 16
+					"line": 5,
+					"column": 11
 				}
 			},
 			"isAsync": false,
 			"isGenerator": false,
-			"isArrowFunction": false,
+			"isArrowFunction": true,
 			"id": 2
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.<Anon Function>.a",
-			"name": "a",
-			"type": "parameter",
-			"parent": 2,
-			"location": {
-				"start": {
-					"line": 3,
-					"column": 26
-				},
-				"end": {
-					"line": 3,
-					"column": 27
-				}
-			},
-			"path": [
-				{
-					"type": "array"
-				},
-				{
-					"type": "key",
-					"key": "0"
-				}
-			],
-			"id": 3
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.<Anon Function>.b",
-			"name": "b",
-			"type": "parameter",
-			"parent": 2,
-			"location": {
-				"start": {
-					"line": 3,
-					"column": 29
-				},
-				"end": {
-					"line": 3,
-					"column": 30
-				}
-			},
-			"path": [
-				{
-					"type": "array"
-				},
-				{
-					"type": "key",
-					"key": "1"
-				}
-			],
-			"id": 4
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.<Anon Function>",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\implicit\\object-mechanism.js>.<Anon Function>",
 			"name": "<Anon Function>",
 			"type": "function",
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 7,
-					"column": 21
+					"line": 12,
+					"column": 7
 				},
 				"end": {
-					"line": 7,
-					"column": 21
+					"line": 12,
+					"column": 7
 				}
 			},
 			"isAsync": false,
 			"isGenerator": false,
 			"isArrowFunction": false,
-			"id": 5
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.<Anon Function>.a",
-			"name": "a",
-			"type": "parameter",
-			"parent": 5,
-			"location": {
-				"start": {
-					"line": 7,
-					"column": 31
-				},
-				"end": {
-					"line": 7,
-					"column": 32
-				}
-			},
-			"path": [
-				{
-					"type": "array"
-				},
-				{
-					"type": "key",
-					"key": "0"
-				}
-			],
-			"id": 6
+			"id": 3
 		}
 	],
 	"relations": [
@@ -152,18 +76,7 @@
 			"from": 0,
 			"to": 1,
 			"location": {
-				"line": 1,
-				"column": 5
-			},
-			"isImplicit": false,
-			"type": "set",
-			"isInit": true
-		},
-		{
-			"from": 0,
-			"to": 1,
-			"location": {
-				"line": 13,
+				"line": 5,
 				"column": 1
 			},
 			"isImplicit": false,
@@ -171,14 +84,100 @@
 		},
 		{
 			"from": 0,
-			"to": 2,
+			"to": 1,
 			"location": {
-				"line": 13,
+				"line": 9,
+				"column": 1
+			},
+			"isImplicit": false,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 0,
+			"to": 1,
+			"location": {
+				"line": 10,
+				"column": 1
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 0,
+			"to": 1,
+			"location": {
+				"line": 16,
+				"column": 1
+			},
+			"isImplicit": false,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 0,
+			"to": 1,
+			"location": {
+				"line": 17,
+				"column": 1
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 0,
+			"to": 3,
+			"location": {
+				"line": 9,
 				"column": 1
 			},
 			"isImplicit": true,
 			"type": "call",
 			"isNew": false
+		},
+		{
+			"from": 0,
+			"to": 2,
+			"location": {
+				"line": 10,
+				"column": 1
+			},
+			"isImplicit": true,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 0,
+			"to": 3,
+			"location": {
+				"line": 16,
+				"column": 1
+			},
+			"isImplicit": true,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 0,
+			"to": 2,
+			"location": {
+				"line": 17,
+				"column": 1
+			},
+			"isImplicit": true,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 0,
+			"to": 1,
+			"location": {
+				"line": 12,
+				"column": 1
+			},
+			"isImplicit": false,
+			"type": "set",
+			"isInit": false
 		}
 	]
 }

@@ -1,5 +1,7 @@
 {
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.<Anon Function>"
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\implicit\\object-mechanism.js>": [
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\implicit\\object-mechanism.js>.foo",
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\implicit\\object-mechanism.js>.<Anon Function>",
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\implicit\\object-mechanism.js>.<Anon ArrowFunction>"
 	]
 }
