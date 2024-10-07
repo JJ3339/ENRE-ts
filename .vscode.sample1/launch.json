@@ -9,7 +9,7 @@
         "program": "${workspaceFolder}/packages/enre-cli/lib/index.js",
         "args": 
         [
-        "--input", "tests\\cases\\docs",
+        "--input", "tests\\cases\\simple_call",
         "--output", "${workspaceFolder}\\out\\test.json",
         "--callgraph", "${workspaceFolder}\\out\\callGraph.json",
         "--RTA", "${workspaceFolder}\\out\\callGraphRTA.json"

@@ -8,14 +8,17 @@ import {ReturnStatement} from '@babel/types';
 import expressionHandler from './common/expression-handler';
 
 type PathType = NodePath<ReturnStatement>
-
+//TODO: extend the set to analyse more types in arkts(hjj)
+const validTypes = ['function', 'method']; // 这里可以添加更多类型
 export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
   const callableEntity = scope.last();
 
-  if (callableEntity.type !== 'function') {
+  // if (callableEntity.type !== 'function' ) {
+  //   return;
+  // }
+  if (!validTypes.includes(callableEntity.type)) {
     return;
   }
-
   if (!path.node.argument) {
     return;
   }
@@ -28,7 +31,11 @@ export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
        * thus will always be the first callable of the first pointsTo item
        * in the callable array.
        */
-      callableEntity.pointsTo[0].callable[0].returns.push(...symbolSnapshot);
+      if ('pointsTo' in callableEntity) {
+        callableEntity.pointsTo[0].callable[0].returns.push(...symbolSnapshot);
+        return true;
+      }
+      // TODO
       return true;
     };
   }

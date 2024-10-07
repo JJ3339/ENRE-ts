@@ -1,216 +1,159 @@
 {
 	"entities": [
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts>",
-			"name": "<File test1.ts>",
-			"path": "D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>",
+			"name": "<File demo.js>",
+			"path": "D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js",
 			"type": "file",
-			"sourceType": "module",
-			"lang": "ts",
+			"sourceType": "script",
+			"lang": "js",
 			"isJsx": false,
 			"id": 0
 		},
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.foo",
-			"name": "foo",
-			"type": "function",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj",
+			"name": "Obj",
+			"type": "variable",
 			"parent": 0,
 			"location": {
 				"start": {
 					"line": 1,
-					"column": 10
+					"column": 5
 				},
 				"end": {
 					"line": 1,
-					"column": 13
+					"column": 8
 				}
 			},
-			"isAsync": false,
-			"isGenerator": false,
-			"isArrowFunction": false,
+			"kind": "var",
 			"id": 1
 		},
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.foo.<Anon ArrowFunction>",
-			"name": "<Anon ArrowFunction>",
-			"type": "function",
-			"parent": 1,
-			"location": {
-				"start": {
-					"line": 2,
-					"column": 12
-				},
-				"end": {
-					"line": 2,
-					"column": 12
-				}
-			},
-			"isAsync": false,
-			"isGenerator": false,
-			"isArrowFunction": true,
-			"id": 2
-		},
-		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.Foo",
-			"name": "Foo",
-			"type": "class",
-			"parent": 0,
-			"location": {
-				"start": {
-					"line": 7,
-					"column": 7
-				},
-				"end": {
-					"line": 7,
-					"column": 10
-				}
-			},
-			"isAbstract": false,
-			"id": 3
-		},
-		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.Foo.constructor",
-			"name": "constructor",
-			"type": "method",
-			"parent": 3,
-			"location": {
-				"start": {
-					"line": 12,
-					"column": 5
-				},
-				"end": {
-					"line": 12,
-					"column": 16
-				}
-			},
-			"isStatic": false,
-			"isPrivate": false,
-			"TSVisibility": "public",
-			"isAsync": false,
-			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "constructor",
-			"id": 4
-		},
-		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.Foo.method0",
-			"name": "method0",
-			"type": "method",
-			"parent": 3,
-			"location": {
-				"start": {
-					"line": 16,
-					"column": 5
-				},
-				"end": {
-					"line": 16,
-					"column": 12
-				}
-			},
-			"isStatic": false,
-			"isPrivate": false,
-			"TSVisibility": "public",
-			"isAsync": false,
-			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "method",
-			"id": 5
-		},
-		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.baz",
-			"name": "baz",
-			"type": "variable",
-			"parent": 0,
-			"location": {
-				"start": {
-					"line": 21,
-					"column": 7
-				},
-				"end": {
-					"line": 21,
-					"column": 10
-				}
-			},
-			"kind": "const",
-			"id": 6
-		},
-		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.<Anon ArrowFunction>",
-			"name": "<Anon ArrowFunction>",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.<Anon Function>",
+			"name": "<Anon Function>",
 			"type": "function",
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 22,
-					"column": 11
+					"line": 3,
+					"column": 14
 				},
 				"end": {
-					"line": 22,
-					"column": 11
-				}
-			},
-			"isAsync": false,
-			"isGenerator": false,
-			"isArrowFunction": true,
-			"id": 7
-		},
-		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.bar",
-			"name": "bar",
-			"type": "variable",
-			"parent": 0,
-			"location": {
-				"start": {
-					"line": 27,
-					"column": 7
-				},
-				"end": {
-					"line": 27,
-					"column": 10
-				}
-			},
-			"kind": "const",
-			"id": 8
-		},
-		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\docs\\test1.ts>.NewFunction",
-			"name": "NewFunction",
-			"type": "function",
-			"parent": 0,
-			"location": {
-				"start": {
-					"line": 38,
-					"column": 10
-				},
-				"end": {
-					"line": 38,
-					"column": 21
+					"line": 3,
+					"column": 14
 				}
 			},
 			"isAsync": false,
 			"isGenerator": false,
 			"isArrowFunction": false,
-			"id": 9
+			"id": 2
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.<Anon Function>.a",
+			"name": "a",
+			"type": "parameter",
+			"parent": 2,
+			"location": {
+				"start": {
+					"line": 3,
+					"column": 24
+				},
+				"end": {
+					"line": 3,
+					"column": 25
+				}
+			},
+			"path": [
+				{
+					"type": "array"
+				},
+				{
+					"type": "key",
+					"key": "0"
+				}
+			],
+			"id": 3
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.<Anon Function>.b",
+			"name": "b",
+			"type": "parameter",
+			"parent": 2,
+			"location": {
+				"start": {
+					"line": 3,
+					"column": 27
+				},
+				"end": {
+					"line": 3,
+					"column": 28
+				}
+			},
+			"path": [
+				{
+					"type": "array"
+				},
+				{
+					"type": "key",
+					"key": "1"
+				}
+			],
+			"id": 4
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.<Anon Function>",
+			"name": "<Anon Function>",
+			"type": "function",
+			"parent": 0,
+			"location": {
+				"start": {
+					"line": 7,
+					"column": 19
+				},
+				"end": {
+					"line": 7,
+					"column": 19
+				}
+			},
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": false,
+			"id": 5
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.<Anon Function>.a",
+			"name": "a",
+			"type": "parameter",
+			"parent": 5,
+			"location": {
+				"start": {
+					"line": 7,
+					"column": 29
+				},
+				"end": {
+					"line": 7,
+					"column": 30
+				}
+			},
+			"path": [
+				{
+					"type": "array"
+				},
+				{
+					"type": "key",
+					"key": "0"
+				}
+			],
+			"id": 6
 		}
 	],
 	"relations": [
 		{
 			"from": 0,
-			"to": 6,
+			"to": 1,
 			"location": {
-				"line": 21,
-				"column": 7
-			},
-			"isImplicit": false,
-			"type": "set",
-			"isInit": true
-		},
-		{
-			"from": 0,
-			"to": 8,
-			"location": {
-				"line": 27,
-				"column": 7
+				"line": 1,
+				"column": 5
 			},
 			"isImplicit": false,
 			"type": "set",
@@ -220,40 +163,7 @@
 			"from": 0,
 			"to": 1,
 			"location": {
-				"line": 27,
-				"column": 13
-			},
-			"isImplicit": false,
-			"type": "call",
-			"isNew": false
-		},
-		{
-			"from": 0,
-			"to": 8,
-			"location": {
-				"line": 28,
-				"column": 1
-			},
-			"isImplicit": false,
-			"type": "call",
-			"isNew": false
-		},
-		{
-			"from": 0,
-			"to": 3,
-			"location": {
-				"line": 30,
-				"column": 5
-			},
-			"isImplicit": false,
-			"type": "call",
-			"isNew": true
-		},
-		{
-			"from": 0,
-			"to": 6,
-			"location": {
-				"line": 32,
+				"line": 13,
 				"column": 1
 			},
 			"isImplicit": false,
@@ -261,42 +171,9 @@
 		},
 		{
 			"from": 0,
-			"to": 9,
+			"to": 2,
 			"location": {
-				"line": 42,
-				"column": 5
-			},
-			"isImplicit": false,
-			"type": "call",
-			"isNew": true
-		},
-		{
-			"from": 0,
-			"to": 4,
-			"location": {
-				"line": 30,
-				"column": 5
-			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": true
-		},
-		{
-			"from": 0,
-			"to": 5,
-			"location": {
-				"line": 30,
-				"column": 1
-			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": false
-		},
-		{
-			"from": 0,
-			"to": 7,
-			"location": {
-				"line": 32,
+				"line": 13,
 				"column": 1
 			},
 			"isImplicit": true,

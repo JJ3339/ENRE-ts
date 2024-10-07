@@ -75,27 +75,27 @@ export class RapidTypeAnalyzer extends ClassHierarchyAnalyzer{
                     }else{
                         // to.push(`${obj.name}.${prop.name}()`)
                         // to.push(`${this.getName(prop)}()`)
-                        to.push(`${prop.getQualifiedName()}`)
+                        //to.push(`${prop.getQualifiedName()}`)
                     }
                     break;
                 }
-                case 'Identifier':{
-                    const id = lookup(
-                        {role: 'value', 
-                        identifier: node.expr.callee.name, 
-                        at: node.scope,
-                        }, true) as ENREEntityCollectionScoping;
-                    // 
-                    if (id.type === 'class'){
-                        // to.push(`${id.name}.constructor()`)
-                        // TODO: lookup?
-                        // to.push(`${this.getName(id)}.constructor()`)
-                        to.push(`${id.getQualifiedName()}`)
-                    }else{
-                        //do noting
-                    }
-                    break;
-                }
+                // case 'Identifier':{
+                //     const id = lookup(
+                //         {role: 'value', 
+                //         identifier: node.expr.callee.name, 
+                //         at: node.scope,
+                //         }, true) as ENREEntityCollectionScoping;
+                //     // 
+                //     if (id.type === 'class'){
+                //         // to.push(`${id.name}.constructor()`)
+                //         // TODO: lookup?
+                //         // to.push(`${this.getName(id)}.constructor()`)
+                //         to.push(`${id.getQualifiedName()}`)
+                //     }else{
+                //         //do noting
+                //     }
+                //     break;
+                // }
                 
             }
             if (!this.callGraph.has(from)) {
