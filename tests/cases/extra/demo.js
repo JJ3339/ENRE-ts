@@ -1,23 +1,13 @@
-import {Column,Text,Setheight,setdeep,seta} from '@ArkTS';
-
-/*@Component
-struct Foo{
-    build(){
-      Column(){
-        Text('ArkTS')
-        .Setheight(100)
-        .setdeep(100)
-      }.seta(1)
-    }
-}*/
-
-class foo{
-    constructor(){
-       Column(
-        Text('ArkTS'
-        ,Setheight(100)
-        ,setdeep(100))
-      ).seta(1);
-    }
+var Obj = {
+  result: 0,
+  addNumber: function (a, b) {
+      this.result = a + b;
+      return this;
+  },
+  multiplyNumber: function (a) {
+      this.result = this.result * a;
+      return this;
+  },
 }
 
+Obj.addNumber(10, 20).multiplyNumber(10);
