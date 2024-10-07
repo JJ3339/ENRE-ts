@@ -14,6 +14,7 @@ export class RapidTypeAnalyzer extends ClassHierarchyAnalyzer{
             const from = node.scope.getQualifiedName()
             let to = []
             switch(node.expr.callee.type){
+                // 成员访问
                 case 'MemberExpression':{
                     const objName = Reflect.get(node.expr.callee.object, 'name')
                     const propName = Reflect.get(node.expr.callee.property, 'name')
