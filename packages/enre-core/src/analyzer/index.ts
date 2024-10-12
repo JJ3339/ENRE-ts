@@ -26,7 +26,7 @@ export const analyze = async (fileEntity: ENREEntityFile) => {
       sourceType: fileEntity.sourceType,
       // @ts-ignore
       plugins,
-      /**
+      /** 
        * Enabling error recovery suppresses some TS errors
        * and make it possible to deal with in user space.
        */
