@@ -26,17 +26,35 @@ export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
   const task = expressionHandler(path.node.argument, scope);
   if (task) {
     task.onFinish = (symbolSnapshot) => {
+      // if ('pointsTo' in symbolSnapshot){
+      //   if(symbolSnapshot.length !==1){
+      //     console.log('ERROR A')
+      //   }
+      //   symbolSnapshot = symbolSnapshot[0].pointsTo
+      // }
       /**
        * The return statement is strictly bind to its declaration function body,
        * thus will always be the first callable of the first pointsTo item
        * in the callable array.
        */
+      if (!symbolSnapshot){
+        return false;
+      }
       if ('pointsTo' in callableEntity) {
-        callableEntity.pointsTo[0].callable[0].returns.push(...symbolSnapshot);
+        symbolSnapshot.forEach((s: { callable: any[]; }) => {
+          s.callable.forEach(c => {
+            // c.returns - ENREEntity as symbol
+            c.returns.forEach((r: any) => {
+              callableEntity.pointsTo[0].callable[0].returns.push(r);
+            });
+            // ENREEntity as symbol
+          });
+        });
+        // callableEntity.pointsTo[0].callable[0].returns.push(...symbolSnapshot);
         return true;
       }
       // TODO
-      return true;
+      return false;
     };
   }
 };

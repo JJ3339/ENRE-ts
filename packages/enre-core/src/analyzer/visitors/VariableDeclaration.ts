@@ -42,6 +42,7 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
     );
 
     scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
+    scope.push(entity);
 
     if (hasInit) {
       // Record relation `set`
@@ -149,7 +150,7 @@ export default {
       //   if (declarator.init?.type === 'ObjectExpression') {
       //     if (returned) {
       //       scope.push(returned);
-      //
+      
       //       const key = `${path.node.loc!.start.line}:${path.node.loc!.start.column}`;
       //       modifiers.set(key, ({
       //         type: ModifierType.acceptProperty,
@@ -161,7 +162,22 @@ export default {
     }
   },
 
-  exit: (path: PathType, {modifiers}: ENREContext) => {
+  exit: (path: PathType, {scope, modifiers}: ENREContext) => {
+    console.log('exit var');
+    const varEntity = scope.last<ENREEntityClass>();
+    varEntity.children.forEach(f => {
+      if(f.type === 'function' || f.type === 'method'){
+        varEntity.pointsTo[0].callable.push({
+          entity: f,
+          /**
+           * Temporary assign the return value of a new call to a class to be itself.
+           * TODO: Truly resolve the return value of a new call to a class with the respect
+           * of constructor's return value.
+           */
+          returns: [f],
+        });
+      }
+    })
     // if (path.node.declarator.id.type === 'Identifier') {
     //   if (declarator.init?.type === 'ObjectExpression') {
     //   }

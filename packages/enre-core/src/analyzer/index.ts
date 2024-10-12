@@ -36,6 +36,8 @@ export const analyze = async (fileEntity: ENREEntityFile) => {
     logger.error(`Failed to parse the file ${fileEntity.getQualifiedName()}`);
   }
 
+  
+  
   if (ast) {
     /**
      * A stack to help trace AST traverse process for parent determination.

@@ -17,11 +17,11 @@
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 1,
+					"line": 28,
 					"column": 5
 				},
 				"end": {
-					"line": 1,
+					"line": 28,
 					"column": 8
 				}
 			},
@@ -29,18 +29,18 @@
 			"id": 1
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.<Anon Function>",
-			"name": "<Anon Function>",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.addNumber",
+			"name": "addNumber",
 			"type": "function",
-			"parent": 0,
+			"parent": 1,
 			"location": {
 				"start": {
-					"line": 3,
-					"column": 14
+					"line": 30,
+					"column": 3
 				},
 				"end": {
-					"line": 3,
-					"column": 14
+					"line": 30,
+					"column": 12
 				}
 			},
 			"isAsync": false,
@@ -49,17 +49,17 @@
 			"id": 2
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.<Anon Function>.a",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.addNumber.a",
 			"name": "a",
 			"type": "parameter",
 			"parent": 2,
 			"location": {
 				"start": {
-					"line": 3,
+					"line": 30,
 					"column": 24
 				},
 				"end": {
-					"line": 3,
+					"line": 30,
 					"column": 25
 				}
 			},
@@ -75,17 +75,17 @@
 			"id": 3
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.<Anon Function>.b",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.addNumber.b",
 			"name": "b",
 			"type": "parameter",
 			"parent": 2,
 			"location": {
 				"start": {
-					"line": 3,
+					"line": 30,
 					"column": 27
 				},
 				"end": {
-					"line": 3,
+					"line": 30,
 					"column": 28
 				}
 			},
@@ -101,18 +101,18 @@
 			"id": 4
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.<Anon Function>",
-			"name": "<Anon Function>",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.multiplyNumber",
+			"name": "multiplyNumber",
 			"type": "function",
-			"parent": 0,
+			"parent": 1,
 			"location": {
 				"start": {
-					"line": 7,
-					"column": 19
+					"line": 34,
+					"column": 3
 				},
 				"end": {
-					"line": 7,
-					"column": 19
+					"line": 34,
+					"column": 17
 				}
 			},
 			"isAsync": false,
@@ -121,17 +121,17 @@
 			"id": 5
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.<Anon Function>.a",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.multiplyNumber.a",
 			"name": "a",
 			"type": "parameter",
 			"parent": 5,
 			"location": {
 				"start": {
-					"line": 7,
+					"line": 34,
 					"column": 29
 				},
 				"end": {
-					"line": 7,
+					"line": 34,
 					"column": 30
 				}
 			},
@@ -149,10 +149,10 @@
 	],
 	"relations": [
 		{
-			"from": 0,
+			"from": 1,
 			"to": 1,
 			"location": {
-				"line": 1,
+				"line": 28,
 				"column": 5
 			},
 			"isImplicit": false,
@@ -160,20 +160,56 @@
 			"isInit": true
 		},
 		{
-			"from": 0,
+			"from": 2,
+			"location": {
+				"line": 31,
+				"column": 7
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 2,
+			"location": {
+				"line": 32,
+				"column": 14
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 5,
+			"location": {
+				"line": 35,
+				"column": 7
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 5,
+			"location": {
+				"line": 36,
+				"column": 14
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 1,
 			"to": 1,
 			"location": {
-				"line": 13,
+				"line": 40,
 				"column": 1
 			},
 			"isImplicit": false,
 			"type": "use"
 		},
 		{
-			"from": 0,
+			"from": 1,
 			"to": 2,
 			"location": {
-				"line": 13,
+				"line": 40,
 				"column": 1
 			},
 			"isImplicit": true,

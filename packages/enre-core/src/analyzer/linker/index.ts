@@ -47,6 +47,7 @@ import { RapidTypeAnalyzer as RTAnalyzer } from '../callgraph/RapidTypeAnalysisA
 import { PointerAnalyzer as PTAnalyzer} from '../callgraph/PointerAnalysis';
 import { time } from 'console';
 // const CHAnalyzer = ClassHierarchyAnalyzer
+import _ from 'lodash';
 
 type WorkingPseudoR<T extends ENRERelationAbilityBase> = ENREPseudoRelation<T> & {
   resolved: boolean
@@ -363,7 +364,7 @@ export default () => {
                     if (token.operand1 === 'this') {
                       // Simply find a class entity along the scope chain
                       let cursor = task.scope;
-                      while (cursor.type !== 'class') {
+                      while (cursor.type !== 'class' && cursor.type !=='variable') {
                         cursor = cursor.parent;
                         if (cursor === undefined) {
                           break;
@@ -401,8 +402,21 @@ export default () => {
                     prevSymbol.forEach(s => {
                       const found = lookdown('name', token.operand1, s);
                       if (found) {
-                        // ENREEntity as symbol
-                        currSymbol.push(found);
+                        if (found.type === 'receipt'){
+                          const subfound = lookup({
+                            role: 'value',
+                            identifier: token.operand1,
+                            at: task.scope,
+                          }, true) as ENREEntityCollectionAll;
+                          if (subfound){
+                            currSymbol.push(subfound);
+                          }
+                        }
+                        else{
+                          // ENREEntity as symbol
+                          currSymbol.push(found);
+                        }
+                        
                       }
                     });
                   } else {
@@ -427,7 +441,8 @@ export default () => {
                             if (!PTAnalyzer.callGraph.has(from)) {
                               PTAnalyzer.callGraph.set(from, new Set());
                             }
-                            PTAnalyzer.callGraph.get(from)?.add(to)
+                            PTAnalyzer.callGraph.get(from)?.add(to);
+                            console.log('from:'+from+'to:'+to);
                             // to.forEach(edge => PTAnalyzer.callGraph.get(from)?.add(edge)) 
                           } else {
                             recordRelationUse(
@@ -450,6 +465,14 @@ export default () => {
                         .reduce((p, c) => [...p, ...c], []);
                       // All symbols' points-to are extracted for the next evaluation
                     }
+                    // if (task.onFinish){
+                    //   const executionSuccess = task.onFinish(prevSymbol);
+                    //   if (executionSuccess) {
+                    //     // Make the hook function only be called once (If whatever intended was done)
+                    //     task.onFinish = undefined;
+                    //     currUpdated = true;
+                    //   }
+                    // }
                   }
                 }
                 break;
@@ -508,7 +531,7 @@ export default () => {
                     // ENREEntity as entity
                   });
 
-                  if (prevUpdated === false) {
+                  if (prevUpdated === false || (token.lastSymbol && !(_.isEqual(currSymbol, token.lastSymbol)))) {
                     currSymbol.forEach(s => {
                       /**
                        * If the reference chain is
@@ -641,7 +664,8 @@ export default () => {
                       });
                     }
                   }
-
+                  
+                  
                   // Make function's returns currSymbol for next token
                   currSymbol = [];
                   prevSymbol.forEach(s => {
@@ -649,9 +673,17 @@ export default () => {
                       // c.returns - ENREEntity as symbol
                       c.returns.forEach(r => {
                         if (task.onFinish && i === 0) {
-                          currSymbol.push(r);
+                          if(r.pointsTo){
+                            currSymbol.push(...r.pointsTo);
+                          }else{
+                            currSymbol.push(r);
+                          }
+                          
                         } else {
-                          currSymbol.push(...r.pointsTo);
+                          if(r.pointsTo){
+                            currSymbol.push(...r.pointsTo);
+                          }
+                          //currSymbol.push(...r.pointsTo);
                         }
                       });
                       // ENREEntity as symbol
@@ -664,8 +696,14 @@ export default () => {
 
             prevSymbol = currSymbol;
             currSymbol = [];
+            task.payload[i].lastSymbol = prevSymbol
+            // if('lastSymbol' in task.payload[i]){
+              
+            // }else{
+            //   task.payload[i].lastSymbol = prevSymbol
+            // }
           }
-
+          
           if (task.onFinish) {
             const executionSuccess = task.onFinish(prevSymbol);
             /**
@@ -687,6 +725,7 @@ export default () => {
           }
         }
       } catch {
+        console.log('catch error!')
         if (task.scope) {
           const filePath = task.scope.type === 'file' ? task.scope.path : task.scope.getSourceFile().path;
           codeLogger.error(`Points-to relation resolving is experimental, and it fails at ${filePath} (Task ${index}/${postponedTask.all.length})`);

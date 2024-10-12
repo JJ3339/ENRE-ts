@@ -8,7 +8,7 @@
  */
 
 import {NodePath} from '@babel/traverse';
-import {FunctionDeclaration, FunctionExpression, SourceLocation} from '@babel/types';
+import {FunctionDeclaration, FunctionExpression, ObjectProperty, SourceLocation} from '@babel/types';
 import {
   ENREEntityCollectionAnyChildren,
   ENREEntityFunction,
@@ -40,7 +40,21 @@ export default {
           isGenerator: path.node.generator,
         },
       );
-    } else {
+    } else if (path.parent?.type === 'ObjectProperty' && 'name' in path.parent?.key) {
+      entity = recordEntityFunction(
+        new ENREName('Norm', path.parent.key.name),
+        /**
+         * If it's a named function, use identifier's location as entity location.
+         */
+        toENRELocation(path.parent.key.loc),
+        scope.last(),
+        {
+          isArrowFunction: false,
+          isAsync: path.node.async,
+          isGenerator: path.node.generator,
+        },
+      );
+    }else{
       entity = recordEntityFunction(
         new ENREName<'Anon'>('Anon', 'Function'),
         /**
