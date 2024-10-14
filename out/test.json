@@ -1,9 +1,9 @@
 {
 	"entities": [
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>",
-			"name": "<File demo.js>",
-			"path": "D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>",
+			"name": "<File methodChaining.js>",
+			"path": "D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js",
 			"type": "file",
 			"sourceType": "script",
 			"lang": "js",
@@ -11,243 +11,96 @@
 			"id": 0
 		},
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Person",
-			"name": "Person",
-			"type": "class",
-			"parent": 0,
-			"location": {
-				"start": {
-					"line": 1,
-					"column": 7
-				},
-				"end": {
-					"line": 1,
-					"column": 13
-				}
-			},
-			"isAbstract": false,
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\ImmediateCall.js>",
+			"name": "<File ImmediateCall.js>",
+			"path": "D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\ImmediateCall.js",
+			"type": "file",
+			"sourceType": "script",
+			"lang": "js",
+			"isJsx": false,
 			"id": 1
 		},
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Person.setName",
-			"name": "setName",
-			"type": "method",
-			"parent": 1,
-			"location": {
-				"start": {
-					"line": 2,
-					"column": 3
-				},
-				"end": {
-					"line": 2,
-					"column": 10
-				}
-			},
-			"isStatic": false,
-			"isPrivate": false,
-			"isAsync": false,
-			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "method",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>",
+			"name": "<File fileCallables.js>",
+			"path": "D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js",
+			"type": "file",
+			"sourceType": "script",
+			"lang": "js",
+			"isJsx": false,
 			"id": 2
 		},
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Logger",
-			"name": "Logger",
-			"type": "class",
-			"parent": 0,
-			"location": {
-				"start": {
-					"line": 7,
-					"column": 7
-				},
-				"end": {
-					"line": 7,
-					"column": 13
-				}
-			},
-			"isAbstract": false,
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\classConstructor.js>",
+			"name": "<File classConstructor.js>",
+			"path": "D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\classConstructor.js",
+			"type": "file",
+			"sourceType": "script",
+			"lang": "js",
+			"isJsx": false,
 			"id": 3
 		},
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Logger.logMessage",
-			"name": "logMessage",
-			"type": "method",
-			"parent": 3,
-			"location": {
-				"start": {
-					"line": 8,
-					"column": 3
-				},
-				"end": {
-					"line": 8,
-					"column": 13
-				}
-			},
-			"isStatic": false,
-			"isPrivate": false,
-			"isAsync": false,
-			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "method",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\awaitWorkaround.js>",
+			"name": "<File awaitWorkaround.js>",
+			"path": "D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\awaitWorkaround.js",
+			"type": "file",
+			"sourceType": "script",
+			"lang": "js",
+			"isJsx": false,
 			"id": 4
 		},
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Logger.end",
-			"name": "end",
-			"type": "method",
-			"parent": 3,
-			"location": {
-				"start": {
-					"line": 11,
-					"column": 3
-				},
-				"end": {
-					"line": 11,
-					"column": 6
-				}
-			},
-			"isStatic": false,
-			"isPrivate": false,
-			"isAsync": false,
-			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "method",
-			"id": 5
-		},
-		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.person",
-			"name": "person",
-			"type": "variable",
-			"parent": 0,
-			"location": {
-				"start": {
-					"line": 15,
-					"column": 7
-				},
-				"end": {
-					"line": 15,
-					"column": 13
-				}
-			},
-			"kind": "const",
-			"id": 6
-		},
-		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Simple",
-			"name": "Simple",
-			"type": "class",
-			"parent": 0,
-			"location": {
-				"start": {
-					"line": 17,
-					"column": 7
-				},
-				"end": {
-					"line": 17,
-					"column": 13
-				}
-			},
-			"isAbstract": false,
-			"id": 7
-		},
-		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Simple.add",
-			"name": "add",
-			"type": "method",
-			"parent": 7,
-			"location": {
-				"start": {
-					"line": 18,
-					"column": 3
-				},
-				"end": {
-					"line": 18,
-					"column": 6
-				}
-			},
-			"isStatic": false,
-			"isPrivate": false,
-			"isAsync": false,
-			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "method",
-			"id": 8
-		},
-		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Simple.subtract",
-			"name": "subtract",
-			"type": "method",
-			"parent": 7,
-			"location": {
-				"start": {
-					"line": 21,
-					"column": 3
-				},
-				"end": {
-					"line": 21,
-					"column": 11
-				}
-			},
-			"isStatic": false,
-			"isPrivate": false,
-			"isAsync": false,
-			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "method",
-			"id": 9
-		},
-		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.Obj",
 			"name": "Obj",
 			"type": "variable",
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 28,
+					"line": 1,
 					"column": 5
 				},
 				"end": {
-					"line": 28,
+					"line": 1,
 					"column": 8
 				}
 			},
 			"kind": "var",
-			"id": 10
+			"id": 5
 		},
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.addNumber",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.Obj.addNumber",
 			"name": "addNumber",
 			"type": "function",
-			"parent": 10,
+			"parent": 5,
 			"location": {
 				"start": {
-					"line": 30,
-					"column": 3
+					"line": 3,
+					"column": 5
 				},
 				"end": {
-					"line": 30,
-					"column": 12
+					"line": 3,
+					"column": 14
 				}
 			},
 			"isAsync": false,
 			"isGenerator": false,
 			"isArrowFunction": false,
-			"id": 11
+			"id": 6
 		},
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.addNumber.a",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.Obj.addNumber.a",
 			"name": "a",
 			"type": "parameter",
-			"parent": 11,
+			"parent": 6,
 			"location": {
 				"start": {
-					"line": 30,
-					"column": 24
+					"line": 3,
+					"column": 26
 				},
 				"end": {
-					"line": 30,
-					"column": 25
+					"line": 3,
+					"column": 27
 				}
 			},
 			"path": [
@@ -259,21 +112,21 @@
 					"key": "0"
 				}
 			],
-			"id": 12
+			"id": 7
 		},
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.addNumber.b",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.Obj.addNumber.b",
 			"name": "b",
 			"type": "parameter",
-			"parent": 11,
+			"parent": 6,
 			"location": {
 				"start": {
-					"line": 30,
-					"column": 27
+					"line": 3,
+					"column": 29
 				},
 				"end": {
-					"line": 30,
-					"column": 28
+					"line": 3,
+					"column": 30
 				}
 			},
 			"path": [
@@ -285,41 +138,41 @@
 					"key": "1"
 				}
 			],
-			"id": 13
+			"id": 8
 		},
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.multiplyNumber",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.Obj.multiplyNumber",
 			"name": "multiplyNumber",
 			"type": "function",
-			"parent": 10,
+			"parent": 5,
 			"location": {
 				"start": {
-					"line": 34,
-					"column": 3
+					"line": 7,
+					"column": 5
 				},
 				"end": {
-					"line": 34,
-					"column": 17
+					"line": 7,
+					"column": 19
 				}
 			},
 			"isAsync": false,
 			"isGenerator": false,
 			"isArrowFunction": false,
-			"id": 14
+			"id": 9
 		},
 		{
-			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.multiplyNumber.a",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.Obj.multiplyNumber.a",
 			"name": "a",
 			"type": "parameter",
-			"parent": 14,
+			"parent": 9,
 			"location": {
 				"start": {
-					"line": 34,
-					"column": 29
+					"line": 7,
+					"column": 31
 				},
 				"end": {
-					"line": 34,
-					"column": 30
+					"line": 7,
+					"column": 32
 				}
 			},
 			"path": [
@@ -331,26 +184,334 @@
 					"key": "0"
 				}
 			],
+			"id": 10
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\ImmediateCall.js>.foo",
+			"name": "foo",
+			"type": "function",
+			"parent": 1,
+			"location": {
+				"start": {
+					"line": 1,
+					"column": 11
+				},
+				"end": {
+					"line": 1,
+					"column": 14
+				}
+			},
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": false,
+			"id": 11
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\ImmediateCall.js>.<Anon Function>",
+			"name": "<Anon Function>",
+			"type": "function",
+			"parent": 1,
+			"location": {
+				"start": {
+					"line": 6,
+					"column": 2
+				},
+				"end": {
+					"line": 6,
+					"column": 2
+				}
+			},
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": false,
+			"id": 12
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\ImmediateCall.js>.<Anon ArrowFunction>",
+			"name": "<Anon ArrowFunction>",
+			"type": "function",
+			"parent": 1,
+			"location": {
+				"start": {
+					"line": 11,
+					"column": 2
+				},
+				"end": {
+					"line": 11,
+					"column": 2
+				}
+			},
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": true,
+			"id": 13
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.foo",
+			"name": "foo",
+			"type": "function",
+			"parent": 2,
+			"location": {
+				"start": {
+					"line": 1,
+					"column": 10
+				},
+				"end": {
+					"line": 1,
+					"column": 13
+				}
+			},
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": false,
+			"id": 14
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.foo.<Anon ArrowFunction>",
+			"name": "<Anon ArrowFunction>",
+			"type": "function",
+			"parent": 14,
+			"location": {
+				"start": {
+					"line": 2,
+					"column": 12
+				},
+				"end": {
+					"line": 2,
+					"column": 12
+				}
+			},
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": true,
 			"id": 15
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.Foo",
+			"name": "Foo",
+			"type": "class",
+			"parent": 2,
+			"location": {
+				"start": {
+					"line": 7,
+					"column": 7
+				},
+				"end": {
+					"line": 7,
+					"column": 10
+				}
+			},
+			"isAbstract": false,
+			"id": 16
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.Foo.constructor",
+			"name": "constructor",
+			"type": "method",
+			"parent": 16,
+			"location": {
+				"start": {
+					"line": 12,
+					"column": 5
+				},
+				"end": {
+					"line": 12,
+					"column": 16
+				}
+			},
+			"isStatic": false,
+			"isPrivate": false,
+			"isAsync": false,
+			"isGenerator": false,
+			"isAbstract": false,
+			"kind": "constructor",
+			"id": 17
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.Foo.method0",
+			"name": "method0",
+			"type": "method",
+			"parent": 16,
+			"location": {
+				"start": {
+					"line": 16,
+					"column": 5
+				},
+				"end": {
+					"line": 16,
+					"column": 12
+				}
+			},
+			"isStatic": false,
+			"isPrivate": false,
+			"isAsync": false,
+			"isGenerator": false,
+			"isAbstract": false,
+			"kind": "method",
+			"id": 18
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.baz",
+			"name": "baz",
+			"type": "variable",
+			"parent": 2,
+			"location": {
+				"start": {
+					"line": 21,
+					"column": 7
+				},
+				"end": {
+					"line": 21,
+					"column": 10
+				}
+			},
+			"kind": "const",
+			"id": 19
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.baz.<Anon ArrowFunction>",
+			"name": "<Anon ArrowFunction>",
+			"type": "function",
+			"parent": 19,
+			"location": {
+				"start": {
+					"line": 22,
+					"column": 11
+				},
+				"end": {
+					"line": 22,
+					"column": 11
+				}
+			},
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": true,
+			"id": 20
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.bar",
+			"name": "bar",
+			"type": "variable",
+			"parent": 2,
+			"location": {
+				"start": {
+					"line": 27,
+					"column": 7
+				},
+				"end": {
+					"line": 27,
+					"column": 10
+				}
+			},
+			"kind": "const",
+			"id": 21
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.NewFunction",
+			"name": "NewFunction",
+			"type": "function",
+			"parent": 2,
+			"location": {
+				"start": {
+					"line": 38,
+					"column": 10
+				},
+				"end": {
+					"line": 38,
+					"column": 21
+				}
+			},
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": false,
+			"id": 22
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\classConstructor.js>.A",
+			"name": "A",
+			"type": "class",
+			"parent": 3,
+			"location": {
+				"start": {
+					"line": 1,
+					"column": 7
+				},
+				"end": {
+					"line": 1,
+					"column": 8
+				}
+			},
+			"isAbstract": false,
+			"id": 23
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\classConstructor.js>.A.constructor",
+			"name": "constructor",
+			"type": "method",
+			"parent": 23,
+			"location": {
+				"start": {
+					"line": 2,
+					"column": 5
+				},
+				"end": {
+					"line": 2,
+					"column": 16
+				}
+			},
+			"isStatic": false,
+			"isPrivate": false,
+			"isAsync": false,
+			"isGenerator": false,
+			"isAbstract": false,
+			"kind": "constructor",
+			"id": 24
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\classConstructor.js>.B",
+			"name": "B",
+			"type": "class",
+			"parent": 3,
+			"location": {
+				"start": {
+					"line": 7,
+					"column": 7
+				},
+				"end": {
+					"line": 7,
+					"column": 8
+				}
+			},
+			"isAbstract": false,
+			"id": 25
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\awaitWorkaround.js>.<Anon ArrowFunction>",
+			"name": "<Anon ArrowFunction>",
+			"type": "function",
+			"parent": 4,
+			"location": {
+				"start": {
+					"line": 1,
+					"column": 2
+				},
+				"end": {
+					"line": 1,
+					"column": 2
+				}
+			},
+			"isAsync": true,
+			"isGenerator": false,
+			"isArrowFunction": true,
+			"id": 26
 		}
 	],
 	"relations": [
 		{
-			"from": 6,
-			"to": 6,
+			"from": 5,
+			"to": 5,
 			"location": {
-				"line": 15,
-				"column": 7
-			},
-			"isImplicit": false,
-			"type": "set",
-			"isInit": true
-		},
-		{
-			"from": 10,
-			"to": 10,
-			"location": {
-				"line": 28,
+				"line": 1,
 				"column": 5
 			},
 			"isImplicit": false,
@@ -358,51 +519,41 @@
 			"isInit": true
 		},
 		{
-			"from": 2,
-			"to": 3,
+			"from": 19,
+			"to": 19,
 			"location": {
-				"line": 3,
+				"line": 21,
+				"column": 7
+			},
+			"isImplicit": false,
+			"type": "set",
+			"isInit": true
+		},
+		{
+			"from": 21,
+			"to": 21,
+			"location": {
+				"line": 27,
+				"column": 7
+			},
+			"isImplicit": false,
+			"type": "set",
+			"isInit": true
+		},
+		{
+			"from": 6,
+			"location": {
+				"line": 4,
+				"column": 9
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 6,
+			"location": {
+				"line": 5,
 				"column": 16
-			},
-			"isImplicit": false,
-			"type": "call",
-			"isNew": true
-		},
-		{
-			"from": 4,
-			"location": {
-				"line": 9,
-				"column": 12
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 0,
-			"to": 1,
-			"location": {
-				"line": 15,
-				"column": 20
-			},
-			"isImplicit": false,
-			"type": "call",
-			"isNew": true
-		},
-		{
-			"from": 0,
-			"to": 6,
-			"location": {
-				"line": 16,
-				"column": 1
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 8,
-			"location": {
-				"line": 19,
-				"column": 12
 			},
 			"isImplicit": false,
 			"type": "use"
@@ -410,17 +561,58 @@
 		{
 			"from": 9,
 			"location": {
-				"line": 22,
-				"column": 12
+				"line": 8,
+				"column": 9
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 9,
+			"location": {
+				"line": 9,
+				"column": 16
 			},
 			"isImplicit": false,
 			"type": "use"
 		},
 		{
 			"from": 0,
-			"to": 7,
+			"to": 5,
 			"location": {
-				"line": 25,
+				"line": 13,
+				"column": 1
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 2,
+			"to": 14,
+			"location": {
+				"line": 27,
+				"column": 13
+			},
+			"isImplicit": false,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 2,
+			"to": 21,
+			"location": {
+				"line": 28,
+				"column": 1
+			},
+			"isImplicit": false,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 2,
+			"to": 16,
+			"location": {
+				"line": 30,
 				"column": 5
 			},
 			"isImplicit": false,
@@ -428,56 +620,97 @@
 			"isNew": true
 		},
 		{
-			"from": 11,
-			"location": {
-				"line": 31,
-				"column": 7
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 11,
+			"from": 2,
+			"to": 19,
 			"location": {
 				"line": 32,
-				"column": 14
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 14,
-			"location": {
-				"line": 35,
-				"column": 7
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 14,
-			"location": {
-				"line": 36,
-				"column": 14
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 0,
-			"to": 10,
-			"location": {
-				"line": 39,
 				"column": 1
 			},
 			"isImplicit": false,
 			"type": "use"
 		},
 		{
-			"from": 0,
-			"to": 8,
+			"from": 2,
+			"to": 22,
 			"location": {
-				"line": 25,
+				"line": 42,
+				"column": 5
+			},
+			"isImplicit": false,
+			"type": "call",
+			"isNew": true
+		},
+		{
+			"from": 3,
+			"to": 23,
+			"location": {
+				"line": 11,
+				"column": 5
+			},
+			"isImplicit": false,
+			"type": "call",
+			"isNew": true
+		},
+		{
+			"from": 3,
+			"to": 25,
+			"location": {
+				"line": 12,
+				"column": 5
+			},
+			"isImplicit": false,
+			"type": "call",
+			"isNew": true
+		},
+		{
+			"from": 2,
+			"to": 17,
+			"location": {
+				"line": 30,
+				"column": 5
+			},
+			"isImplicit": true,
+			"type": "call",
+			"isNew": true
+		},
+		{
+			"from": 2,
+			"to": 18,
+			"location": {
+				"line": 30,
+				"column": 1
+			},
+			"isImplicit": true,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 2,
+			"to": 20,
+			"location": {
+				"line": 32,
+				"column": 1
+			},
+			"isImplicit": true,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 3,
+			"to": 24,
+			"location": {
+				"line": 11,
+				"column": 5
+			},
+			"isImplicit": true,
+			"type": "call",
+			"isNew": true
+		},
+		{
+			"from": 0,
+			"to": 6,
+			"location": {
+				"line": 13,
 				"column": 1
 			},
 			"isImplicit": true,
@@ -488,62 +721,7 @@
 			"from": 0,
 			"to": 9,
 			"location": {
-				"line": 25,
-				"column": 1
-			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": false
-		},
-		{
-			"from": 0,
-			"to": 2,
-			"location": {
-				"line": 16,
-				"column": 1
-			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": false
-		},
-		{
-			"from": 0,
-			"to": 4,
-			"location": {
-				"line": 16,
-				"column": 1
-			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": false
-		},
-		{
-			"from": 0,
-			"to": 5,
-			"location": {
-				"line": 16,
-				"column": 1
-			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": false
-		},
-		{
-			"from": 0,
-			"to": 11,
-			"location": {
-				"line": 39,
-				"column": 1
-			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": false
-		},
-		{
-			"from": 0,
-			"to": 14,
-			"location": {
-				"line": 39,
+				"line": 13,
 				"column": 1
 			},
 			"isImplicit": true,

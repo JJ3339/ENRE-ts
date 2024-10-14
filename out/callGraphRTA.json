@@ -1,4 +1,8 @@
 {
-	"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Person.setName": [],
-	"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>": []
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\ImmediateCall.js>": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\ImmediateCall.js>.foo": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\classConstructor.js>": [],
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\awaitWorkaround.js>": []
 }
