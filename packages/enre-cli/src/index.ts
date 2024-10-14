@@ -23,3 +23,4 @@ if (opts.output !== false) {
     lsifDumper(opts);
   }
 }
+ 

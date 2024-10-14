@@ -11,140 +11,86 @@
 			"id": 0
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj",
-			"name": "Obj",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.person",
+			"name": "person",
 			"type": "variable",
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 28,
-					"column": 5
+					"line": 15,
+					"column": 7
 				},
 				"end": {
-					"line": 28,
-					"column": 8
+					"line": 15,
+					"column": 13
 				}
 			},
-			"kind": "var",
+			"kind": "const",
 			"id": 1
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.addNumber",
-			"name": "addNumber",
-			"type": "function",
-			"parent": 1,
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Simple",
+			"name": "Simple",
+			"type": "class",
+			"parent": 0,
 			"location": {
 				"start": {
-					"line": 30,
-					"column": 3
+					"line": 17,
+					"column": 7
 				},
 				"end": {
-					"line": 30,
-					"column": 12
+					"line": 17,
+					"column": 13
 				}
 			},
-			"isAsync": false,
-			"isGenerator": false,
-			"isArrowFunction": false,
+			"isAbstract": false,
 			"id": 2
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.addNumber.a",
-			"name": "a",
-			"type": "parameter",
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Simple.add",
+			"name": "add",
+			"type": "method",
 			"parent": 2,
 			"location": {
 				"start": {
-					"line": 30,
-					"column": 24
-				},
-				"end": {
-					"line": 30,
-					"column": 25
-				}
-			},
-			"path": [
-				{
-					"type": "array"
-				},
-				{
-					"type": "key",
-					"key": "0"
-				}
-			],
-			"id": 3
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.addNumber.b",
-			"name": "b",
-			"type": "parameter",
-			"parent": 2,
-			"location": {
-				"start": {
-					"line": 30,
-					"column": 27
-				},
-				"end": {
-					"line": 30,
-					"column": 28
-				}
-			},
-			"path": [
-				{
-					"type": "array"
-				},
-				{
-					"type": "key",
-					"key": "1"
-				}
-			],
-			"id": 4
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.multiplyNumber",
-			"name": "multiplyNumber",
-			"type": "function",
-			"parent": 1,
-			"location": {
-				"start": {
-					"line": 34,
+					"line": 18,
 					"column": 3
 				},
 				"end": {
-					"line": 34,
-					"column": 17
+					"line": 18,
+					"column": 6
 				}
 			},
+			"isStatic": false,
+			"isPrivate": false,
 			"isAsync": false,
 			"isGenerator": false,
-			"isArrowFunction": false,
-			"id": 5
+			"isAbstract": false,
+			"kind": "method",
+			"id": 3
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.multiplyNumber.a",
-			"name": "a",
-			"type": "parameter",
-			"parent": 5,
+			"fullname": "<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Simple.subtract",
+			"name": "subtract",
+			"type": "method",
+			"parent": 2,
 			"location": {
 				"start": {
-					"line": 34,
-					"column": 29
+					"line": 21,
+					"column": 3
 				},
 				"end": {
-					"line": 34,
-					"column": 30
+					"line": 21,
+					"column": 11
 				}
 			},
-			"path": [
-				{
-					"type": "array"
-				},
-				{
-					"type": "key",
-					"key": "0"
-				}
-			],
-			"id": 6
+			"isStatic": false,
+			"isPrivate": false,
+			"isAsync": false,
+			"isGenerator": false,
+			"isAbstract": false,
+			"kind": "method",
+			"id": 4
 		}
 	],
 	"relations": [
@@ -152,64 +98,68 @@
 			"from": 1,
 			"to": 1,
 			"location": {
-				"line": 28,
-				"column": 5
+				"line": 15,
+				"column": 7
 			},
 			"isImplicit": false,
 			"type": "set",
 			"isInit": true
 		},
 		{
-			"from": 2,
-			"location": {
-				"line": 31,
-				"column": 7
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 2,
-			"location": {
-				"line": 32,
-				"column": 14
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 5,
-			"location": {
-				"line": 35,
-				"column": 7
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 5,
-			"location": {
-				"line": 36,
-				"column": 14
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 1,
+			"from": 0,
 			"to": 1,
 			"location": {
-				"line": 40,
+				"line": 16,
 				"column": 1
 			},
 			"isImplicit": false,
 			"type": "use"
 		},
 		{
-			"from": 1,
+			"from": 3,
+			"location": {
+				"line": 19,
+				"column": 12
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 4,
+			"location": {
+				"line": 22,
+				"column": 12
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 0,
 			"to": 2,
 			"location": {
-				"line": 40,
+				"line": 25,
+				"column": 5
+			},
+			"isImplicit": false,
+			"type": "call",
+			"isNew": true
+		},
+		{
+			"from": 0,
+			"to": 3,
+			"location": {
+				"line": 25,
+				"column": 1
+			},
+			"isImplicit": true,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 0,
+			"to": 4,
+			"location": {
+				"line": 25,
 				"column": 1
 			},
 			"isImplicit": true,

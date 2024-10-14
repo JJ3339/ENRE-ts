@@ -7,7 +7,7 @@ import {
   toENRELocKey
 } from '@enre-ts/location';
 import {BindingPathRest} from './binding-pattern-handler';
-import {ENREEntityFunction, ENREEntityMethod} from '@enre-ts/data';
+import {ENREEntityFunction, ENREEntityMethod, ENREEntityVariable} from '@enre-ts/data';
 
 export type JSMechanism =
   JSReference
@@ -29,7 +29,7 @@ export interface JSReceipt {
 }
 
 export interface JSCallable {
-  entity: ENREEntityFunction | ENREEntityMethod,
+  entity: ENREEntityFunction | ENREEntityMethod | undefined,
   returns: any[],
 }
 

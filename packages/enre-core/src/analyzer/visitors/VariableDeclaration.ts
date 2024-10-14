@@ -23,11 +23,12 @@ import {ENREContext} from '../context';
 import traverseBindingPattern from './common/binding-pattern-handler';
 import ENREName from '@enre-ts/naming';
 import {variableKind} from '@enre-ts/shared';
-import resolveJSObj, {JSMechanism} from './common/literal-handler';
+import resolveJSObj, {JSMechanism, createJSObjRepr} from './common/literal-handler';
 import expressionHandler, {
   AscendPostponedTask,
   DescendPostponedTask
 } from './common/expression-handler';
+
 
 const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceName: string|undefined ,
   hasInit: boolean) => {
@@ -76,6 +77,7 @@ export default {
       if (['ForOfStatement', 'ForInStatement'].includes(path.parent.type)) {
         objRepr = resolveJSObj((path.parent as ForOfStatement).right);
       }
+
       // if ('typeAnnotation' in declarator.id){
       //   const entity = declarator.id.typeAnnotation.typeAnnotation.typeName.name
       // }else{
@@ -95,7 +97,7 @@ export default {
         undefined,
         buildOnRecord(kind as variableKind, typeName, instanceName,!!objRepr),
       );
-
+      // returned[0].entity.pointsTo.push(createJSObjRepr('obj'));
       if (returned && objRepr) {
         let variant: 'for-of' | 'for-await-of' | 'for-in' | undefined = undefined;
         if (path.parent.type === 'ForOfStatement') {
@@ -106,6 +108,20 @@ export default {
         } else if (path.parent.type === 'ForInStatement') {
           variant = 'for-in';
         }
+        if ('callable' in objRepr){
+          objRepr.callable.push({
+            entity: undefined,
+            returns: [returned[0].entity],
+          });
+        }
+        // 确保 objRepr.callable 是一个数组
+        // if (!('callable' in objRepr)) {
+        //   objRepr.callable = [];
+        // }
+        // objRepr.callable.push({
+        //   entity: returned[0].entity,
+        //   returns: [returned[0].entity],
+        // });
 
         if (objRepr.type === 'descend') {
           objRepr.onFinish = (resolvedResult) => {
@@ -164,20 +180,33 @@ export default {
 
   exit: (path: PathType, {scope, modifiers}: ENREContext) => {
     console.log('exit var');
-    const varEntity = scope.last<ENREEntityClass>();
-    varEntity.children.forEach(f => {
-      if(f.type === 'function' || f.type === 'method'){
-        varEntity.pointsTo[0].callable.push({
-          entity: f,
-          /**
-           * Temporary assign the return value of a new call to a class to be itself.
-           * TODO: Truly resolve the return value of a new call to a class with the respect
-           * of constructor's return value.
-           */
-          returns: [f],
-        });
-      }
-    })
+    // const varEntity = scope.last<ENREEntityClass>();
+    // if (varEntity.pointsTo[0].callable.length === 0) {
+    //   varEntity.pointsTo[0].callable.push({
+    //     entity: varEntity,
+    //     /**
+    //      * Temporary assign the return value of a new call to a class to be itself.
+    //      * TODO: Truly resolve the return value of a new call to a class with the respect
+    //      * of constructor's return value.
+    //      */
+    //     returns: [varEntity],
+    //   });
+    // }  
+    scope.pop();
+    // const varEntity = scope.last<ENREEntityClass>();
+    // varEntity.children.forEach(f => {
+    //   if(f.type === 'function' || f.type === 'method'){
+    //     varEntity.pointsTo[0].callable.push({
+    //       entity: f,
+    //       /**
+    //        * Temporary assign the return value of a new call to a class to be itself.
+    //        * TODO: Truly resolve the return value of a new call to a class with the respect
+    //        * of constructor's return value.
+    //        */
+    //       returns: [f],
+    //     });
+    //   }
+    // })
     // if (path.node.declarator.id.type === 'Identifier') {
     //   if (declarator.init?.type === 'ObjectExpression') {
     //   }

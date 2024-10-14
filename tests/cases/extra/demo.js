@@ -37,4 +37,4 @@ new Simple()
 //   },
 // }
 
-Obj.addNumber(10, 20).multiplyNumber(10);
+// Obj.addNumber(10, 20).multiplyNumber(10);
