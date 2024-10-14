@@ -406,7 +406,7 @@ export default () => {
                           const subfound = lookup({
                             role: 'value',
                             identifier: token.operand1,
-                            at: task.scope,
+                            at: s.callable[0].returns[0],
                           }, true) as ENREEntityCollectionAll;
                           if (subfound){
                             currSymbol.push(subfound);

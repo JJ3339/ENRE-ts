@@ -1,7 +1,16 @@
 {
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Simple",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Simple.add",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Simple.subtract"
+	"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Person.setName": [
+		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Logger"
+	],
+	"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>": [
+		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Person",
+		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Simple",
+		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Simple.add",
+		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Simple.subtract",
+		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Person.setName",
+		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Logger.logMessage",
+		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Logger.end",
+		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.addNumber",
+		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.Obj.multiplyNumber"
 	]
 }
