@@ -20,14 +20,16 @@ import {
   SpreadElement,
   ThrowStatement
 } from '@babel/types';
-import {ENREEntityCollectionAll, ENREEntityCollectionScoping, postponedTask} from '@enre-ts/data';
+import {ENREEntityCollectionAll, ENREEntityCollectionScoping, postponedTask, recordRelationCall, recordEntityFunction} from '@enre-ts/data';
 import {ENRELocation, toENRELocation, ToENRELocationPolicy} from '@enre-ts/location';
 import {ENREContext} from '../../context';
 import resolveJSObj, {createJSObjRepr, JSObjRepr} from './literal-handler';
 import { ClassHierarchyAnalyzer as CHAnalyzer } from '../../callgraph/ClassHierarchyAnalysisAlgorithm';
 import { RapidTypeAnalyzer as RTAnalyzer } from '../../callgraph/RapidTypeAnalysisAlgorithm';
+import { PointerAnalyzer as PTAnalyzer } from '../../callgraph/PointerAnalysis';
 import exp from 'constants';
 import lookup from '../../linker/lookup';
+import ENREName from '@enre-ts/naming';
 /**
  * Types
  */
@@ -278,9 +280,12 @@ function recursiveTraverse(
         operation = 'new';
       }
 
+      const calleeTokens = recursiveTraverse(node.callee as Expression, scope, handlers);
       // @ts-ignore TODO: callee can be V8IntrinsicIdentifier
-      const calleeTokens = recursiveTraverse(node.callee, scope, handlers);
-
+      //const calleeTokens = recursiveTraverse(node.callee, scope, handlers);
+      // if (['FunctionExpression', 'ArrowFunctionExpression'].includes(node.callee.type)){
+      //   if (node.callee)
+      // }
       /**
        * Resolve arguments of the call expression.
        * The shape of argsRepr is still a JSObjRepr (for uniformed handling).
@@ -386,7 +391,73 @@ function recursiveTraverse(
       }
       break;
     }
-
+    case 'FunctionExpression':{
+      // while(node.body.type === 'BlockStatement'){
+      //let idTokens = undefined
+      if (node.id){
+        tokenStream.push(...recursiveTraverse(node.id, scope, handlers));
+      }else{
+        tokenStream.push({
+          operation: 'access',
+          operand1: '<Anon Function>',
+          location: toENRELocation(node.loc)
+        });
+        break;
+        // const entity = recordEntityFunction(
+        //   new ENREName<'Anon'>('Anon', 'Function'),
+        //   toENRELocation(node.loc),
+        //   scope.last(),
+        //   {
+        //     isArrowFunction: true,
+        //     isAsync: node.async,
+        //     isGenerator: node.generator,
+        //   }
+        // );
+        // recordRelationCall(
+        //   scope.last(),
+        //   entity,
+        //   entity.location,
+        //   {isNew: false},
+        // ).isImplicit = true;
+        // let from = 
+        // let to = created.to.getQualifiedName()
+        //                     if (!PTAnalyzer.callGraph.has(from)) {
+        //                       PTAnalyzer.callGraph.set(from, new Set());
+        //                     }
+        //                     PTAnalyzer.callGraph.get(from)?.add(to);
+      // }
+      }
+      //const objRepr = resolveJSObj(node);
+      // tokenStream.push({
+      //    operation
+      // });
+      //const tokens = recursiveTraverse(node.body, scope, handlers);
+      break;
+    }
+    case 'ArrowFunctionExpression':{
+      tokenStream.push({
+        operation: 'access',
+        operand1: '<Arrow Function>',
+        location: toENRELocation(node.loc)
+      });
+      // const entity = recordEntityFunction(
+      //   new ENREName<'Anon'>('Anon', 'ArrowFunction'),
+      //   toENRELocation(node.loc),
+      //   scope.last(),
+      //   {
+      //     isArrowFunction: true,
+      //     isAsync: node.async,
+      //     isGenerator: node.generator,
+      //   }
+      // );
+      // recordRelationCall(
+      //   scope.last(),
+      //   entity,
+      //   entity.location,
+      //   {isNew: false},
+      // ).isImplicit = true;
+      break;
+    }
     case 'Identifier': {
       tokenStream.push({
         operation: 'access',

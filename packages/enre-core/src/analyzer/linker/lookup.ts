@@ -1,4 +1,5 @@
 import {
+  ENREEntityAbilityBase,
   ENREEntityCollectionAll,
   ENREEntityCollectionInFile,
   ENREEntityCollectionScoping,
@@ -7,7 +8,7 @@ import {
   valueEntityTypes,
 } from '@enre-ts/data';
 import {logger} from '@enre-ts/core';
-
+import _ from 'lodash';
 export default function (sg: SearchingGuidance, omitAlias = false): ENREEntityCollectionAll | ENREEntityCollectionAll[] | undefined {
   /**
    * Though multiple entities in the same scope cannot have duplicated identifier,
@@ -16,7 +17,7 @@ export default function (sg: SearchingGuidance, omitAlias = false): ENREEntityCo
    * are imported/exported.
    */
   const results: ENREEntityCollectionAll[] = [];
-
+  const Anon = ['<Anon Function>', '<Arrow Function>'];
   let curr = sg.at;
 
   // Find only default export
@@ -68,7 +69,10 @@ export default function (sg: SearchingGuidance, omitAlias = false): ENREEntityCo
       }
       for (const e of curr.children) {
         // TODO: Refactor this to clearly distinguish valid identifier and string literal
-        if (sg.identifier === e.name.codeName) {
+        console.log(Anon.includes(sg.identifier));
+        console.log(_.isEqual(((e as ENREEntityAbilityBase).location), sg?.loc));
+        
+        if (sg.identifier === e.name.codeName || (Anon.includes(sg.identifier) && _.isEqual(((e as ENREEntityAbilityBase).location), sg?.loc) )){
           // @ts-ignore
           if ((sg.role === 'value' && valueEntityTypes.includes(e.type)) ||
             // @ts-ignore
@@ -79,6 +83,9 @@ export default function (sg: SearchingGuidance, omitAlias = false): ENREEntityCo
             results.push(e);
           }
         }
+        // if (sg.loc && e.location){
+
+        // }
       }
       
 

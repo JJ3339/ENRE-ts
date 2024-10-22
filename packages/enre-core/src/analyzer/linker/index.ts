@@ -389,6 +389,7 @@ export default () => {
                         role: 'value',
                         identifier: token.operand1,
                         at: task.scope,
+                        loc: token.location
                       }, true) as ENREEntityCollectionAll;
 
                       if (found) {
@@ -725,7 +726,7 @@ export default () => {
           }
         }
       } catch {
-        console.log('catch error!')
+        console.log('catch error!');
         if (task.scope) {
           const filePath = task.scope.type === 'file' ? task.scope.path : task.scope.getSourceFile().path;
           codeLogger.error(`Points-to relation resolving is experimental, and it fails at ${filePath} (Task ${index}/${postponedTask.all.length})`);
