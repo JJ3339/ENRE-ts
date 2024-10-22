@@ -8,6 +8,7 @@ import {
 import {ENRERelationAbilityBase} from '../relation/ability/base';
 import {ENRERelationDecorate} from '../relation/variant/decorate';
 import {ENRERelationType} from '../relation/variant/type';
+import { ENRELocation } from '@enre-ts/location';
 
 /**
  * Rich object containing necessary guidance information for entity binding.
@@ -36,7 +37,8 @@ export type SearchingGuidance =
     // Only find in entity's exports
     exportsOnly?: boolean,
     // Not find in imports
-    localOnly?: boolean
+    localOnly?: boolean,
+    loc?: ENRELocation
   };
 
 type RelationCollectionUnboundFrom = ENRERelationType | ENRERelationDecorate;

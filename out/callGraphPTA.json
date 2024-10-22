@@ -1,20 +1,7 @@
 {
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.foo",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.bar",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.Foo",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.NewFunction",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.Foo.constructor",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.Foo.method0",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\fileCallables.js>.baz.<Anon ArrowFunction>"
-	],
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\classConstructor.js>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\classConstructor.js>.A",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\classConstructor.js>.B",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\classConstructor.js>.A.constructor"
-	],
-	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>": [
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.Obj.addNumber",
-		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\methodChaining.js>.Obj.multiplyNumber"
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\ImmediateCall.js>": [
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\ImmediateCall.js>.foo",
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\ImmediateCall.js>.<Anon Function>",
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\docs\\call\\ImmediateCall.js>.<Anon ArrowFunction>"
 	]
 }

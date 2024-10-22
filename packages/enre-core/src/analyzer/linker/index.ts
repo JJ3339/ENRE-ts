@@ -389,6 +389,7 @@ export default () => {
                         role: 'value',
                         identifier: token.operand1,
                         at: task.scope,
+                        loc: token.location
                       }, true) as ENREEntityCollectionAll;
 
                       if (found) {
