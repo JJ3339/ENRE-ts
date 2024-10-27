@@ -438,7 +438,11 @@ export default () => {
                               {isNew: nextOperation === 'new'},
                             );
                             let from = created.from.getQualifiedName()
+                            // if(from.endsWith('<Anon Function)') || from.endsWith('<Anon ArrowFunction>')){
+                            //   from = from + created.location.start.line + ':' + created.location.start
+                            // }
                             let to = created.to.getQualifiedName()
+                            
                             if (!PTAnalyzer.callGraph.has(from)) {
                               PTAnalyzer.callGraph.set(from, new Set());
                             }

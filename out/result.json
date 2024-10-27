@@ -1,0 +1,127 @@
+{
+	"entities": [
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\implicit\\syntax-optional-expression-call\\file0.js>",
+			"name": "<File file0.js>",
+			"path": "D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\implicit\\syntax-optional-expression-call\\file0.js",
+			"type": "file",
+			"sourceType": "script",
+			"lang": "js",
+			"isJsx": false,
+			"id": 0
+		},
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\implicit\\syntax-optional-expression-call\\file0.js>.func",
+			"name": "func",
+			"type": "function",
+			"parent": 0,
+			"location": {
+				"start": {
+					"line": 1,
+					"column": 10
+				},
+				"end": {
+					"line": 1,
+					"column": 14
+				}
+			},
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": false,
+			"id": 1
+		},
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\implicit\\syntax-optional-expression-call\\file0.js>.a",
+			"name": "a",
+			"type": "variable",
+			"parent": 0,
+			"location": {
+				"start": {
+					"line": 5,
+					"column": 7
+				},
+				"end": {
+					"line": 5,
+					"column": 8
+				}
+			},
+			"kind": "const",
+			"id": 2
+		},
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\implicit\\syntax-optional-expression-call\\file0.js>.b",
+			"name": "b",
+			"type": "variable",
+			"parent": 0,
+			"location": {
+				"start": {
+					"line": 6,
+					"column": 7
+				},
+				"end": {
+					"line": 6,
+					"column": 8
+				}
+			},
+			"kind": "const",
+			"id": 3
+		}
+	],
+	"relations": [
+		{
+			"from": 0,
+			"to": 2,
+			"location": {
+				"line": 5,
+				"column": 7
+			},
+			"isImplicit": false,
+			"type": "set",
+			"isInit": true
+		},
+		{
+			"from": 0,
+			"to": 3,
+			"location": {
+				"line": 6,
+				"column": 7
+			},
+			"isImplicit": false,
+			"type": "set",
+			"isInit": true
+		},
+		{
+			"from": 0,
+			"to": 2,
+			"location": {
+				"line": 8,
+				"column": 1
+			},
+			"isImplicit": false,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 0,
+			"to": 3,
+			"location": {
+				"line": 9,
+				"column": 1
+			},
+			"isImplicit": false,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 0,
+			"to": 1,
+			"location": {
+				"line": 8,
+				"column": 1
+			},
+			"isImplicit": true,
+			"type": "call",
+			"isNew": false
+		}
+	]
+}
