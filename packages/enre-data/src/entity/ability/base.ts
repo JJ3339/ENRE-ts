@@ -49,6 +49,9 @@ export const addAbilityBase = (
     pointsTo,
 
     getQualifiedName() {
+      if (name.string === '<Anon Function>' || name.string === '<Anon ArrowFunction>'){
+        return parent.getQualifiedName() + '.' + name.string + '-' + location.start.line + ':' + location.start.column;
+      }
       return parent.getQualifiedName() + '.' + name.string;
     },
 
