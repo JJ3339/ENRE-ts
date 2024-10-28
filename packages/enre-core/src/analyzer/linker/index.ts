@@ -461,7 +461,7 @@ export default () => {
                     }
 
                     // Hook function should be provided with ENREEntity as symbol
-                    if (!(task.onFinish && i === 0)) {
+                    if (!(task.onFinish && i === 0) || task.payload.length === 1) {
                       /**
                        * CurrSymbol - ENREEntity as symbol (that holds points-to items)
                        * or JSObjRepr
@@ -536,7 +536,7 @@ export default () => {
                     // ENREEntity as entity
                   });
 
-                  if (prevUpdated === false || (token.lastSymbol && !(_.isEqual(currSymbol, token.lastSymbol)))) {
+                  if (prevUpdated === false){// || (token.lastSymbol && !(_.isEqual(currSymbol, token.lastSymbol)))) {
                     currSymbol.forEach(s => {
                       /**
                        * If the reference chain is
@@ -710,6 +710,7 @@ export default () => {
           }
           
           if (task.onFinish) {
+
             const executionSuccess = task.onFinish(prevSymbol);
             /**
              * FIXME: The arguments of hook call should be memo-ed, so that the next time

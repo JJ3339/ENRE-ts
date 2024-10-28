@@ -13,7 +13,9 @@
 
 import {
   ArgumentPlaceholder,
+  ArrowFunctionExpression,
   Expression,
+  FunctionExpression,
   JSXNamespacedName,
   LVal,
   PrivateName,
@@ -279,8 +281,29 @@ function recursiveTraverse(
       if (node.type === 'NewExpression') {
         operation = 'new';
       }
-
       const calleeTokens = recursiveTraverse(node.callee as Expression, scope, handlers);
+      if (['FunctionExpression', 'ArrowFunctionExpression'].includes(node.callee.type)){
+        if (node.callee.type === 'FunctionExpression'){
+          if (node.callee.id){
+            // const calleeTokens = recursiveTraverse(node.callee.id, scope, handlers);
+            calleeTokens.push(
+              ...recursiveTraverse(node.callee.id, scope, handlers)
+            );
+          }else{
+            calleeTokens.push({
+              operation: 'access',
+              operand1: '<Anon Function>',
+              location: toENRELocation(node.callee.loc)
+            });
+          }
+        }else{
+          calleeTokens.push({
+            operation: 'access',
+            operand1: '<Arrow Function>',
+            location: toENRELocation(node.callee.loc)
+          });
+        }
+      }
       // @ts-ignore TODO: callee can be V8IntrinsicIdentifier
       //const calleeTokens = recursiveTraverse(node.callee, scope, handlers);
       // if (['FunctionExpression', 'ArrowFunctionExpression'].includes(node.callee.type)){
@@ -317,17 +340,14 @@ function recursiveTraverse(
         }, true) as ENREEntityCollectionScoping;
         if (newExpr){
           RTAnalyzer.newClass.push(newExpr)
-        }
-        
-        
-      }
-      
+        }  
+      }  
       tokenStream.push({
         operation,
         operand1: argsRepr,
         location: toENRELocation(node.callee.loc, ToENRELocationPolicy.PartialEnd),
       }, ...calleeTokens);
-      break;
+     break; 
     }
 
     case 'OptionalMemberExpression':
@@ -391,73 +411,72 @@ function recursiveTraverse(
       }
       break;
     }
-    case 'FunctionExpression':{
-      // while(node.body.type === 'BlockStatement'){
-      //let idTokens = undefined
-      if (node.id){
-        tokenStream.push(...recursiveTraverse(node.id, scope, handlers));
-      }else{
-        tokenStream.push({
-          operation: 'access',
-          operand1: '<Anon Function>',
-          location: toENRELocation(node.loc)
-        });
-        break;
-        // const entity = recordEntityFunction(
-        //   new ENREName<'Anon'>('Anon', 'Function'),
-        //   toENRELocation(node.loc),
-        //   scope.last(),
-        //   {
-        //     isArrowFunction: true,
-        //     isAsync: node.async,
-        //     isGenerator: node.generator,
-        //   }
-        // );
-        // recordRelationCall(
-        //   scope.last(),
-        //   entity,
-        //   entity.location,
-        //   {isNew: false},
-        // ).isImplicit = true;
-        // let from = 
-        // let to = created.to.getQualifiedName()
-        //                     if (!PTAnalyzer.callGraph.has(from)) {
-        //                       PTAnalyzer.callGraph.set(from, new Set());
-        //                     }
-        //                     PTAnalyzer.callGraph.get(from)?.add(to);
-      // }
-      }
-      //const objRepr = resolveJSObj(node);
-      // tokenStream.push({
-      //    operation
-      // });
-      //const tokens = recursiveTraverse(node.body, scope, handlers);
-      break;
-    }
-    case 'ArrowFunctionExpression':{
-      tokenStream.push({
-        operation: 'access',
-        operand1: '<Arrow Function>',
-        location: toENRELocation(node.loc)
-      });
-      // const entity = recordEntityFunction(
-      //   new ENREName<'Anon'>('Anon', 'ArrowFunction'),
-      //   toENRELocation(node.loc),
-      //   scope.last(),
-      //   {
-      //     isArrowFunction: true,
-      //     isAsync: node.async,
-      //     isGenerator: node.generator,
-      //   }
-      // );
-      // recordRelationCall(
-      //   scope.last(),
-      //   entity,
-      //   entity.location,
-      //   {isNew: false},
-      // ).isImplicit = true;
-      break;
-    }
+    // case 'FunctionExpression':{
+    //   // while(node.body.type === 'BlockStatement'){
+    //   //let idTokens = undefined
+    //   if (node.id){
+    //     tokenStream.push(...recursiveTraverse(node.id, scope, handlers));
+    //   }else{
+    //     tokenStream.push({
+    //       operation: 'access',
+    //       operand1: '<Anon Function>',
+    //       location: toENRELocation(node.loc)
+    //     });
+    //     // const entity = recordEntityFunction(
+    //     //   new ENREName<'Anon'>('Anon', 'Function'),
+    //     //   toENRELocation(node.loc),
+    //     //   scope.last(),
+    //     //   {
+    //     //     isArrowFunction: true,
+    //     //     isAsync: node.async,
+    //     //     isGenerator: node.generator,
+    //     //   }
+    //     // );
+    //     // recordRelationCall(
+    //     //   scope.last(),
+    //     //   entity,
+    //     //   entity.location,
+    //     //   {isNew: false},
+    //     // ).isImplicit = true;
+    //     // let from = 
+    //     // let to = created.to.getQualifiedName()
+    //     //                     if (!PTAnalyzer.callGraph.has(from)) {
+    //     //                       PTAnalyzer.callGraph.set(from, new Set());
+    //     //                     }
+    //     //                     PTAnalyzer.callGraph.get(from)?.add(to);
+    //   // }
+    //   }
+    //   //const objRepr = resolveJSObj(node);
+    //   // tokenStream.push({
+    //   //    operation
+    //   // });
+    //   //const tokens = recursiveTraverse(node.body, scope, handlers);
+    //   break;
+    // }
+    // case 'ArrowFunctionExpression':{
+    //   tokenStream.push({
+    //     operation: 'access',
+    //     operand1: '<Arrow Function>',
+    //     location: toENRELocation(node.loc)
+    //   });
+    //   // const entity = recordEntityFunction(
+    //   //   new ENREName<'Anon'>('Anon', 'ArrowFunction'),
+    //   //   toENRELocation(node.loc),
+    //   //   scope.last(),
+    //   //   {
+    //   //     isArrowFunction: true,
+    //   //     isAsync: node.async,
+    //   //     isGenerator: node.generator,
+    //   //   }
+    //   // );
+    //   // recordRelationCall(
+    //   //   scope.last(),
+    //   //   entity,
+    //   //   entity.location,
+    //   //   {isNew: false},
+    //   // ).isImplicit = true;
+    //   break;
+    // }
     case 'Identifier': {
       tokenStream.push({
         operation: 'access',

@@ -12,4 +12,4 @@ function func(a) {
 
 const b = paramFunc;
 const c = func;
-c(b);
+c(b); 
