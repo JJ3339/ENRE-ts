@@ -32,6 +32,8 @@ export default {
     );
 
     const objRepr = createJSObjRepr('obj');
+    const ret = [];
+    if (path.node)
     objRepr.callable.push({entity, returns: []});
     entity.pointsTo.push(objRepr);
 

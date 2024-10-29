@@ -1,7 +1,20 @@
-function foo() {
-  return () => {
-      /* Empty */
-  }
+// function foo() {
+//   return () => {
+//       /* Empty */
+//   }
+// }
+// const bar = foo();
+// bar();
+function func(a) {
+  a()
 }
-const bar = foo();
-bar();
+
+function func2() {
+  return func3
+}
+
+function func3() {
+  /* Empty */
+}
+
+func(func2());

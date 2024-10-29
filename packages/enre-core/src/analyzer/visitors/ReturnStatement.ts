@@ -24,6 +24,16 @@ export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
   }
 
   const task = expressionHandler(path.node.argument, scope);
+  let mode = 0;
+  switch (path.node.argument.type){
+    case 'Identifier':{
+      mode = 1
+      break;
+    }
+    case 'ArrowFunctionExpression':{
+      break;
+    }
+  }
   if (task) {
     task.onFinish = (symbolSnapshot) => {
       // if ('pointsTo' in symbolSnapshot){
@@ -44,9 +54,16 @@ export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
         symbolSnapshot.forEach((s: { callable: any[]; }) => {
           s.callable.forEach(c => {
             // c.returns - ENREEntity as symbol
-            c.returns.forEach((r: any) => {
+            if(mode === 1){
+              
+              callableEntity.pointsTo[0].callable[0].returns.push(c.entity);
+              
+            }else{
+              c.returns.forEach((r: any) => {
               callableEntity.pointsTo[0].callable[0].returns.push(r);
             });
+            }
+            
             // ENREEntity as symbol
           });
         });
