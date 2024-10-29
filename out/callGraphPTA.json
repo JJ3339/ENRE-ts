@@ -1,9 +1,9 @@
 {
-	"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.func": [
-		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.func.a"
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.func.a",
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.paramFunc"
 	],
-	"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>": [
-		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.func2",
-		"<File D:\\ProgramData\\enre\\ENRE-ts\\tests\\cases\\extra\\demo.js>.func"
+	"<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>": [
+		"<File D:\\repo\\ENRE-ts\\tests\\cases\\extra\\demo.js>.func"
 	]
 }

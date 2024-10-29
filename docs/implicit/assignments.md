@@ -138,8 +138,6 @@ relation:
             by: variable:'z'
 ```
 
-###### Array literal rest destructuring
-
 <!--pycg:assignments/starred-->
 
 ```js
@@ -159,6 +157,7 @@ const [a, ...b] = [func1, func2, func3];
 b[0]();
 b[1]();
 ```
+
 
 ```yaml
 relation:
