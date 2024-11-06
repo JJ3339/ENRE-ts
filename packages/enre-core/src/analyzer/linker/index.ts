@@ -443,10 +443,11 @@ export default () => {
                             // }
                             let to = created.to.getQualifiedName()
                             
-                            if (!PTAnalyzer.callGraph.has(from)) {
-                              PTAnalyzer.callGraph.set(from, new Set());
-                            }
-                            PTAnalyzer.callGraph.get(from)?.add(to);
+                            // if (!PTAnalyzer.callGraph.has(from)) {
+                            //   PTAnalyzer.callGraph.set(from, new Set());
+                            // }
+                            // PTAnalyzer.callGraph.get(from)?.add(to);
+                            PTAnalyzer.add(from, to, created.location)
                             console.log('from:'+from+'to:'+to);
                             // to.forEach(edge => PTAnalyzer.callGraph.get(from)?.add(edge)) 
                           } else {
@@ -568,10 +569,11 @@ export default () => {
                         created.isImplicit = true;
                         let from = created.from.getQualifiedName()
                         let to = created.to.getQualifiedName()
-                        if (!PTAnalyzer.callGraph.has(from)) {
-                          PTAnalyzer.callGraph.set(from, new Set());
-                        }
-                        PTAnalyzer.callGraph.get(from)?.add(to)
+                        PTAnalyzer.add(from, to, created.location)
+                        // if (!PTAnalyzer.callGraph.has(from)) {
+                        //   PTAnalyzer.callGraph.set(from, new Set());
+                        // }
+                        // PTAnalyzer.callGraph.get(from)?.add(to)
                         // to.forEach(edge => PTAnalyzer.callGraph.get(from)?.add(edge))
                       }
                     });
@@ -648,7 +650,13 @@ export default () => {
                                    * symbolSnapshot of an expression evaluation.
                                    */
                                   selected.forEach(s => {
-                                    _cursor.push(...s.pointsTo);
+                                    if (s.pointsTo){
+                                      _cursor.push(...s.pointsTo);
+                                    }else{
+                                      s.callable.forEach(e =>{
+                                        _cursor.push(...(e.entity.pointsTo))
+                                      })
+                                    }
                                   });
                                 } else {
                                   _cursor.push(...selected.pointsTo);

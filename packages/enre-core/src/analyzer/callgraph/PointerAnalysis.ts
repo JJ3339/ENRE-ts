@@ -29,5 +29,19 @@ export class PointerAnalyzer{
         //     }
         // });
     }
+    static add(from:any, to:any, location:any){
+        if (!this.callGraph.has(from)) {
+            this.callGraph.set(from, new Set());
+          }
+        this.callGraph.get(from)?.add(to+'@'+location.start.line+':'+location.start.column);
+        // 检查 from 对应的集合中是否已包含 to
+        // const fromSet = this.callGraph.get(from);
+        // if (fromSet?.has(to)) {
+        //     console.log(`'${from}' already has a connection to '${to}'`);
+        // } else {
+        //     // 如果没有，添加 to 到集合中
+        //     fromSet?.add(to);
+        // }
+    }
 
 }

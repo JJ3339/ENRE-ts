@@ -180,6 +180,7 @@ export default {
 
   exit: (path: PathType, {scope, modifiers}: ENREContext) => {
     console.log('exit var');
+    
     // const varEntity = scope.last<ENREEntityClass>();
     // if (varEntity.pointsTo[0].callable.length === 0) {
     //   varEntity.pointsTo[0].callable.push({
@@ -192,7 +193,11 @@ export default {
     //     returns: [varEntity],
     //   });
     // }  
-    scope.pop();
+    const length = path.node.declarations.length;
+    for (let i = 0; i < length; i++) {
+        scope.pop();
+    }
+    // scope.pop();
     // const varEntity = scope.last<ENREEntityClass>();
     // varEntity.children.forEach(f => {
     //   if(f.type === 'function' || f.type === 'method'){

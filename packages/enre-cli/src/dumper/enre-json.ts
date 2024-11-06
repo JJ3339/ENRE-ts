@@ -69,7 +69,14 @@ export default function (opts: any) {
     }
     obj.relations.push(tmp);
   }
+  const seen = new WeakSet();
   const stringify = JSON.stringify(obj,function replacer(key, value) {
+    if (typeof value === "object" && value !== null) {
+      if (seen.has(value)) {
+          return;  // 移除循环引用的属性
+      }
+      seen.add(value);
+  }
     // 过滤掉 'base' 和 'extcls' 属性
     if (key === 'base' || key === 'extcls') {
         return undefined;

@@ -14,7 +14,9 @@ import {
   ExportNamedDeclaration,
   ExportNamespaceSpecifier,
   ExportSpecifier,
-  ImportSpecifier
+  Identifier,
+  ImportSpecifier,
+  StringLiteral
 } from '@babel/types';
 import {
   ENREEntityAlias,
@@ -191,6 +193,7 @@ export default {
           // Impossible syntax
         }
       }
+      
 
       if (path.node.declaration) {
         const key = `${path.node.loc!.start.line}:${path.node.loc!.start.column}`;
@@ -206,6 +209,20 @@ export default {
         } else if ('id' in path.node.declaration) {
           // CHAnalyzer.addClass()
           validRange.push(toENRELocation(path.node.declaration.id!.loc, ToENRELocationPolicy.Full));
+          // const name = path.node.declaration.id?.type === 'Identifier'? path.node.declaration.id.name:(path.node.declaration.id as StringLiteral).value
+          // pseudoR.add<ENRERelationExport>({
+          //   type: 'export',
+          //   from: lastScope,
+          //   to: {
+          //     role: 'any',
+          //     identifier: name,
+          //     at: lastScope,
+          //   },
+          //   location: toENRELocation(path.node.declaration.id!.loc),
+          //   kind: symbolRole,
+          //   isDefault: false,
+          //   isAll: false,
+          // });
         }
 
         modifiers.set(key, {
