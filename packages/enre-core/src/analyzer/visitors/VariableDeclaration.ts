@@ -42,8 +42,8 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
       instanceName
     );
 
-    scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
-    scope.push(entity);
+    // scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
+    // scope.push(entity);
 
     if (hasInit) {
       // Record relation `set`
@@ -53,6 +53,11 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
         location,
         {isInit: true},
       );
+
+      //判断是否设置作用域
+      scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
+      scope.push(entity);
+      entity.isValidThis = true;
     }
 
     return entity;
@@ -193,9 +198,14 @@ export default {
     //     returns: [varEntity],
     //   });
     // }  
-    const length = path.node.declarations.length;
-    for (let i = 0; i < length; i++) {
-        scope.pop();
+    // const length = path.node.declarations.length;
+    // for (let i = 0; i < length; i++) {
+    //     scope.pop();
+    // }
+    for (const declarator of path.node.declarations) {
+      if(declarator.init){
+        scope.pop()
+      }
     }
     // scope.pop();
     // const varEntity = scope.last<ENREEntityClass>();

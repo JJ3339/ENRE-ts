@@ -21,6 +21,8 @@ export interface ENREEntityFile extends ENREEntityAbilityImportExport {
   // Screening logs are saved in its belonging file entity.
   logs: LogManager,
 
+  isValidThis: boolean,
+
   getQualifiedName: () => string,
 }
 
@@ -56,6 +58,8 @@ export const createEntityFile = (
 
     logs,
 
+    isValidThis: false,
+    
     getQualifiedName() {
       // If belonging package exists, use package name as prefix
       if (parent) {

@@ -31,8 +31,8 @@ type PathType = NodePath<ClassDeclaration | ClassExpression>
 export default {
   enter: (path: PathType, {scope}: ENREContext) => {
     let entity: ENREEntityClass;
-    let clsName: String
-    let basecls: String
+    let clsName: String;
+    let basecls: String;
     if (path.node.id) {
       entity = recordEntityClass(
         new ENREName('Norm', path.node.id.name),
@@ -61,6 +61,7 @@ export default {
           isAbstract: 'abstract' in path.node ? path.node.abstract ?? false : false,
         },
       );
+      entity.isValidThis = true;
       // TODO: unnamed class in CHA
       clsName = `Anon-${path.node.start}:${path.node.end}`
       //

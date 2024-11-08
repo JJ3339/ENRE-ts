@@ -364,9 +364,15 @@ export default () => {
                     if (token.operand1 === 'this') {
                       // Simply find a class entity along the scope chain
                       let cursor = task.scope;
-                      while (cursor.type !== 'class' && cursor.type !=='variable') {
+                      // while (cursor.type !== 'class' && cursor.type !=='variable') {
+                      //   cursor = cursor.parent;
+                      //   if (cursor === undefined) {
+                      //     break;
+                      //   }
+                      // }
+                      while(cursor.isValidThis){
                         cursor = cursor.parent;
-                        if (cursor === undefined) {
+                        if(cursor === undefined){
                           break;
                         }
                       }
