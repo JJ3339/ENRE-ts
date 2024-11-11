@@ -8,6 +8,7 @@
 			"sourceType": "script",
 			"lang": "js",
 			"isJsx": false,
+			"isValidThis": false,
 			"id": 0
 		},
 		{
@@ -25,6 +26,7 @@
 					"column": 8
 				}
 			},
+			"isValidThis": true,
 			"kind": "const",
 			"id": 1
 		},
@@ -43,8 +45,103 @@
 					"column": 19
 				}
 			},
+			"isValidThis": true,
 			"kind": "const",
 			"id": 2
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.a.b.c",
+			"name": "c",
+			"type": "variable",
+			"parent": 2,
+			"location": {
+				"start": {
+					"line": 1,
+					"column": 29
+				},
+				"end": {
+					"line": 1,
+					"column": 30
+				}
+			},
+			"isValidThis": true,
+			"kind": "const",
+			"id": 3
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.a.b.c.addNumber",
+			"name": "addNumber",
+			"type": "function",
+			"parent": 3,
+			"location": {
+				"start": {
+					"line": 1,
+					"column": 33
+				},
+				"end": {
+					"line": 1,
+					"column": 42
+				}
+			},
+			"isValidThis": false,
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": false,
+			"id": 4
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.a.b.c.addNumber.a",
+			"name": "a",
+			"type": "parameter",
+			"parent": 4,
+			"location": {
+				"start": {
+					"line": 1,
+					"column": 54
+				},
+				"end": {
+					"line": 1,
+					"column": 55
+				}
+			},
+			"isValidThis": false,
+			"path": [
+				{
+					"type": "array"
+				},
+				{
+					"type": "key",
+					"key": "0"
+				}
+			],
+			"id": 5
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.a.b.c.addNumber.b",
+			"name": "b",
+			"type": "parameter",
+			"parent": 4,
+			"location": {
+				"start": {
+					"line": 1,
+					"column": 57
+				},
+				"end": {
+					"line": 1,
+					"column": 58
+				}
+			},
+			"isValidThis": false,
+			"path": [
+				{
+					"type": "array"
+				},
+				{
+					"type": "key",
+					"key": "1"
+				}
+			],
+			"id": 6
 		},
 		{
 			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.func1",
@@ -53,18 +150,19 @@
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 7,
+					"line": 10,
 					"column": 10
 				},
 				"end": {
-					"line": 7,
+					"line": 10,
 					"column": 15
 				}
 			},
+			"isValidThis": false,
 			"isAsync": false,
 			"isGenerator": false,
 			"isArrowFunction": false,
-			"id": 3
+			"id": 7
 		},
 		{
 			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.func2",
@@ -73,23 +171,24 @@
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 11,
+					"line": 14,
 					"column": 10
 				},
 				"end": {
-					"line": 11,
+					"line": 14,
 					"column": 15
 				}
 			},
+			"isValidThis": false,
 			"isAsync": false,
 			"isGenerator": false,
 			"isArrowFunction": false,
-			"id": 4
+			"id": 8
 		}
 	],
 	"relations": [
 		{
-			"from": 1,
+			"from": 0,
 			"to": 1,
 			"location": {
 				"line": 1,
@@ -100,7 +199,7 @@
 			"isInit": true
 		},
 		{
-			"from": 2,
+			"from": 1,
 			"to": 2,
 			"location": {
 				"line": 1,
@@ -111,10 +210,39 @@
 			"isInit": true
 		},
 		{
+			"from": 2,
+			"to": 3,
+			"location": {
+				"line": 1,
+				"column": 29
+			},
+			"isImplicit": false,
+			"type": "set",
+			"isInit": true
+		},
+		{
+			"from": 4,
+			"location": {
+				"line": 2,
+				"column": 5
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
+			"from": 4,
+			"location": {
+				"line": 3,
+				"column": 12
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
 			"from": 0,
 			"to": 1,
 			"location": {
-				"line": 3,
+				"line": 6,
 				"column": 1
 			},
 			"isImplicit": false,
@@ -123,9 +251,9 @@
 		},
 		{
 			"from": 0,
-			"to": 3,
+			"to": 7,
 			"location": {
-				"line": 3,
+				"line": 6,
 				"column": 1
 			},
 			"isImplicit": true,

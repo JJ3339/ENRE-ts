@@ -9,7 +9,7 @@
  */
 
 import {NodePath} from '@babel/traverse';
-import {ForOfStatement, TSTypeAnnotation, VariableDeclaration} from '@babel/types';
+import {ForOfStatement, traverse, TSTypeAnnotation, VariableDeclaration} from '@babel/types';
 import {
   ENREEntityCollectionAnyChildren,
   ENREEntityClass,
@@ -54,10 +54,13 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
         {isInit: true},
       );
 
-      //判断是否设置作用域
-      scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
-      scope.push(entity);
-      entity.isValidThis = true;
+      // if(hasInit.kv){
+      //   //判断是否设置作用域
+      //   scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
+      //   scope.push(entity);
+      //   entity.isValidThis = true;
+      // }
+      
     }
 
     return entity;
@@ -100,7 +103,7 @@ export default {
         declarator.id,
         scope,
         undefined,
-        buildOnRecord(kind as variableKind, typeName, instanceName,!!objRepr),
+        buildOnRecord(kind as variableKind, typeName, instanceName, !!objRepr),
       );
       // returned[0].entity.pointsTo.push(createJSObjRepr('obj'));
       if (returned && objRepr) {
@@ -202,11 +205,11 @@ export default {
     // for (let i = 0; i < length; i++) {
     //     scope.pop();
     // }
-    for (const declarator of path.node.declarations) {
-      if(declarator.init){
-        scope.pop()
-      }
-    }
+    // for (const declarator of path.node.declarations) {
+    //   if(declarator.init){
+    //     scope.pop()
+    //   }
+    // }
     // scope.pop();
     // const varEntity = scope.last<ENREEntityClass>();
     // varEntity.children.forEach(f => {

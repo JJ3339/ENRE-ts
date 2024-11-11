@@ -21,6 +21,7 @@ import TSPropertySignature from './TSPropertySignature';
 import TSTypeAliasDeclaration from './TSTypeAliasDeclaration';
 import TSTypeParameterDeclaration from './TSTypeParameterDeclaration';
 import VariableDeclaration from './VariableDeclaration';
+import VariableDeclarator from './VariableDeclarator';
 import Decorator from './Decorator';
 import ExportAllDeclaration from './ExportAllDeclaration';
 import TSTypeAnnotation from './TSTypeAnnotation';
@@ -29,6 +30,7 @@ import TSExportAssignment from './TSExportAssignment';
 import TSImportEqualsDeclaration from './TSImportEqualsDeclaration';
 import ReturnStatement from './ReturnStatement';
 import ThrowStatement from './ThrowStatement';
+
 
 export default {
   'ArrowFunctionExpression': ArrowFunctionExpression,
@@ -66,4 +68,5 @@ export default {
   'TSTypeParameterDeclaration': TSTypeParameterDeclaration,
   //'UpdateExpression': UpdateExpression,
   'VariableDeclaration': VariableDeclaration,
+  'VariableDeclarator': VariableDeclarator
 };

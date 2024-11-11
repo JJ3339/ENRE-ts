@@ -370,7 +370,7 @@ export default () => {
                       //     break;
                       //   }
                       // }
-                      while(cursor.isValidThis){
+                      while(!cursor.isValidThis){
                         cursor = cursor.parent;
                         if(cursor === undefined){
                           break;
