@@ -1,9 +1,9 @@
 {
 	"entities": [
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>",
-			"name": "<File assigned_call.js>",
-			"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js",
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\debug\\demo.js>",
+			"name": "<File demo.js>",
+			"path": "D:\\ProgramData\\enre\\ENRE-ts\\debug\\demo.js",
 			"type": "file",
 			"sourceType": "script",
 			"lang": "js",
@@ -12,7 +12,7 @@
 			"id": 0
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.a",
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\debug\\demo.js>.a",
 			"name": "a",
 			"type": "variable",
 			"parent": 0,
@@ -26,15 +26,15 @@
 					"column": 8
 				}
 			},
-			"isValidThis": true,
+			"isValidThis": false,
 			"kind": "const",
 			"id": 1
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.a.b",
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\debug\\demo.js>.b",
 			"name": "b",
 			"type": "variable",
-			"parent": 1,
+			"parent": 0,
 			"location": {
 				"start": {
 					"line": 1,
@@ -45,15 +45,15 @@
 					"column": 19
 				}
 			},
-			"isValidThis": true,
+			"isValidThis": false,
 			"kind": "const",
 			"id": 2
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.a.b.c",
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\debug\\demo.js>.c",
 			"name": "c",
 			"type": "variable",
-			"parent": 2,
+			"parent": 0,
 			"location": {
 				"start": {
 					"line": 1,
@@ -69,18 +69,18 @@
 			"id": 3
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.a.b.c.addNumber",
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\debug\\demo.js>.c.addNumber",
 			"name": "addNumber",
 			"type": "function",
 			"parent": 3,
 			"location": {
 				"start": {
-					"line": 1,
-					"column": 33
+					"line": 2,
+					"column": 5
 				},
 				"end": {
-					"line": 1,
-					"column": 42
+					"line": 2,
+					"column": 14
 				}
 			},
 			"isValidThis": false,
@@ -90,18 +90,18 @@
 			"id": 4
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.a.b.c.addNumber.a",
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\debug\\demo.js>.c.addNumber.a",
 			"name": "a",
 			"type": "parameter",
 			"parent": 4,
 			"location": {
 				"start": {
-					"line": 1,
-					"column": 54
+					"line": 2,
+					"column": 25
 				},
 				"end": {
-					"line": 1,
-					"column": 55
+					"line": 2,
+					"column": 26
 				}
 			},
 			"isValidThis": false,
@@ -117,18 +117,18 @@
 			"id": 5
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.a.b.c.addNumber.b",
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\debug\\demo.js>.c.addNumber.b",
 			"name": "b",
 			"type": "parameter",
 			"parent": 4,
 			"location": {
 				"start": {
-					"line": 1,
-					"column": 57
+					"line": 2,
+					"column": 27
 				},
 				"end": {
-					"line": 1,
-					"column": 58
+					"line": 2,
+					"column": 28
 				}
 			},
 			"isValidThis": false,
@@ -144,17 +144,55 @@
 			"id": 6
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.func1",
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\debug\\demo.js>.d",
+			"name": "d",
+			"type": "variable",
+			"parent": 0,
+			"location": {
+				"start": {
+					"line": 5,
+					"column": 4
+				},
+				"end": {
+					"line": 5,
+					"column": 5
+				}
+			},
+			"isValidThis": false,
+			"kind": "const",
+			"id": 7
+		},
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\debug\\demo.js>.e",
+			"name": "e",
+			"type": "variable",
+			"parent": 0,
+			"location": {
+				"start": {
+					"line": 5,
+					"column": 15
+				},
+				"end": {
+					"line": 5,
+					"column": 16
+				}
+			},
+			"isValidThis": false,
+			"kind": "const",
+			"id": 8
+		},
+		{
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\debug\\demo.js>.func1",
 			"name": "func1",
 			"type": "function",
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 10,
+					"line": 9,
 					"column": 10
 				},
 				"end": {
-					"line": 10,
+					"line": 9,
 					"column": 15
 				}
 			},
@@ -162,20 +200,20 @@
 			"isAsync": false,
 			"isGenerator": false,
 			"isArrowFunction": false,
-			"id": 7
+			"id": 9
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\assigned_call.js>.func2",
+			"fullname": "<File D:\\ProgramData\\enre\\ENRE-ts\\debug\\demo.js>.func2",
 			"name": "func2",
 			"type": "function",
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 14,
+					"line": 13,
 					"column": 10
 				},
 				"end": {
-					"line": 14,
+					"line": 13,
 					"column": 15
 				}
 			},
@@ -183,7 +221,7 @@
 			"isAsync": false,
 			"isGenerator": false,
 			"isArrowFunction": false,
-			"id": 8
+			"id": 10
 		}
 	],
 	"relations": [
@@ -199,7 +237,7 @@
 			"isInit": true
 		},
 		{
-			"from": 1,
+			"from": 0,
 			"to": 2,
 			"location": {
 				"line": 1,
@@ -210,7 +248,7 @@
 			"isInit": true
 		},
 		{
-			"from": 2,
+			"from": 0,
 			"to": 3,
 			"location": {
 				"line": 1,
@@ -221,44 +259,35 @@
 			"isInit": true
 		},
 		{
-			"from": 4,
+			"from": 0,
+			"to": 7,
 			"location": {
-				"line": 2,
-				"column": 5
+				"line": 5,
+				"column": 4
 			},
 			"isImplicit": false,
-			"type": "use"
+			"type": "set",
+			"isInit": true
+		},
+		{
+			"from": 0,
+			"to": 8,
+			"location": {
+				"line": 5,
+				"column": 15
+			},
+			"isImplicit": false,
+			"type": "set",
+			"isInit": true
 		},
 		{
 			"from": 4,
 			"location": {
 				"line": 3,
-				"column": 12
+				"column": 16
 			},
 			"isImplicit": false,
 			"type": "use"
-		},
-		{
-			"from": 0,
-			"to": 1,
-			"location": {
-				"line": 6,
-				"column": 1
-			},
-			"isImplicit": false,
-			"type": "call",
-			"isNew": false
-		},
-		{
-			"from": 0,
-			"to": 7,
-			"location": {
-				"line": 6,
-				"column": 1
-			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": false
 		}
 	]
 }

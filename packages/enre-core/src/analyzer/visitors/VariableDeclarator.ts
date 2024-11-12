@@ -59,6 +59,7 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
         scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
         scope.push(entity);
         entity.isValidThis = true;
+        isScope = true;
       }
       
     }
@@ -68,108 +69,97 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
 };
 
 type PathType = NodePath<VariableDeclarator>
-
+let isScope:boolean
 export default {
   enter: (path: PathType, {scope, modifiers}: ENREContext) => {
-
+    isScope = false;
     const kind = (path.parent as VariableDeclaration).kind;
     const declarator: VariableDeclarator = path.node as VariableDeclarator;
     let objRepr: JSMechanism | DescendPostponedTask | undefined = resolveJSObj(declarator.init);
     // The init value is not a literal, but an expression.
-    // let instanceName = undefined
-    // if (declarator.init && !objRepr) {
-    // objRepr = expressionHandler(declarator.init, scope);
-    // instanceName = undefined
-    // }
-    if((objRepr as JSObjRepr).kv){
-          //判断是否设置作用域
-        scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
-        scope.push(entity);
-        entity.isValidThis = true;
-      }
+    let instanceName = undefined
+    if (declarator.init && !objRepr) {
+    objRepr = expressionHandler(declarator.init, scope);
+    instanceName = undefined
     }
-    // ForStatement is not supported due to the complexity of the AST structure.
-    // if (['ForOfStatement', 'ForInStatement'].includes(path.parent.parent.type)) {
-    // objRepr = resolveJSObj((path.parent.parent as ForOfStatement).right);
-    // }
-
-    // // if ('typeAnnotation' in declarator.id){
-    // //   const entity = declarator.id.typeAnnotation.typeAnnotation.typeName.name
-    // // }else{
-    // //   const entity = undefined
-    // // }
-    // const typeAnnotation: TSTypeAnnotation|undefined = Reflect.get(declarator.id, 'typeAnnotation')?.typeAnnotation
-    // // const typeName = Reflect.get(typeAnnotation, 'typeName').name
-    // let typeName = undefined
-    // if (typeAnnotation){
-    //     typeName = Reflect.get(typeAnnotation, 'typeName').name
-    // }
-    // // const typeName = typeAnnotation?.typeName?.name ?? undefined;
     
-    // const returned = traverseBindingPattern<ENREEntityVariable>(
-    // declarator.id,
-    // scope,
-    // undefined,
-    // buildOnRecord(kind as variableKind, typeName, instanceName, objRepr),
-    // );
-    // // returned[0].entity.pointsTo.push(createJSObjRepr('obj'));
-    // if (returned && objRepr) {
-    // let variant: 'for-of' | 'for-await-of' | 'for-in' | undefined = undefined;
-    // if (path.parent.parent.type === 'ForOfStatement') {
-    //     variant = 'for-of';
-    //     if (path.parent.parent.await) {
-    //     variant = 'for-await-of';
-    //     }
-    // } else if (path.parent.parent.type === 'ForInStatement') {
-    //     variant = 'for-in';
-    // }
-    // if ('callable' in objRepr){
-    //     objRepr.callable.push({
-    //     entity: undefined,
-    //     returns: [returned[0].entity],
-    //     });
-    // }
-    // // 确保 objRepr.callable 是一个数组
-    // // if (!('callable' in objRepr)) {
-    // //   objRepr.callable = [];
-    // // }
-    // // objRepr.callable.push({
-    // //   entity: returned[0].entity,
-    // //   returns: [returned[0].entity],
-    // // });
+    // ForStatement is not supported due to the complexity of the AST structure.
+    if (['ForOfStatement', 'ForInStatement'].includes(path.parentPath.parent.type)) {
+    objRepr = resolveJSObj((path.parentPath.parent as ForOfStatement).right);
+    }
 
-    // if (objRepr.type === 'descend') {
-    //     objRepr.onFinish = (resolvedResult) => {
-    //     if (resolvedResult.length >= 1) {
-    //         postponedTask.add({
-    //         type: 'ascend',
-    //         payload: [{
-    //             operation: 'assign',
-    //             operand0: returned,
-    //             // FIXME: Temporary only pass one resolved element, but it should be an array.
-    //             operand1: resolvedResult[0],
-    //             variant,
-    //         }]
-    //         } as AscendPostponedTask);
+    const typeAnnotation: TSTypeAnnotation|undefined = Reflect.get(declarator.id, 'typeAnnotation')?.typeAnnotation
+    // const typeName = Reflect.get(typeAnnotation, 'typeName').name
+    let typeName = undefined
+    if (typeAnnotation){
+        typeName = Reflect.get(typeAnnotation, 'typeName').name
+    }
+    // const typeName = typeAnnotation?.typeName?.name ?? undefined;
+    
+    const returned = traverseBindingPattern<ENREEntityVariable>(
+    declarator.id,
+    scope,
+    undefined,
+    buildOnRecord(kind as variableKind, typeName, instanceName, objRepr),
+    );
+    // returned[0].entity.pointsTo.push(createJSObjRepr('obj'));
+    if (returned && objRepr) {
+    let variant: 'for-of' | 'for-await-of' | 'for-in' | undefined = undefined;
+    if (path.parentPath.parent.type === 'ForOfStatement') {
+        variant = 'for-of';
+        if (path.parentPath.parent.await) {
+        variant = 'for-await-of';
+        }
+    } else if (path.parentPath.parent.type === 'ForInStatement') {
+        variant = 'for-in';
+    }
+    if ('callable' in objRepr){
+        objRepr.callable.push({
+        entity: undefined,
+        returns: [returned[0].entity],
+        });
+    }
+    // 确保 objRepr.callable 是一个数组
+    // if (!('callable' in objRepr)) {
+    //   objRepr.callable = [];
+    // }
+    // objRepr.callable.push({
+    //   entity: returned[0].entity,
+    //   returns: [returned[0].entity],
+    // });
 
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    //     };
-    // } else {
-    //     postponedTask.add({
-    //     type: 'ascend',
-    //     payload: [{
-    //         operation: 'assign',
-    //         operand0: returned,
-    //         operand1: objRepr,
-    //         variant,
-    //     }],
-    //     scope: scope.last(),
-    //     } as AscendPostponedTask);
-    // }
-    // }
+    if (objRepr.type === 'descend') {
+        objRepr.onFinish = (resolvedResult) => {
+        if (resolvedResult.length >= 1) {
+            postponedTask.add({
+            type: 'ascend',
+            payload: [{
+                operation: 'assign',
+                operand0: returned,
+                // FIXME: Temporary only pass one resolved element, but it should be an array.
+                operand1: resolvedResult[0],
+                variant,
+            }]
+            } as AscendPostponedTask);
+
+            return true;
+        } else {
+            return false;
+        }
+        };
+    } else {
+        postponedTask.add({
+        type: 'ascend',
+        payload: [{
+            operation: 'assign',
+            operand0: returned,
+            operand1: objRepr,
+            variant,
+        }],
+        scope: scope.last(),
+        } as AscendPostponedTask);
+    }
+    }
     
     /**
      * Setup to extract properties from object literals,
@@ -194,7 +184,9 @@ export default {
 
   exit: (path: PathType, {scope, modifiers}: ENREContext) => {
     console.log('exit var');
-    
+    if(scope.last().type === 'variable' && isScope){
+      scope.pop()
+    }
     // const varEntity = scope.last<ENREEntityClass>();
     // if (varEntity.pointsTo[0].callable.length === 0) {
     //   varEntity.pointsTo[0].callable.push({

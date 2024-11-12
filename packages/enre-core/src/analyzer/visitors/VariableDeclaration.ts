@@ -73,7 +73,7 @@ export default {
   enter: (path: PathType, {scope, modifiers}: ENREContext) => {
     const kind = path.node.kind;
     for (const declarator of path.node.declarations) {
-      let objRepr: JSMechanism | DescendPostponedTask | undefined = resolveJSObj(declarator.init);
+      let objRepr: JSMechanism | DescendPostponedTask | undefined =  resolveJSObj(declarator.init);
       // The init value is not a literal, but an expression.
       let instanceName = undefined
       if (declarator.init && !objRepr) {

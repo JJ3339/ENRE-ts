@@ -67,6 +67,6 @@ export default {
   'TSTypeAnnotation': TSTypeAnnotation,
   'TSTypeParameterDeclaration': TSTypeParameterDeclaration,
   //'UpdateExpression': UpdateExpression,
-  'VariableDeclaration': VariableDeclaration,
+  //'VariableDeclaration': VariableDeclaration,
   'VariableDeclarator': VariableDeclarator
 };
