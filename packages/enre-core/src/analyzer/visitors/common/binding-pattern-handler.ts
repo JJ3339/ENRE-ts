@@ -136,7 +136,7 @@ function recursiveTraverse(
           const _prefix = [...prefix];
           _prefix.push(...[{type: 'obj'} as BindingPathObj, {
             type: 'rest',
-            exclude: usedProps
+            exclude: usedProps.map(num => num.toString())
           } as BindingPathObjRest]);
           for (const item of recursiveTraverse(property.argument, _prefix)) {
             result.push(item);

@@ -468,7 +468,7 @@ export default () => {
                     }
 
                     // Hook function should be provided with ENREEntity as symbol
-                    if (!(task.onFinish && i === 0) || task.payload.length === 1) {
+                    if (!(task.onFinish && i === 0)){ //|| task.payload.length === 1) {
                       /**
                        * CurrSymbol - ENREEntity as symbol (that holds points-to items)
                        * or JSObjRepr
