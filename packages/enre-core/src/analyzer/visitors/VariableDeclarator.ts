@@ -42,8 +42,7 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
       instanceName
     );
 
-    // scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
-    // scope.push(entity);
+    scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
 
     if (!!hasInit) {
       // Record relation `set`
@@ -54,9 +53,8 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
         {isInit: true},
       );
 
-      if(hasInit.kv){
+      if(hasInit.kvInitial === 'object'){
         //判断是否设置作用域
-        scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
         scope.push(entity);
         entity.isValidThis = true;
         isScope = true;
@@ -85,7 +83,7 @@ export default {
     
     // ForStatement is not supported due to the complexity of the AST structure.
     if (['ForOfStatement', 'ForInStatement'].includes(path.parentPath.parent.type)) {
-    objRepr = resolveJSObj((path.parentPath.parent as ForOfStatement).right);
+        objRepr = resolveJSObj((path.parentPath.parent as ForOfStatement).right);
     }
 
     const typeAnnotation: TSTypeAnnotation|undefined = Reflect.get(declarator.id, 'typeAnnotation')?.typeAnnotation
@@ -97,26 +95,26 @@ export default {
     // const typeName = typeAnnotation?.typeName?.name ?? undefined;
     
     const returned = traverseBindingPattern<ENREEntityVariable>(
-    declarator.id,
-    scope,
-    undefined,
-    buildOnRecord(kind as variableKind, typeName, instanceName, objRepr),
+        declarator.id,
+        scope,
+        undefined,
+        buildOnRecord(kind as variableKind, typeName, instanceName, objRepr),
     );
     // returned[0].entity.pointsTo.push(createJSObjRepr('obj'));
     if (returned && objRepr) {
-    let variant: 'for-of' | 'for-await-of' | 'for-in' | undefined = undefined;
+        let variant: 'for-of' | 'for-await-of' | 'for-in' | undefined = undefined;
     if (path.parentPath.parent.type === 'ForOfStatement') {
         variant = 'for-of';
         if (path.parentPath.parent.await) {
-        variant = 'for-await-of';
+            variant = 'for-await-of';
         }
     } else if (path.parentPath.parent.type === 'ForInStatement') {
         variant = 'for-in';
     }
     if ('callable' in objRepr){
-        objRepr.callable.push({
-        entity: undefined,
-        returns: [returned[0].entity],
+            objRepr.callable.push({
+            entity: undefined,
+            returns: [returned[0].entity],
         });
     }
     // 确保 objRepr.callable 是一个数组
