@@ -1,3 +1,125 @@
 {
-	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\assignments\\clarify.js>": []
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Rest_operator.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Rest_operator.js>.func@15:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Param.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Param.js>.func.a@2:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Param.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Param.js>.func2@13:6",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Param.js>.func@13:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\nested.js>.paramFunc": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\nested.js>.paramFunc.a@6:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\nested.js>.nestedFunc@6:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\nested.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\nested.js>.func.a@10:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\nested.js>.paramFunc@10:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\nested.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\nested.js>.c@15:1",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\nested.js>.func@15:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\import_alias\\file1.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\import_alias\\file0.js>.func@7:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\import_alias\\file0.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\import_alias\\file0.js>.func.a@2:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\import_alias\\file1.js>.paramFunc@2:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\imported_assign\\file1.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\imported_assign\\file1.js>.b@9:1",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\imported_assign\\file0.js>.func@9:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\imported_assign\\file0.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\imported_assign\\file0.js>.func.a@2:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\imported_assign\\file1.js>.paramFunc@2:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\imported\\import.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\imported\\export.js>.func@7:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\imported\\export.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\imported\\export.js>.func.a@2:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\imported\\import.js>.paramFunc@2:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Implicit_args.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Implicit_args.js>.func@9:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring_complex.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring_complex.js>.func.funcA@10:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring_complex.js>.func.funcB@11:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring_complex.js>.func1@10:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring_complex.js>.func2@11:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring_complex.js>.func2@12:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring_complex.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring_complex.js>.func@15:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring.js>.func.a@10:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring.js>.func.b@11:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring.js>.func.c@12:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring.js>.func.d@13:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring.js>.func1@10:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring.js>.func2@11:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring.js>.func1@12:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring.js>.func2@13:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Destructuring.js>.func@16:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Default_complex_usage.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Default_complex_usage.js>.func.funcA@10:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Default_complex_usage.js>.func.funcB@11:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Default_complex_usage.js>.func1@10:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Default_complex_usage.js>.func2@11:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Default_complex_usage.js>.func1@12:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Default_complex_usage.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Default_complex_usage.js>.func@15:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Declaration.js>.foo": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Declaration.js>.foo.a@2:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Declaration.js>.<Anon Function>@5:5@2:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Declaration.js>.<Anon ArrowFunction>@9:5@2:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Declaration.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Declaration.js>.foo@5:1",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Declaration.js>.foo@9:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\assigned.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\assigned.js>.func.a@6:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\assigned.js>.paramFunc@6:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\assigned.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\assigned.js>.func@10:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Args_default_values.js>.func2": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Args_default_values.js>.func2.a@6:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Args_default_values.js>.func3@6:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Args_default_values.js>.func2@6:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Args_default_values.js>.func1": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Args_default_values.js>.func1.a@10:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Args_default_values.js>.func2@10:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Args_default_values.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Args_default_values.js>.func1@15:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\args.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\args.js>.func.a@6:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\args.js>.paramFunc@6:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\args.js>": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\args.js>.func@9:1"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Rest_operator.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Rest_operator.js>.func2@10:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Rest_operator.js>.func1@11:5",
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Rest_operator.js>.func2@12:5"
+	],
+	"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Implicit_args.js>.func": [
+		"<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\args\\Implicit_args.js>.func1@6:5"
+	]
 }

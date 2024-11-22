@@ -61,7 +61,7 @@ export default {
           isAbstract: 'abstract' in path.node ? path.node.abstract ?? false : false,
         },
       );
-      entity.isValidThis = true;
+      
       // TODO: unnamed class in CHA
       clsName = `Anon-${path.node.start}:${path.node.end}`
       //
@@ -76,7 +76,7 @@ export default {
      */
     const objRepr = createJSObjRepr('obj');
     entity.pointsTo.push(objRepr);
-     
+    entity.isValidThis = true;
     scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
     scope.push(entity);
 

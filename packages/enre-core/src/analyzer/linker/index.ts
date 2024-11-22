@@ -361,7 +361,7 @@ export default () => {
 
                     // this - mainly for class methods
                     // FIXME: Currently does not support complex usage (e.g. dynamic this other than class)
-                    if (token.operand1 === 'this') {
+                    if (token.operand1 === 'this' || token.operand1 === 'super') {
                       // Simply find a class entity along the scope chain
                       let cursor = task.scope;
                       // while (cursor.type !== 'class' && cursor.type !=='variable') {
@@ -375,6 +375,9 @@ export default () => {
                         if(cursor === undefined){
                           break;
                         }
+                      }
+                      if (token.operand1 === 'super'){
+                        cursor = cursor.base;
                       }
                       if (cursor) {
                         currSymbol.push(...cursor.pointsTo);
@@ -420,8 +423,13 @@ export default () => {
                           }
                         }
                         else{
-                          // ENREEntity as symbol
-                          currSymbol.push(found);
+                          if (i === 0){
+                            currSymbol.push(found.callable[0].entity)
+                          }else{
+                            // ENREEntity as symbol
+                            currSymbol.push(found);
+                          }
+                          
                         }
                         
                       }
@@ -468,7 +476,7 @@ export default () => {
                     }
 
                     // Hook function should be provided with ENREEntity as symbol
-                    if (!(task.onFinish && i === 0)){ //|| task.payload.length === 1) {
+                    if (!(task.onFinish && i === 0)){//|| task.payload.length === 1) {
                       /**
                        * CurrSymbol - ENREEntity as symbol (that holds points-to items)
                        * or JSObjRepr
