@@ -22,7 +22,7 @@ export interface ENREEntityAbilityBase
   pointsTo: any[],
 
   isValidThis: boolean,
-
+  thisPointsTo: any[],
   getQualifiedName: () => string,
   getSourceFile: () => ENREEntityFile,
 }
@@ -51,7 +51,8 @@ export const addAbilityBase = (
     pointsTo,
 
     isValidThis: false,
-
+    thisPointsTo: [],
+    
     getQualifiedName() {
       if (name.string === '<Anon Function>' || name.string === '<Anon ArrowFunction>'){
         return parent.getQualifiedName() + '.' + name.string + '@' + location.start.line + ':' + location.start.column;

@@ -370,17 +370,28 @@ export default () => {
                       //     break;
                       //   }
                       // }
-                      while(!cursor.isValidThis){
-                        cursor = cursor.parent;
-                        if(cursor === undefined){
-                          break;
+                      if(cursor.thisPointsTo.length !==0 ){
+                        
+                        cursor.thisPointsTo.forEach(t => {
+                          if (token.operand1 === 'super'){
+                            currSymbol.push(t.base);
+                          }else{
+                            currSymbol.push(t)
+                          }
+                        })
+                      }else{
+                        while(!cursor.isValidThis){
+                          cursor = cursor.parent;
+                          if(cursor === undefined){
+                            break;
+                          }
                         }
-                      }
-                      if (token.operand1 === 'super'){
-                        cursor = cursor.base;
-                      }
-                      if (cursor) {
-                        currSymbol.push(...cursor.pointsTo);
+                        if (token.operand1 === 'super'){
+                          cursor = cursor.base;
+                        }
+                        if (cursor) {
+                          currSymbol.push(...cursor.pointsTo);
+                        }
                       }
                     }
                     // arguments - function's arguments
@@ -500,7 +511,7 @@ export default () => {
 
               case 'assign': {
                 // prevSymbol is ENREEntity as symbol (due to onFinish hook exists)
-                currSymbol = prevSymbol.map(s => s.pointsTo).reduce((p, c) => [...p, ...c], []);
+                currSymbol = prevSymbol.map(s => s.pointsTo ?? [s]).reduce((p, c) => [...p, ...c], []);
                 // currSymbol is JSObjRepr
 
                 const resolved = bindRepr2Entity(token.operand1[0], task.scope);
@@ -607,8 +618,26 @@ export default () => {
                         s.arguments = [argRepr];
                         currUpdated = true;
                       }
-
+                      
                       params.push(...s.children.filter(e => e.type === 'parameter'));
+                      // let cursor = s;
+                      // while(!cursor.isValidThis){
+                      //   cursor = cursor.parent;
+                      //   if(cursor === undefined){
+                      //     break;
+                      //   }
+                      // }
+                      if(task.payload[i+2]){
+                        let cursor = task.payload[i+2].lastSymbol;
+                        if (cursor.length !== 0){
+                          cursor.forEach(p => {
+                            if (!s.thisPointsTo.includes(p)) {
+                              s.thisPointsTo.push(p);
+                            }
+                          });
+                        }
+                      }
+                      
                     });
 
                     for (const param of params) {

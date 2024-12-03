@@ -77,6 +77,7 @@ export default {
     const objRepr = createJSObjRepr('obj');
     entity.pointsTo.push(objRepr);
     entity.isValidThis = true;
+    entity.thisPointsTo.push(entity);
     scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
     scope.push(entity);
 

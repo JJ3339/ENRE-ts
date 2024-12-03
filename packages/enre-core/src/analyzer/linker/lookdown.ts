@@ -99,8 +99,9 @@ export default function lookdown(by: 'loc-key', payload: ENRELocKey, scope: ENRE
  *
  * The return should be interpreted as a symbol.
  */
+//the return might be JSObjRepr
 export default function lookdown(by: 'name', payload: string, scope: ENREEntityCollectionInFile | JSObjRepr): ENREEntityCollectionInFile | undefined;
-export default function lookdown(by: 'loc-key' | 'name', payload: ENRELocKey | string, scope: ENREEntityCollectionInFile | JSObjRepr): ENREEntityCollectionAll | undefined {
+export default function lookdown(by: 'loc-key' | 'name', payload: ENRELocKey | string, scope: ENREEntityCollectionInFile | JSObjRepr): ENREEntityCollectionAll | undefined{
   let waitingList: any[] | undefined = undefined;
   if (scope.type === 'object') {
     waitingList = [scope];
@@ -142,6 +143,14 @@ export default function lookdown(by: 'loc-key' | 'name', payload: ENRELocKey | s
     if ('children' in item) {
       waitingList.push(...item.children);
     }
+    // push the parent class. CatchError!! forEach needed? CatchError!!
+    item.callable.forEach((r: { returns: any[]; }) => {
+      r.returns.forEach(c => {
+        if(c.base){
+          waitingList.push(...c.base.pointsTo)
+        }
+      });
+    });
   }
 
   // if ('pointsTo' in scope) {
