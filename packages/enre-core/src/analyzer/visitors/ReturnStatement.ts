@@ -10,6 +10,8 @@ import expressionHandler from './common/expression-handler';
 type PathType = NodePath<ReturnStatement>
 //TODO: extend the set to analyse more types in arkts(hjj)
 const validTypes = ['function', 'method']; // 这里可以添加更多类型
+const GETENTITY = 1;
+const GETRETURN = 0;
 export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
   const callableEntity = scope.last();
 
@@ -24,13 +26,17 @@ export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
   }
 
   const task = expressionHandler(path.node.argument, scope);
-  let mode = 0;
+  let mode = GETRETURN;
   switch (path.node.argument.type){
     case 'Identifier':{
-      mode = 1
+      mode = GETENTITY
       break;
     }
     case 'ArrowFunctionExpression':{
+      break;
+    }
+    case 'MemberExpression':{
+      mode = GETENTITY
       break;
     }
   }
@@ -54,11 +60,12 @@ export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
         symbolSnapshot.forEach((s: { callable: any[]; }) => {
           s.callable.forEach(c => {
             // c.returns - ENREEntity as symbol
-            if(mode === 1){
+            if(mode === GETENTITY){
               
               callableEntity.pointsTo[0].callable[0].returns.push(c.entity);
               
             }else{
+              //GETRETURN 
               c.returns.forEach((r: any) => {
               callableEntity.pointsTo[0].callable[0].returns.push(r);
             });

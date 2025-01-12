@@ -1,9 +1,9 @@
 {
 	"entities": [
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>",
-			"name": "<File base.js>",
-			"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js",
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file2.js>",
+			"name": "<File file2.js>",
+			"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file2.js",
 			"type": "file",
 			"sourceType": "script",
 			"lang": "js",
@@ -12,848 +12,203 @@
 			"id": 0
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.A",
-			"name": "A",
-			"type": "class",
-			"parent": 0,
-			"location": {
-				"start": {
-					"line": 1,
-					"column": 7
-				},
-				"end": {
-					"line": 1,
-					"column": 8
-				}
-			},
-			"isValidThis": true,
-			"thisPointsTo": [
-				{
-					"imports": [],
-					"exports": [],
-					"name": {
-						"kind": "Norm",
-						"payload": "A"
-					},
-					"type": "class",
-					"parent": {
-						"imports": [],
-						"exports": [],
-						"name": {
-							"kind": "File",
-							"payload": "base.js"
-						},
-						"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js",
-						"type": "file",
-						"sourceType": "script",
-						"lang": "js",
-						"isJsx": false,
-						"children": [
-							null,
-							{
-								"imports": [],
-								"exports": [],
-								"name": {
-									"kind": "Norm",
-									"payload": "B"
-								},
-								"type": "class",
-								"location": {
-									"start": {
-										"line": 7,
-										"column": 7
-									}
-								},
-								"children": [
-									{
-										"imports": [],
-										"exports": [],
-										"name": {
-											"kind": "Norm",
-											"payload": "constructor"
-										},
-										"type": "method",
-										"location": {
-											"start": {
-												"line": 8,
-												"column": 5
-											}
-										},
-										"children": [],
-										"pointsTo": [
-											{
-												"type": "object",
-												"kv": {},
-												"kvInitial": "obj",
-												"callable": [
-													{
-														"returns": []
-													}
-												]
-											}
-										],
-										"isValidThis": false,
-										"thisPointsTo": [],
-										"isStatic": false,
-										"isPrivate": false,
-										"isAsync": false,
-										"isGenerator": false,
-										"isAbstract": false,
-										"kind": "constructor",
-										"arguments": [
-											{
-												"type": "object",
-												"kv": {},
-												"kvInitial": "array",
-												"callable": []
-											}
-										]
-									},
-									{
-										"imports": [],
-										"exports": [],
-										"name": {
-											"kind": "Norm",
-											"payload": "func2"
-										},
-										"type": "method",
-										"location": {
-											"start": {
-												"line": 13,
-												"column": 5
-											}
-										},
-										"children": [],
-										"pointsTo": [
-											{
-												"type": "object",
-												"kv": {},
-												"kvInitial": "obj",
-												"callable": [
-													{
-														"returns": []
-													}
-												]
-											}
-										],
-										"isValidThis": false,
-										"thisPointsTo": [
-											{
-												"type": "object",
-												"kv": {},
-												"kvInitial": "obj",
-												"callable": [
-													{
-														"returns": [
-															null
-														]
-													}
-												]
-											},
-											{
-												"type": "object",
-												"kv": {
-													"constructor": {
-														"type": "object",
-														"kv": {},
-														"kvInitial": "obj",
-														"callable": [
-															{
-																"entity": {
-																	"imports": [],
-																	"exports": [],
-																	"name": {
-																		"kind": "Norm",
-																		"payload": "constructor"
-																	},
-																	"type": "method",
-																	"parent": {
-																		"imports": [],
-																		"exports": [],
-																		"name": {
-																			"kind": "Norm",
-																			"payload": "C"
-																		},
-																		"type": "class",
-																		"location": {
-																			"start": {
-																				"line": 19,
-																				"column": 7
-																			}
-																		},
-																		"children": [
-																			null,
-																			{
-																				"imports": [],
-																				"exports": [],
-																				"name": {
-																					"kind": "Norm",
-																					"payload": "func2"
-																				},
-																				"type": "method",
-																				"location": {
-																					"start": {
-																						"line": 25,
-																						"column": 5
-																					}
-																				},
-																				"children": [],
-																				"pointsTo": [
-																					{
-																						"type": "object",
-																						"kv": {},
-																						"kvInitial": "obj",
-																						"callable": [
-																							{
-																								"returns": []
-																							}
-																						]
-																					}
-																				],
-																				"isValidThis": false,
-																				"thisPointsTo": [
-																					null,
-																					null
-																				],
-																				"isStatic": false,
-																				"isPrivate": false,
-																				"isAsync": false,
-																				"isGenerator": false,
-																				"isAbstract": false,
-																				"kind": "method",
-																				"arguments": [
-																					{
-																						"type": "object",
-																						"kv": {},
-																						"kvInitial": "array",
-																						"callable": []
-																					}
-																				]
-																			}
-																		],
-																		"pointsTo": [
-																			null
-																		],
-																		"isValidThis": true,
-																		"thisPointsTo": [
-																			null
-																		],
-																		"isAbstract": false
-																	},
-																	"location": {
-																		"start": {
-																			"line": 20,
-																			"column": 5
-																		}
-																	},
-																	"children": [],
-																	"pointsTo": [
-																		null
-																	],
-																	"isValidThis": false,
-																	"thisPointsTo": [],
-																	"isStatic": false,
-																	"isPrivate": false,
-																	"isAsync": false,
-																	"isGenerator": false,
-																	"isAbstract": false,
-																	"kind": "constructor",
-																	"arguments": [
-																		{
-																			"type": "object",
-																			"kv": {},
-																			"kvInitial": "array",
-																			"callable": []
-																		}
-																	]
-																},
-																"returns": []
-															}
-														]
-													}
-												},
-												"kvInitial": "obj",
-												"callable": [
-													{
-														"returns": [
-															null
-														]
-													}
-												]
-											}
-										],
-										"isStatic": false,
-										"isPrivate": false,
-										"isAsync": false,
-										"isGenerator": false,
-										"isAbstract": false,
-										"kind": "method",
-										"arguments": [
-											null
-										]
-									}
-								],
-								"pointsTo": [
-									null
-								],
-								"isValidThis": true,
-								"thisPointsTo": [
-									null
-								],
-								"isAbstract": false
-							},
-							null,
-							{
-								"imports": [],
-								"exports": [],
-								"name": {
-									"kind": "Norm",
-									"payload": "b"
-								},
-								"type": "variable",
-								"location": {
-									"start": {
-										"line": 30,
-										"column": 7
-									}
-								},
-								"children": [],
-								"pointsTo": [
-									null
-								],
-								"isValidThis": false,
-								"thisPointsTo": [],
-								"kind": "const"
-							},
-							{
-								"imports": [],
-								"exports": [],
-								"name": {
-									"kind": "Norm",
-									"payload": "c"
-								},
-								"type": "variable",
-								"location": {
-									"start": {
-										"line": 32,
-										"column": 7
-									}
-								},
-								"children": [],
-								"pointsTo": [
-									null
-								],
-								"isValidThis": false,
-								"thisPointsTo": [],
-								"kind": "const"
-							}
-						],
-						"logs": {},
-						"isValidThis": false
-					},
-					"location": {
-						"start": {
-							"line": 1,
-							"column": 7
-						}
-					},
-					"children": [
-						{
-							"imports": [],
-							"exports": [],
-							"name": {
-								"kind": "Norm",
-								"payload": "func"
-							},
-							"type": "method",
-							"location": {
-								"start": {
-									"line": 2,
-									"column": 5
-								}
-							},
-							"children": [],
-							"pointsTo": [
-								{
-									"type": "object",
-									"kv": {},
-									"kvInitial": "obj",
-									"callable": [
-										{
-											"returns": []
-										}
-									]
-								}
-							],
-							"isValidThis": false,
-							"thisPointsTo": [
-								null,
-								null
-							],
-							"isStatic": false,
-							"isPrivate": false,
-							"isAsync": false,
-							"isGenerator": false,
-							"isAbstract": false,
-							"kind": "method",
-							"arguments": [
-								{
-									"type": "object",
-									"kv": {},
-									"kvInitial": "array",
-									"callable": []
-								},
-								{
-									"type": "object",
-									"kv": {},
-									"kvInitial": "array",
-									"callable": []
-								}
-							]
-						}
-					],
-					"pointsTo": [
-						{
-							"type": "object",
-							"kv": {},
-							"kvInitial": "obj",
-							"callable": [
-								{
-									"returns": [
-										null
-									]
-								}
-							]
-						}
-					],
-					"isValidThis": true,
-					"isAbstract": false,
-					"arguments": [
-						{
-							"type": "object",
-							"kv": {},
-							"kvInitial": "array",
-							"callable": []
-						}
-					]
-				}
-			],
-			"isAbstract": false,
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file1.js>",
+			"name": "<File file1.js>",
+			"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file1.js",
+			"type": "file",
+			"sourceType": "script",
+			"lang": "js",
+			"isJsx": false,
+			"isValidThis": false,
 			"id": 1
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.A.func",
-			"name": "func",
-			"type": "method",
-			"parent": 1,
-			"location": {
-				"start": {
-					"line": 2,
-					"column": 5
-				},
-				"end": {
-					"line": 2,
-					"column": 9
-				}
-			},
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file0.js>",
+			"name": "<File file0.js>",
+			"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file0.js",
+			"type": "file",
+			"sourceType": "script",
+			"lang": "js",
+			"isJsx": false,
 			"isValidThis": false,
-			"isStatic": false,
-			"isPrivate": false,
-			"isAsync": false,
-			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "method",
 			"id": 2
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.B",
-			"name": "B",
-			"type": "class",
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file2.js>.a",
+			"name": "a",
+			"type": "variable",
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 7,
+					"line": 3,
 					"column": 7
 				},
 				"end": {
-					"line": 7,
+					"line": 3,
 					"column": 8
 				}
 			},
-			"isValidThis": true,
-			"isAbstract": false,
+			"isValidThis": false,
+			"thisPointsTo": [],
+			"kind": "const",
 			"id": 3
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.B.constructor",
-			"name": "constructor",
-			"type": "method",
-			"parent": 3,
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file1.js>.func",
+			"name": "func",
+			"type": "function",
+			"parent": 1,
 			"location": {
 				"start": {
-					"line": 8,
-					"column": 5
+					"line": 3,
+					"column": 17
 				},
 				"end": {
-					"line": 8,
-					"column": 16
+					"line": 3,
+					"column": 21
 				}
 			},
 			"isValidThis": false,
-			"isStatic": false,
-			"isPrivate": false,
+			"thisPointsTo": [],
 			"isAsync": false,
 			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "constructor",
+			"isArrowFunction": false,
 			"id": 4
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.B.func2",
-			"name": "func2",
-			"type": "method",
-			"parent": 3,
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file0.js>.returnFunc",
+			"name": "returnFunc",
+			"type": "function",
+			"parent": 2,
 			"location": {
 				"start": {
-					"line": 13,
-					"column": 5
+					"line": 1,
+					"column": 17
 				},
 				"end": {
-					"line": 13,
-					"column": 10
+					"line": 1,
+					"column": 27
 				}
 			},
 			"isValidThis": false,
-			"isStatic": false,
-			"isPrivate": false,
+			"thisPointsTo": [],
 			"isAsync": false,
 			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "method",
+			"isArrowFunction": false,
 			"id": 5
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.C",
-			"name": "C",
-			"type": "class",
-			"parent": 0,
-			"location": {
-				"start": {
-					"line": 19,
-					"column": 7
-				},
-				"end": {
-					"line": 19,
-					"column": 8
-				}
-			},
-			"isValidThis": true,
-			"isAbstract": false,
-			"id": 6
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.C.constructor",
-			"name": "constructor",
-			"type": "method",
-			"parent": 6,
-			"location": {
-				"start": {
-					"line": 20,
-					"column": 5
-				},
-				"end": {
-					"line": 20,
-					"column": 16
-				}
-			},
-			"isValidThis": false,
-			"isStatic": false,
-			"isPrivate": false,
-			"isAsync": false,
-			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "constructor",
-			"id": 7
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.C.func2",
-			"name": "func2",
-			"type": "method",
-			"parent": 6,
-			"location": {
-				"start": {
-					"line": 25,
-					"column": 5
-				},
-				"end": {
-					"line": 25,
-					"column": 10
-				}
-			},
-			"isValidThis": false,
-			"isStatic": false,
-			"isPrivate": false,
-			"isAsync": false,
-			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "method",
-			"id": 8
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.b",
-			"name": "b",
-			"type": "variable",
-			"parent": 0,
-			"location": {
-				"start": {
-					"line": 30,
-					"column": 7
-				},
-				"end": {
-					"line": 30,
-					"column": 8
-				}
-			},
-			"isValidThis": false,
-			"kind": "const",
-			"id": 9
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.c",
-			"name": "c",
-			"type": "variable",
-			"parent": 0,
-			"location": {
-				"start": {
-					"line": 32,
-					"column": 7
-				},
-				"end": {
-					"line": 32,
-					"column": 8
-				}
-			},
-			"isValidThis": false,
-			"kind": "const",
-			"id": 10
 		}
 	],
 	"relations": [
 		{
 			"from": 0,
-			"to": 9,
-			"location": {
-				"line": 30,
-				"column": 7
-			},
-			"isImplicit": false,
-			"type": "set",
-			"isInit": true
-		},
-		{
-			"from": 0,
-			"to": 10,
-			"location": {
-				"line": 32,
-				"column": 7
-			},
-			"isImplicit": false,
-			"type": "set",
-			"isInit": true
-		},
-		{
-			"from": 2,
-			"location": {
-				"line": 3,
-				"column": 9
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 3,
-			"to": 1,
-			"location": {
-				"line": 7,
-				"column": 17
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 4,
-			"location": {
-				"line": 10,
-				"column": 9
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 4,
-			"location": {
-				"line": 10,
-				"column": 22
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 6,
-			"to": 1,
-			"location": {
-				"line": 19,
-				"column": 17
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 7,
-			"location": {
-				"line": 21,
-				"column": 9
-			},
-			"isImplicit": false,
-			"type": "call",
-			"isNew": false
-		},
-		{
-			"from": 7,
-			"location": {
-				"line": 22,
-				"column": 9
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 7,
-			"location": {
-				"line": 22,
-				"column": 22
-			},
-			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 0,
 			"to": 3,
 			"location": {
-				"line": 30,
-				"column": 15
+				"line": 3,
+				"column": 7
 			},
 			"isImplicit": false,
-			"type": "call",
-			"isNew": true
+			"type": "set",
+			"isInit": true
 		},
 		{
-			"from": 0,
-			"to": 9,
+			"from": 1,
+			"to": 4,
 			"location": {
-				"line": 31,
-				"column": 1
+				"line": 3,
+				"column": 17
 			},
 			"isImplicit": false,
-			"type": "use"
-		},
-		{
-			"from": 0,
-			"to": 6,
-			"location": {
-				"line": 32,
-				"column": 15
-			},
-			"isImplicit": false,
-			"type": "call",
-			"isNew": true
-		},
-		{
-			"from": 0,
-			"to": 10,
-			"location": {
-				"line": 33,
-				"column": 1
-			},
-			"isImplicit": false,
-			"type": "use"
+			"type": "export",
+			"kind": "any",
+			"isDefault": false,
+			"isAll": false
 		},
 		{
 			"from": 2,
 			"to": 5,
 			"location": {
-				"line": 3,
-				"column": 9
+				"line": 1,
+				"column": 17
 			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": false
-		},
-		{
-			"from": 2,
-			"to": 8,
-			"location": {
-				"line": 3,
-				"column": 9
-			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": false
-		},
-		{
-			"from": 7,
-			"to": 1,
-			"location": {
-				"line": 21,
-				"column": 9
-			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": false
+			"isImplicit": false,
+			"type": "export",
+			"kind": "any",
+			"isDefault": false,
+			"isAll": false
 		},
 		{
 			"from": 0,
 			"to": 4,
 			"location": {
-				"line": 30,
-				"column": 15
+				"line": 1,
+				"column": 9
 			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": true
+			"isImplicit": false,
+			"type": "import",
+			"kind": "any",
+			"sourceRange": {
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 1,
+					"column": 33
+				}
+			}
+		},
+		{
+			"from": 1,
+			"to": 5,
+			"location": {
+				"line": 1,
+				"column": 9
+			},
+			"isImplicit": false,
+			"type": "import",
+			"kind": "any",
+			"sourceRange": {
+				"start": {
+					"line": 1,
+					"column": 1
+				},
+				"end": {
+					"line": 1,
+					"column": 38
+				}
+			}
 		},
 		{
 			"from": 0,
-			"to": 2,
+			"to": 4,
 			"location": {
-				"line": 31,
-				"column": 1
+				"line": 3,
+				"column": 11
 			},
-			"isImplicit": true,
+			"isImplicit": false,
 			"type": "call",
 			"isNew": false
 		},
 		{
 			"from": 0,
-			"to": 7,
+			"to": 3,
 			"location": {
-				"line": 32,
-				"column": 15
-			},
-			"isImplicit": true,
-			"type": "call",
-			"isNew": true
-		},
-		{
-			"from": 0,
-			"to": 2,
-			"location": {
-				"line": 33,
+				"line": 4,
 				"column": 1
 			},
-			"isImplicit": true,
+			"isImplicit": false,
 			"type": "call",
 			"isNew": false
+		},
+		{
+			"from": 4,
+			"to": 5,
+			"location": {
+				"line": 4,
+				"column": 12
+			},
+			"isImplicit": false,
+			"type": "use"
 		}
 	]
 }

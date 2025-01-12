@@ -143,14 +143,16 @@ export default function lookdown(by: 'loc-key' | 'name', payload: ENRELocKey | s
     if ('children' in item) {
       waitingList.push(...item.children);
     }
-    // push the parent class. CatchError!! forEach needed? CatchError!!
-    item.callable.forEach((r: { returns: any[]; }) => {
-      r.returns.forEach(c => {
-        if(c.base){
-          waitingList.push(...c.base.pointsTo)
-        }
+    // push the base class.
+    if ('callable' in item){
+      item.callable.forEach((r: { returns: any[]; }) => {
+        r.returns.forEach(c => {
+          if(c.base){
+            waitingList.push(...c.base.pointsTo)
+          }
+        });
       });
-    });
+    }
   }
 
   // if ('pointsTo' in scope) {

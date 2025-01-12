@@ -126,6 +126,8 @@ export default function resolve(node: Expression | null | undefined): JSMechanis
       }
     }
     return objRepr;
+  } else if(node.type === 'MemberExpression'){
+    const objRepr = createJSObjRepr('obj');
   } else if (['FunctionExpression', 'ClassExpression', 'ArrowFunctionExpression'].includes(node.type)) {
     return {
       type: 'receipt',

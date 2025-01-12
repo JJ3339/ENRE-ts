@@ -435,7 +435,8 @@ export default () => {
                         }
                         else{
                           if (i === 0){
-                            currSymbol.push(found.callable[0].entity)
+                            // currSymbol.push(found.callable[0].entity)
+                            currSymbol.push(found);
                           }else{
                             // ENREEntity as symbol
                             currSymbol.push(found);
@@ -763,6 +764,7 @@ export default () => {
           if (task.onFinish) {
 
             const executionSuccess = task.onFinish(prevSymbol);
+            // && (_.isEqual(prevSymbol, token.lastSymbol))
             /**
              * FIXME: The arguments of hook call should be memo-ed, so that the next time
              * the dependency data was updated, the hook function should be called again.

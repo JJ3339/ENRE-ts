@@ -77,7 +77,10 @@ export default function (sg: SearchingGuidance, omitAlias = false): ENREEntityCo
           if ((sg.role === 'value' && valueEntityTypes.includes(e.type)) ||
             // @ts-ignore
             (sg.role === 'type' && typeEntityTypes.includes(e.type))) {
-            return e;
+              if (e.type !== 'method'){
+                //FIXME: type for method and field?
+                return e;
+              }
           } else if (sg.role === 'any') {
             // Does not return in case two entities are not in the same scope
             results.push(e);

@@ -326,7 +326,11 @@ function recursiveTraverse(
         const argTask = resolve(arg, scope);
         if (argTask) {
           argTask.onFinish = (symbolSnapshot) => {
+            if (!symbolSnapshot || symbolSnapshot.length === 0){
+              return false;
+            }
             argsRepr.kv[index] = symbolSnapshot;
+            // FIXME: the return value needs to be refacted
             return true;
           };
         }
