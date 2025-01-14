@@ -56,7 +56,16 @@ export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
       if (!symbolSnapshot){
         return false;
       }
+      // If symbolSnapshot is an entity type, convert it to an obj type.
+      // 在task中，若只有一个access，则不会将其转换为obj, 见index437:443
+      symbolSnapshot = symbolSnapshot.map((s: { pointsTo: any; }) => s.pointsTo ?? [s]).reduce((p: any, c: any) => [...p, ...c], []);
+      
       if ('pointsTo' in callableEntity) {
+        // 避免因symbolSnapshot为空时导致的传播失败（因为return true）
+        if (symbolSnapshot.length === 0){
+          return false;
+        }
+        
         symbolSnapshot.forEach((s: { callable: any[]; }) => {
           s.callable.forEach(c => {
             // c.returns - ENREEntity as symbol

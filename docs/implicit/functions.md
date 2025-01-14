@@ -319,7 +319,7 @@ relation:
         -   from: file:'<File file2.js>'
             to: function:'func'
             loc: file2:3:11
-        -   from: file:'<File file0.js>'
+        -   from: file:'<File file2.js>'
             to: function:'returnFunc'
             loc: file2:4:1:1
             by: variable:'a'

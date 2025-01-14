@@ -1,9 +1,9 @@
 {
 	"entities": [
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file2.js>",
-			"name": "<File file2.js>",
-			"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file2.js",
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\parameter_call.js>",
+			"name": "<File parameter_call.js>",
+			"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\parameter_call.js",
 			"type": "file",
 			"sourceType": "script",
 			"lang": "js",
@@ -12,98 +12,104 @@
 			"id": 0
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file1.js>",
-			"name": "<File file1.js>",
-			"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file1.js",
-			"type": "file",
-			"sourceType": "script",
-			"lang": "js",
-			"isJsx": false,
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\parameter_call.js>.func1",
+			"name": "func1",
+			"type": "function",
+			"parent": 0,
+			"location": {
+				"start": {
+					"line": 1,
+					"column": 10
+				},
+				"end": {
+					"line": 1,
+					"column": 15
+				}
+			},
 			"isValidThis": false,
+			"thisPointsTo": [],
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": false,
 			"id": 1
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file0.js>",
-			"name": "<File file0.js>",
-			"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file0.js",
-			"type": "file",
-			"sourceType": "script",
-			"lang": "js",
-			"isJsx": false,
-			"isValidThis": false,
-			"id": 2
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file2.js>.a",
-			"name": "a",
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\parameter_call.js>.x",
+			"name": "x",
 			"type": "variable",
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 3,
+					"line": 5,
 					"column": 7
 				},
 				"end": {
-					"line": 3,
+					"line": 5,
 					"column": 8
 				}
 			},
 			"isValidThis": false,
 			"thisPointsTo": [],
 			"kind": "const",
+			"id": 2
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\parameter_call.js>.<Anon ArrowFunction>@5:11",
+			"name": "<Anon ArrowFunction>",
+			"type": "function",
+			"parent": 0,
+			"location": {
+				"start": {
+					"line": 5,
+					"column": 11
+				},
+				"end": {
+					"line": 5,
+					"column": 11
+				}
+			},
+			"isValidThis": false,
+			"thisPointsTo": [],
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": true,
 			"id": 3
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file1.js>.func",
-			"name": "func",
-			"type": "function",
-			"parent": 1,
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\parameter_call.js>.<Anon ArrowFunction>@5:11.x",
+			"name": "x",
+			"type": "parameter",
+			"parent": 3,
 			"location": {
 				"start": {
-					"line": 3,
-					"column": 17
+					"line": 5,
+					"column": 11
 				},
 				"end": {
-					"line": 3,
-					"column": 21
+					"line": 5,
+					"column": 12
 				}
 			},
 			"isValidThis": false,
 			"thisPointsTo": [],
-			"isAsync": false,
-			"isGenerator": false,
-			"isArrowFunction": false,
+			"path": [
+				{
+					"type": "array"
+				},
+				{
+					"type": "key",
+					"key": "0"
+				}
+			],
 			"id": 4
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\import\\file0.js>.returnFunc",
-			"name": "returnFunc",
-			"type": "function",
-			"parent": 2,
-			"location": {
-				"start": {
-					"line": 1,
-					"column": 17
-				},
-				"end": {
-					"line": 1,
-					"column": 27
-				}
-			},
-			"isValidThis": false,
-			"thisPointsTo": [],
-			"isAsync": false,
-			"isGenerator": false,
-			"isArrowFunction": false,
-			"id": 5
 		}
 	],
 	"relations": [
 		{
 			"from": 0,
-			"to": 3,
+			"to": 2,
 			"location": {
-				"line": 3,
+				"line": 5,
 				"column": 7
 			},
 			"isImplicit": false,
@@ -111,79 +117,11 @@
 			"isInit": true
 		},
 		{
-			"from": 1,
-			"to": 4,
-			"location": {
-				"line": 3,
-				"column": 17
-			},
-			"isImplicit": false,
-			"type": "export",
-			"kind": "any",
-			"isDefault": false,
-			"isAll": false
-		},
-		{
-			"from": 2,
-			"to": 5,
-			"location": {
-				"line": 1,
-				"column": 17
-			},
-			"isImplicit": false,
-			"type": "export",
-			"kind": "any",
-			"isDefault": false,
-			"isAll": false
-		},
-		{
 			"from": 0,
-			"to": 4,
+			"to": 2,
 			"location": {
-				"line": 1,
-				"column": 9
-			},
-			"isImplicit": false,
-			"type": "import",
-			"kind": "any",
-			"sourceRange": {
-				"start": {
-					"line": 1,
-					"column": 1
-				},
-				"end": {
-					"line": 1,
-					"column": 33
-				}
-			}
-		},
-		{
-			"from": 1,
-			"to": 5,
-			"location": {
-				"line": 1,
-				"column": 9
-			},
-			"isImplicit": false,
-			"type": "import",
-			"kind": "any",
-			"sourceRange": {
-				"start": {
-					"line": 1,
-					"column": 1
-				},
-				"end": {
-					"line": 1,
-					"column": 38
-				}
-			}
-		},
-		{
-			"from": 0,
-			"to": 4,
-			"location": {
-				"line": 3,
-				"column": 11
+				"line": 7,
+				"column": 1
 			},
 			"isImplicit": false,
 			"type": "call",
@@ -193,22 +131,12 @@
 			"from": 0,
 			"to": 3,
 			"location": {
-				"line": 4,
+				"line": 7,
 				"column": 1
 			},
-			"isImplicit": false,
+			"isImplicit": true,
 			"type": "call",
 			"isNew": false
-		},
-		{
-			"from": 4,
-			"to": 5,
-			"location": {
-				"line": 4,
-				"column": 12
-			},
-			"isImplicit": false,
-			"type": "use"
 		}
 	]
 }

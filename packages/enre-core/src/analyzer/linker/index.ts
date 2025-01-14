@@ -435,7 +435,7 @@ export default () => {
                         }
                         else{
                           if (i === 0){
-                            // currSymbol.push(found.callable[0].entity)
+                            //currSymbol.push(found.callable[0].entity)
                             currSymbol.push(found);
                           }else{
                             // ENREEntity as symbol
