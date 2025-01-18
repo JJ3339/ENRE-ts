@@ -333,6 +333,11 @@ export default () => {
                 cursor.forEach(c => {
                   if (!bindingRepr.entity.pointsTo.includes(c)) {
                     bindingRepr.entity.pointsTo.push(c);
+                    if (task.onFinish){
+                      // task.onFinish(c);
+                      task.scope.pointsTo[0].kv[bindingRepr.entity.name.codeName] = c
+                      task.onFinish = undefined;
+                    }
                     currUpdated = true;
                   }
                 });

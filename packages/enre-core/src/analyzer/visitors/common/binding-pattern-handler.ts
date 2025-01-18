@@ -6,7 +6,7 @@ import {TSVisibility} from '@enre-ts/shared';
 import {ENREScope} from '../../context/scope';
 import resolveJSObj, {JSMechanism} from './literal-handler';
 
-type PossibleEntityTypes = ENREEntityVariable | ENREEntityParameter;
+type PossibleEntityTypes = ENREEntityVariable | ENREEntityParameter | ENREEntityField;
 
 type BindingRepr<T extends PossibleEntityTypes> = {
   path: BindingPath,

@@ -14,6 +14,8 @@
 import {
   ArgumentPlaceholder,
   ArrowFunctionExpression,
+  ClassPrivateProperty,
+  ClassProperty,
   Expression,
   FunctionExpression,
   JSXNamespacedName,
@@ -41,6 +43,7 @@ export type AscendPostponedTask = {
   type: 'ascend',
   payload: any,
   scope: ENREEntityCollectionScoping,
+  onFinish?: (symbolSnapshot: any) => boolean,
 }
 
 // A descend task object, containing necessary information for resolving an expression.
@@ -159,7 +162,9 @@ type ResolvableNodeTypes =
   | ArgumentPlaceholder
   | LVal
   | ThrowStatement
-  | PrivateName;
+  | PrivateName
+  | ClassProperty
+  | ClassPrivateProperty;
 
 export default function resolve(
   node: ResolvableNodeTypes,
@@ -273,7 +278,81 @@ function recursiveTraverse(
       }
       break;
     }
+    case 'ClassProperty': {
+      // if the key is not identifier, it may result in error
+      if (!node.value){
+        break;
+      }
+      const leftTask = resolve(node.key, scope, handlers)!;
+      
+      if (['FunctionExpression', 'ArrowFunctionExpression', 'ClassExpression'].includes(node.value.type)) {
+        // This should give us a receipt for the literal, which will be used for retrieve the entity
+        const objRepr = resolveJSObj(node.value);
+        if (objRepr !== undefined) {
+          const assignmentTarget = leftTask.payload.shift();
 
+          if (leftTask) {
+            leftTask.onFinish = (symbolSnapshot) => {
+              postponedTask.add({
+                type: 'descend',
+                payload: [
+                  {
+                    operation: 'assign',
+                    operand0: assignmentTarget,
+                    operand1: [objRepr],
+                  },
+                  {
+                    operation: 'access',
+                    operand0: symbolSnapshot,
+                  }
+                ],
+                scope: scope.last(),
+                onFinish: undefined,
+              } as DescendPostponedTask);
+
+              return true;
+            };
+          }
+        }
+      } else {
+        const rightTask = resolve(node.value, scope, handlers);
+
+        /**
+         * Pick the last token of the left task and form a new task for the assignment
+         * operation, so that linker knows to create a new property if the expression tries
+         * to assign to a non-existing property.
+         */
+        const assignmentTarget = leftTask?.payload.shift();
+
+        if (rightTask && assignmentTarget) {
+          rightTask.onFinish = (symbolSnapshotRight: any) => {
+            leftTask.onFinish = (symbolSnapshotLeft: any) => {
+              postponedTask.add({
+                type: 'descend',
+                payload: [
+                  {
+                    operation: 'assign',
+                    operand0: assignmentTarget,
+                    operand1: symbolSnapshotRight,
+                  },
+                  {
+                    operation: 'access',
+                    operand0: symbolSnapshotLeft,
+                  }
+                ],
+                scope: scope.last(),
+                onFinish: undefined,
+              } as DescendPostponedTask);
+
+              return true;
+            };
+
+            return true;
+          };
+        }
+      }
+      break;
+    }
     case 'OptionalCallExpression':
     case 'NewExpression':
     case 'CallExpression' : {

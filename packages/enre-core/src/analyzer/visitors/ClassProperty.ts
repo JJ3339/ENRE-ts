@@ -7,14 +7,51 @@
  */
 
 import {NodePath} from '@babel/traverse';
-import {ClassPrivateProperty, ClassProperty, PrivateName} from '@babel/types';
-import {ENREEntityClass, ENREEntityField, ENRELogEntry, id, recordEntityField} from '@enre-ts/data';
-import {toENRELocation, ToENRELocationPolicy} from '@enre-ts/location';
+import {ClassPrivateProperty, ClassProperty, Identifier, PrivateName} from '@babel/types';
+import {ENREEntityClass, ENREEntityCollectionAnyChildren, ENREEntityField, ENRELogEntry, id, postponedTask, recordEntityField, recordRelationSet} from '@enre-ts/data';
+import {ENRELocation, toENRELocation, ToENRELocationPolicy} from '@enre-ts/location';
 import ENREName from '@enre-ts/naming';
 import {ENREContext} from '../context';
+import expressionHandler, { AscendPostponedTask, DescendPostponedTask } from './common/expression-handler';
+import resolveJSObj, {JSMechanism, JSObjRepr, createJSObjRepr} from './common/literal-handler';
+import traverseBindingPattern from './common/binding-pattern-handler';
 
 type PathType = NodePath<ClassProperty | ClassPrivateProperty>
 
+const buildOnRecord = (entity: ENREEntityField,
+  hasInit: any) => {
+  return (name: string, location: ENRELocation, scope: ENREContext['scope']) => {
+    // const entity = recordEntityField(
+    //   new ENREName('Norm', name),
+    //   location,
+    //   scope.last(),
+    //   // private,public
+    //   {}
+    // );
+
+    // scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
+
+    if (!!hasInit) {
+      // Record relation `set`
+      recordRelationSet(
+        scope.last(),
+        entity,
+        location,
+        {isInit: true},
+      );
+
+      if(hasInit.kvInitial === 'object'){
+        //判断是否设置作用域
+        scope.push(entity);
+        entity.isValidThis = true;
+        // isScope = true;
+      }
+      
+    }
+
+    return entity;
+  };
+};
 export default (path: PathType, {file: {lang, logs}, scope}: ENREContext) => {
   const key = path.node.key;
 
@@ -105,5 +142,73 @@ export default (path: PathType, {file: {lang, logs}, scope}: ENREContext) => {
 
   if (entity) {
     scope.last<ENREEntityField>().children.push(entity);
-  }
+    // scope.last<ENREEntityClass>().pointsTo[0].kv[entity.name.codeName] = objRepr;
+    // handle the assignment/initial of classproperty
+    let objRepr: JSMechanism | DescendPostponedTask | undefined = resolveJSObj(path.node.value);
+    // The init value is not a literal, but an expression.
+    if (path.node.value && !objRepr) {
+      objRepr = expressionHandler(path.node.value, scope);
+    }
+    const returned = traverseBindingPattern<ENREEntityField>(
+      path.node.key as Identifier,
+      scope,
+      undefined,
+      buildOnRecord(entity, objRepr),
+  );
+    if (objRepr){
+      if ('callable' in objRepr){
+          objRepr.callable.push({
+          entity: undefined,
+          returns: [returned[0].entity],
+        });
+      }
+      if (objRepr.type === 'descend') {
+        objRepr.onFinish = (resolvedResult) => {
+        if (resolvedResult.length >= 1) {
+            postponedTask.add({
+            type: 'ascend',
+            payload: [{
+                operation: 'assign',
+                operand0: returned,
+                // FIXME: Temporary only pass one resolved element, but it should be an array.
+                operand1: resolvedResult[0],
+            }]
+            } as AscendPostponedTask);
+
+            return true;
+        } else {
+            return false;
+        }
+        };
+      } else {
+          postponedTask.add({
+          type: 'ascend',
+          payload: [
+            // {
+            //   operation: 'assign',
+            //   operand0: ,
+            //   operand1: ,
+            // },
+            // {
+            //   operation: 'access',
+            //   operand0: objRepr
+            // }
+            {
+              operation: 'assign',
+              operand0: returned,
+              operand1: objRepr,
+            }
+          ],
+          scope: scope.last(),
+          onFinish: (resolvedResult: any) =>{
+            // 回调函数，将解析的赋值结果与obj类型合并
+            // scope.last<ENREEntityClass>().pointsTo[0].kv[entity.name.codeName] = resolvedResult;
+            return true;
+          }
+          } as AscendPostponedTask);
+      }
+      //expressionHandler(path.node, scope);
+      }
+      
+    }
 };
