@@ -1,9 +1,9 @@
 {
 	"entities": [
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>",
-			"name": "<File base.js>",
-			"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js",
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\lambda_return_call.js>",
+			"name": "<File lambda_return_call.js>",
+			"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\lambda_return_call.js",
 			"type": "file",
 			"sourceType": "script",
 			"lang": "js",
@@ -12,8 +12,8 @@
 			"id": 0
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.func1",
-			"name": "func1",
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\lambda_return_call.js>.func",
+			"name": "func",
 			"type": "function",
 			"parent": 0,
 			"location": {
@@ -23,7 +23,7 @@
 				},
 				"end": {
 					"line": 1,
-					"column": 15
+					"column": 14
 				}
 			},
 			"isValidThis": false,
@@ -34,312 +34,107 @@
 			"id": 1
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.A",
-			"name": "A",
-			"type": "class",
-			"parent": 0,
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\lambda_return_call.js>.func.<Anon ArrowFunction>@2:12",
+			"name": "<Anon ArrowFunction>",
+			"type": "function",
+			"parent": 1,
 			"location": {
 				"start": {
 					"line": 2,
-					"column": 7
+					"column": 12
 				},
 				"end": {
 					"line": 2,
-					"column": 8
+					"column": 12
 				}
 			},
-			"isValidThis": true,
-			"thisPointsTo": [
-				{
-					"imports": [],
-					"exports": [],
-					"name": {
-						"kind": "Norm",
-						"payload": "A"
-					},
-					"type": "class",
-					"parent": {
-						"imports": [],
-						"exports": [],
-						"name": {
-							"kind": "File",
-							"payload": "base.js"
-						},
-						"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js",
-						"type": "file",
-						"sourceType": "script",
-						"lang": "js",
-						"isJsx": false,
-						"children": [
-							{
-								"imports": [],
-								"exports": [],
-								"name": {
-									"kind": "Norm",
-									"payload": "func1"
-								},
-								"type": "function",
-								"location": {
-									"start": {
-										"line": 1,
-										"column": 10
-									}
-								},
-								"children": [],
-								"pointsTo": [
-									{
-										"type": "object",
-										"kv": {},
-										"kvInitial": "obj",
-										"callable": [
-											{
-												"returns": []
-											}
-										]
-									}
-								],
-								"isValidThis": false,
-								"isAsync": false,
-								"isGenerator": false,
-								"isArrowFunction": false
-							},
-							null
-						],
-						"logs": {},
-						"isValidThis": false
-					},
-					"location": {
-						"start": {
-							"line": 2,
-							"column": 7
-						}
-					},
-					"children": [
-						{
-							"imports": [],
-							"exports": [],
-							"name": {
-								"kind": "Norm",
-								"payload": "child"
-							},
-							"type": "field",
-							"location": {
-								"start": {
-									"line": 3,
-									"column": 5
-								}
-							},
-							"children": [],
-							"pointsTo": [
-								{
-									"type": "object",
-									"kv": {},
-									"kvInitial": "obj",
-									"callable": [
-										{
-											"entity": {
-												"imports": [],
-												"exports": [],
-												"name": {
-													"kind": "Norm",
-													"payload": "func2"
-												},
-												"type": "function",
-												"location": {
-													"start": {
-														"line": 3,
-														"column": 22
-													}
-												},
-												"children": [],
-												"pointsTo": [
-													null
-												],
-												"isValidThis": false,
-												"thisPointsTo": [
-													{
-														"type": "object",
-														"kv": {
-															"func": {
-																"type": "object",
-																"kv": {},
-																"kvInitial": "obj",
-																"callable": [
-																	{
-																		"entity": {
-																			"imports": [],
-																			"exports": [],
-																			"name": {
-																				"kind": "Norm",
-																				"payload": "func"
-																			},
-																			"type": "method",
-																			"location": {
-																				"start": {
-																					"line": 4,
-																					"column": 5
-																				}
-																			},
-																			"children": [],
-																			"pointsTo": [
-																				null
-																			],
-																			"isValidThis": false,
-																			"thisPointsTo": [],
-																			"isStatic": false,
-																			"isPrivate": false,
-																			"isAsync": false,
-																			"isGenerator": false,
-																			"isAbstract": false,
-																			"kind": "method"
-																		},
-																		"returns": []
-																	}
-																]
-															}
-														},
-														"kvInitial": "obj",
-														"callable": [
-															{
-																"returns": [
-																	null
-																]
-															}
-														]
-													}
-												],
-												"isAsync": false,
-												"isGenerator": false,
-												"isArrowFunction": false,
-												"arguments": [
-													{
-														"type": "object",
-														"kv": {},
-														"kvInitial": "array",
-														"callable": []
-													}
-												]
-											},
-											"returns": []
-										}
-									]
-								}
-							],
-							"isValidThis": false,
-							"thisPointsTo": [],
-							"isStatic": false,
-							"isPrivate": false,
-							"isAbstract": false
-						},
-						null,
-						null
-					],
-					"pointsTo": [
-						null
-					],
-					"isValidThis": true,
-					"isAbstract": false
-				}
-			],
-			"isAbstract": false,
+			"isValidThis": false,
+			"thisPointsTo": [],
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": true,
 			"id": 2
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.A.child",
-			"name": "child",
-			"type": "field",
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\lambda_return_call.js>.func.<Anon ArrowFunction>@2:12.x",
+			"name": "x",
+			"type": "parameter",
 			"parent": 2,
 			"location": {
 				"start": {
-					"line": 3,
-					"column": 5
+					"line": 2,
+					"column": 12
 				},
 				"end": {
-					"line": 3,
-					"column": 10
+					"line": 2,
+					"column": 13
 				}
 			},
 			"isValidThis": false,
-			"isStatic": false,
-			"isPrivate": false,
-			"isAbstract": false,
+			"thisPointsTo": [],
+			"path": [
+				{
+					"type": "array"
+				},
+				{
+					"type": "key",
+					"key": "0"
+				}
+			],
 			"id": 3
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.A.func2",
-			"name": "func2",
-			"type": "function",
-			"parent": 2,
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\lambda_return_call.js>.y",
+			"name": "y",
+			"type": "variable",
+			"parent": 0,
 			"location": {
 				"start": {
-					"line": 3,
-					"column": 22
+					"line": 5,
+					"column": 7
 				},
 				"end": {
-					"line": 3,
-					"column": 27
+					"line": 5,
+					"column": 8
 				}
 			},
 			"isValidThis": false,
-			"isAsync": false,
-			"isGenerator": false,
-			"isArrowFunction": false,
+			"thisPointsTo": [],
+			"kind": "const",
 			"id": 4
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\classes\\base.js>.A.func",
-			"name": "func",
-			"type": "method",
-			"parent": 2,
-			"location": {
-				"start": {
-					"line": 4,
-					"column": 5
-				},
-				"end": {
-					"line": 4,
-					"column": 9
-				}
-			},
-			"isValidThis": false,
-			"isStatic": false,
-			"isPrivate": false,
-			"isAsync": false,
-			"isGenerator": false,
-			"isAbstract": false,
-			"kind": "method",
-			"id": 5
 		}
 	],
 	"relations": [
 		{
-			"from": 2,
-			"to": 3,
+			"from": 0,
+			"to": 4,
 			"location": {
-				"line": 3,
-				"column": 5
+				"line": 5,
+				"column": 7
 			},
 			"isImplicit": false,
 			"type": "set",
 			"isInit": true
 		},
 		{
-			"from": 5,
+			"from": 0,
+			"to": 1,
 			"location": {
 				"line": 5,
-				"column": 9
+				"column": 11
 			},
 			"isImplicit": false,
-			"type": "use"
+			"type": "call",
+			"isNew": false
 		},
 		{
-			"from": 5,
+			"from": 0,
 			"to": 4,
 			"location": {
-				"line": 5,
-				"column": 9
+				"line": 6,
+				"column": 1
 			},
-			"isImplicit": true,
+			"isImplicit": false,
 			"type": "call",
 			"isNew": false
 		}

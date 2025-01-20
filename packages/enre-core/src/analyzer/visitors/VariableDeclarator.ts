@@ -80,7 +80,6 @@ export default {
     objRepr = expressionHandler(declarator.init, scope);
     instanceName = undefined
     }
-    
     // ForStatement is not supported due to the complexity of the AST structure.
     if (['ForOfStatement', 'ForInStatement'].includes(path.parentPath.parent.type)) {
         objRepr = resolveJSObj((path.parentPath.parent as ForOfStatement).right);

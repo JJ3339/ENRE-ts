@@ -766,7 +766,7 @@ export default () => {
             // }
           }
           
-          if (task.onFinish) {
+           if (task.onFinish) {
 
             const executionSuccess = task.onFinish(prevSymbol);
             // && (_.isEqual(prevSymbol, token.lastSymbol))

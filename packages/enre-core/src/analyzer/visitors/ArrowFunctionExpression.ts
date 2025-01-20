@@ -15,7 +15,7 @@ import ENREName from '@enre-ts/naming';
 import {ENREContext} from '../context';
 import parameterHandler from './common/parameter-handler';
 import {createJSObjRepr} from './common/literal-handler';
-
+import expressionHandler from './common/expression-handler';
 type PathType = NodePath<ArrowFunctionExpression>
 
 export default {
@@ -36,10 +36,13 @@ export default {
     if (path.node)
     objRepr.callable.push({entity, returns: []});
     entity.pointsTo.push(objRepr);
-
+    
     scope.last<ENREEntityCollectionAnyChildren>().children.push(entity);
     scope.push(entity);
-
+    //处理箭头函数内部的函数调用，还需要进行参数处理
+    if (path.node.body.type === 'CallExpression'){
+      expressionHandler(path.node.body, scope)
+    }
     parameterHandler(path.node, scope, logs);
   },
 
