@@ -9,7 +9,7 @@
  */
 
 import {NodePath} from '@babel/traverse';
-import {ForOfStatement, traverse, TSTypeAnnotation, VariableDeclaration, VariableDeclarator} from '@babel/types';
+import {ForOfStatement, traverse, TSTypeAnnotation, VariableDeclaration,TSTypeReference, Identifier, TSType, VariableDeclarator} from '@babel/types';
 import {
   ENREEntityCollectionAnyChildren,
   ENREEntityClass,
@@ -29,15 +29,54 @@ import expressionHandler, {
   DescendPostponedTask
 } from './common/expression-handler';
 
+declare interface raw_type{
+  type_id:number,
+  type_repr:string,
+  type_name:string,
+}
+export function Type_is(annotation:TSType|undefined,ID:number):raw_type{
+  const type_annotation=annotation?.type;
+  let number_id=-1;
+  let string_name='';
+  switch (type_annotation) {
+    case 'TSStringKeyword':
+      number_id=1;string_name='string';break;
+    case 'TSNumberKeyword':
+      number_id=2;string_name='number';break;
+    case 'TSBooleanKeyword':
+      number_id=3;string_name='boolean';break;
+    case 'TSNullKeyword':
+      number_id=4;string_name='null';break;
+    case 'TSBigIntKeyword':
+      number_id=5;string_name='bigint';break;
+    case 'TSUndefinedKeyword':
+      number_id=6;string_name='undefined';break;
+    case 'TSTypeReference':
+      ID+=1;number_id=ID;//TODO：目前处理方式是直接id+1，最后转为TENET需要根据名字重新定义id
+      string_name=((annotation as TSTypeReference).typeName as Identifier).name;
+      break;
 
+    default: {
+      //logger.info('type_annotation is undefined');
+      number_id=6;string_name='undefined';break;
+    }
+  }
+
+  return {
+    type_id:number_id,
+    type_repr:'',
+    type_name:string_name,
+  };
+}
 const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceName: string|undefined ,
-  hasInit: any) => {
+  hasInit: any,Type:raw_type) => {
   return (name: string, location: ENRELocation, scope: ENREContext['scope']) => {
     const entity = recordEntityVariable(
       new ENREName('Norm', name),
       location,
       scope.last(),
       {kind},
+      {typeID:Type.type_id,typeRepr:Type.type_repr,typeName:Type.type_name},
       typeName,
       instanceName
     );
@@ -65,7 +104,7 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
     return entity;
   };
 };
-
+let ID=6;
 type PathType = NodePath<VariableDeclarator>
 let isScope:boolean
 export default {
@@ -92,12 +131,18 @@ export default {
         typeName = Reflect.get(typeAnnotation, 'typeName').name
     }
     // const typeName = typeAnnotation?.typeName?.name ?? undefined;
-    
+
+    let annotation;
+    if ('typeAnnotation' in declarator.id) {
+      annotation = (declarator.id.typeAnnotation as TSTypeAnnotation).typeAnnotation;
+    }
+    const types=Type_is(annotation,ID);
+    if(types.type_id>=ID)ID+=1;
     const returned = traverseBindingPattern<ENREEntityVariable>(
         declarator.id,
         scope,
         undefined,
-        buildOnRecord(kind as variableKind, typeName, instanceName, objRepr),
+        buildOnRecord(kind as variableKind, typeName, instanceName, objRepr,types),
     );
     // returned[0].entity.pointsTo.push(createJSObjRepr('obj'));
     if (returned && objRepr) {

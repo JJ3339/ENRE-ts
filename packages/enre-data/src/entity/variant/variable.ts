@@ -5,8 +5,9 @@ import {ENREEntityCollectionAll} from '../collections';
 import {variableKind} from '@enre-ts/shared';
 import {recordEntity} from '../../utils/wrapper';
 // import { ENREEntityClass } from 'packages/enre-data/lib';
+import {ENREEntityAbilityRawType,addAbilityRawType} from '../ability/raw-type';
 import type { ENREEntityClass } from './class';
-export interface ENREEntityVariable extends ENREEntityAbilityBase {
+export interface ENREEntityVariable extends ENREEntityAbilityBase,ENREEntityAbilityRawType {
   type: 'variable';
   kind: variableKind;
   clsTypeName: string | undefined;
@@ -18,6 +19,11 @@ export const createEntityVariable = (
   location: ENRELocation,
   parent: ENREEntityCollectionAll,
   {kind}: Pick<ENREEntityVariable, 'kind'>,
+  {
+    typeID=0,
+    typeRepr='',
+    typeName='',
+  },
   typName: string|undefined,
   instanceName: string | undefined
 ): ENREEntityVariable => {
@@ -27,7 +33,7 @@ export const createEntityVariable = (
     type: 'variable',
 
     kind,
-
+    ...addAbilityRawType(typeID,typeRepr,typeName),
     clsTypeName: typName,
 
     instanceName: instanceName

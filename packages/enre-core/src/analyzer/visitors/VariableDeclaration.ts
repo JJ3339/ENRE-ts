@@ -38,6 +38,11 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
       location,
       scope.last(),
       {kind},
+      {
+        typeID:-1,
+        typeRepr:'-1',
+        typeName:'Dont use',
+      },
       typeName,
       instanceName
     );
