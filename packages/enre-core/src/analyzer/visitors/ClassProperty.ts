@@ -7,15 +7,16 @@
  */
 
 import {NodePath} from '@babel/traverse';
-import {ClassPrivateProperty, ClassProperty, Identifier, PrivateName} from '@babel/types';
+import {ClassPrivateProperty, ClassProperty, Identifier,TSTypeAnnotation, PrivateName} from '@babel/types';
 import {ENREEntityClass, ENREEntityCollectionAnyChildren, ENREEntityField, ENRELogEntry, id, postponedTask, recordEntityField, recordRelationSet} from '@enre-ts/data';
 import {ENRELocation, toENRELocation, ToENRELocationPolicy} from '@enre-ts/location';
 import ENREName from '@enre-ts/naming';
 import {ENREContext} from '../context';
+import {Type_is} from './VariableDeclarator';
 import expressionHandler, { AscendPostponedTask, DescendPostponedTask } from './common/expression-handler';
 import resolveJSObj, {JSMechanism, JSObjRepr, createJSObjRepr} from './common/literal-handler';
 import traverseBindingPattern from './common/binding-pattern-handler';
-
+let field_ID=6;
 type PathType = NodePath<ClassProperty | ClassPrivateProperty>
 
 const buildOnRecord = (entity: ENREEntityField,
@@ -56,6 +57,13 @@ export default (path: PathType, {file: {lang, logs}, scope}: ENREContext) => {
   const key = path.node.key;
 
   let entity: ENREEntityField | undefined;
+  //获得raw_type
+  let annotation;
+  if ('typeAnnotation' in path.node) {
+    annotation = (path.node.typeAnnotation as TSTypeAnnotation).typeAnnotation;
+  }
+  const types=Type_is(annotation,field_ID);
+  if(types.type_id>=field_ID)field_ID+=1;
 
   // @ts-ignore
   if (path.node.abstract && !scope.last<ENREEntityClass>().isAbstract) {
@@ -82,6 +90,9 @@ export default (path: PathType, {file: {lang, logs}, scope}: ENREContext) => {
       {
         isStatic: path.node.static,
         isPrivate: true,
+        typeID:types.type_id,
+        typeRepr:'',
+        typeName:types.type_name,
       }
     );
   } else {
@@ -107,6 +118,9 @@ export default (path: PathType, {file: {lang, logs}, scope}: ENREContext) => {
           {
             isStatic: path.node.static ?? false,
             isAbstract: path.node.abstract ?? false,
+            typeID:types.type_id,
+            typeRepr:'',
+            typeName:types.type_name,
             TSVisibility: path.node.accessibility ?? (lang === 'ts' ? 'public' : undefined),
           }
         );
@@ -119,6 +133,9 @@ export default (path: PathType, {file: {lang, logs}, scope}: ENREContext) => {
           {
             isStatic: path.node.static ?? false,
             isAbstract: path.node.abstract ?? false,
+            typeID:types.type_id,
+            typeRepr:'',
+            typeName:types.type_name,
             TSVisibility: path.node.accessibility ?? (lang === 'ts' ? 'public' : undefined),
           },
         );
@@ -131,6 +148,9 @@ export default (path: PathType, {file: {lang, logs}, scope}: ENREContext) => {
           {
             isStatic: path.node.static ?? false,
             isAbstract: path.node.abstract ?? false,
+            typeID:types.type_id,
+            typeRepr:'',
+            typeName:types.type_name,
             TSVisibility: path.node.accessibility ?? (lang === 'ts' ? 'public' : undefined),
           },
         );
