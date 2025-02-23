@@ -11,8 +11,8 @@ import {
   ENREEntityAbilityAbstractable
 } from '../ability/abstractable';
 import {recordEntity} from '../../utils/wrapper';
-
-export interface ENREEntityField extends ENREEntityAbilityBase, ENREEntityAbilityClassMember, ENREEntityAbilityAbstractable {
+import {ENREEntityAbilityRawType,addAbilityRawType} from '../ability/raw-type';
+export interface ENREEntityField extends ENREEntityAbilityBase, ENREEntityAbilityClassMember, ENREEntityAbilityRawType, ENREEntityAbilityAbstractable {
   type: 'field';
 }
 
@@ -25,7 +25,10 @@ export const createEntityField = (
     isPrivate = false,
     isAbstract = false,
     TSVisibility = undefined,
-  }: Partial<Pick<ENREEntityField, 'isStatic' | 'isPrivate' | 'isAbstract' | 'TSVisibility'>>
+    typeID=0,
+    typeRepr='',
+    typeName='',
+  }: Partial<Pick<ENREEntityField, 'isStatic' | 'isPrivate' | 'isAbstract' | 'TSVisibility'|'typeID'|'typeRepr'|'typeName'>>
 ): ENREEntityField => {
   return {
     ...addAbilityBase(name, location, parent),
@@ -33,6 +36,8 @@ export const createEntityField = (
     ...addAbilityClassMember(isStatic!, isPrivate!, TSVisibility),
 
     ...addAbilityAbstractable(isAbstract!),
+
+    ...addAbilityRawType(typeID,typeRepr,typeName),
 
     type: 'field',
   };
