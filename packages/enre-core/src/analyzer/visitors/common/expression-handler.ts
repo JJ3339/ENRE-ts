@@ -537,30 +537,30 @@ function recursiveTraverse(
     //   //const tokens = recursiveTraverse(node.body, scope, handlers);
     //   break;
     // }
-    // case 'ArrowFunctionExpression':{
-    //   tokenStream.push({
-    //     operation: 'access',
-    //     operand1: '<Arrow Function>',
-    //     location: toENRELocation(node.loc)
-    //   });
-    //   // const entity = recordEntityFunction(
-    //   //   new ENREName<'Anon'>('Anon', 'ArrowFunction'),
-    //   //   toENRELocation(node.loc),
-    //   //   scope.last(),
-    //   //   {
-    //   //     isArrowFunction: true,
-    //   //     isAsync: node.async,
-    //   //     isGenerator: node.generator,
-    //   //   }
-    //   // );
-    //   // recordRelationCall(
-    //   //   scope.last(),
-    //   //   entity,
-    //   //   entity.location,
-    //   //   {isNew: false},
-    //   // ).isImplicit = true;
-    //   break;
-    // }
+    case 'ArrowFunctionExpression':{
+      tokenStream.push({
+        operation: 'access',
+        operand1: '<Arrow Function>',
+        location: toENRELocation(node.loc)
+      });
+      // const entity = recordEntityFunction(
+      //   new ENREName<'Anon'>('Anon', 'ArrowFunction'),
+      //   toENRELocation(node.loc),
+      //   scope.last(),
+      //   {
+      //     isArrowFunction: true,
+      //     isAsync: node.async,
+      //     isGenerator: node.generator,
+      //   }
+      // );
+      // recordRelationCall(
+      //   scope.last(),
+      //   entity,
+      //   entity.location,
+      //   {isNew: false},
+      // ).isImplicit = true;
+      break;
+    }
     case 'Identifier': {
       tokenStream.push({
         operation: 'access',

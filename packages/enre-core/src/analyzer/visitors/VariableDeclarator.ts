@@ -17,6 +17,7 @@ import {
   postponedTask,
   recordEntityVariable,
   recordRelationSet,
+  literalTypes
 } from '@enre-ts/data';
 import {ENRELocation} from '@enre-ts/location';
 import {ENREContext} from '../context';
@@ -28,6 +29,7 @@ import expressionHandler, {
   AscendPostponedTask,
   DescendPostponedTask
 } from './common/expression-handler';
+
 
 declare interface raw_type{
   type_id:number,
@@ -117,6 +119,9 @@ export default {
     let instanceName = undefined
     if (declarator.init && !objRepr) {
     objRepr = expressionHandler(declarator.init, scope);
+    if (declarator.init.type == 'NewExpression'){
+      //instanceName = declarator.init.callee.name;
+    }
     instanceName = undefined
     }
     // ForStatement is not supported due to the complexity of the AST structure.
@@ -124,12 +129,12 @@ export default {
         objRepr = resolveJSObj((path.parentPath.parent as ForOfStatement).right);
     }
 
-    const typeAnnotation: TSTypeAnnotation|undefined = Reflect.get(declarator.id, 'typeAnnotation')?.typeAnnotation
+    const typeAnnotation: TSTypeAnnotation|undefined = Reflect.get(declarator.id, 'typeAnnotation')?.typeAnnotation;
     // const typeName = Reflect.get(typeAnnotation, 'typeName').name
-    let typeName = undefined
-    if (typeAnnotation){
-        typeName = Reflect.get(typeAnnotation, 'typeName').name
-    }
+    let typeName = undefined;
+    // if (typeAnnotation){
+    //     typeName = Reflect.get(typeAnnotation, 'typeName').name
+    // }
     // const typeName = typeAnnotation?.typeName?.name ?? undefined;
 
     let annotation;
@@ -138,6 +143,15 @@ export default {
     }
     const types=Type_is(annotation,ID);
     if(types.type_id>=ID)ID+=1;
+
+    // 未进行类型注解
+    // TODO: 查看objRepr的各种情况
+    if (types.type_name == 'undefined' && objRepr){
+      if (literalTypes.includes(objRepr.type)){
+        types.type_name = objRepr.type;
+      }
+    }
+
     const returned = traverseBindingPattern<ENREEntityVariable>(
         declarator.id,
         scope,

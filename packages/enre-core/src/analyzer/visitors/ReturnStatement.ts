@@ -29,14 +29,15 @@ export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
   let mode = GETRETURN;
   switch (path.node.argument.type){
     case 'Identifier':{
-      mode = GETENTITY
+      mode = GETENTITY;
       break;
     }
     case 'ArrowFunctionExpression':{
+      mode = GETENTITY;
       break;
     }
     case 'MemberExpression':{
-      mode = GETENTITY
+      mode = GETENTITY;
       break;
     }
   }

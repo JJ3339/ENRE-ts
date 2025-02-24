@@ -42,6 +42,11 @@ export default {
         toENRELocation(path.node.id.loc),
         scope.last(),
         {
+          typeID:0,
+          typeRepr:'',
+          typeName: path.node.id.name,
+        },
+        {
           isAbstract: 'abstract' in path.node ? path.node.abstract ?? false : false,
         },
       );
@@ -57,6 +62,11 @@ export default {
          */
         toENRELocation(path.node.loc),
         scope.last(),
+        {
+          typeID:0,
+          typeRepr:'',
+          typeName: 'AnonClass',
+        },
         {
           isAbstract: 'abstract' in path.node ? path.node.abstract ?? false : false,
         },

@@ -77,3 +77,5 @@ export {ENRELogEntry} from './log/log-entry';
 export {id} from './utils/wrapper';
 export {default as release} from './utils/release';
 export {default as clear} from './utils/clear';
+
+export const literalTypes = ['string', 'number', 'boolean'];

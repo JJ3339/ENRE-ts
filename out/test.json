@@ -1,9 +1,9 @@
 {
 	"entities": [
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\lambda_return_call.js>",
-			"name": "<File lambda_return_call.js>",
-			"path": "D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\lambda_return_call.js",
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\extra\\demo.js>",
+			"name": "<File demo.js>",
+			"path": "D:\\repo\\ENRE-ts\\debug\\extra\\demo.js",
 			"type": "file",
 			"sourceType": "script",
 			"lang": "js",
@@ -12,18 +12,18 @@
 			"id": 0
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\lambda_return_call.js>.func",
-			"name": "func",
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\extra\\demo.js>.createAdder",
+			"name": "createAdder",
 			"type": "function",
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 1,
+					"line": 18,
 					"column": 10
 				},
 				"end": {
-					"line": 1,
-					"column": 14
+					"line": 18,
+					"column": 21
 				}
 			},
 			"isValidThis": false,
@@ -34,40 +34,18 @@
 			"id": 1
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\lambda_return_call.js>.func.<Anon ArrowFunction>@2:12",
-			"name": "<Anon ArrowFunction>",
-			"type": "function",
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\extra\\demo.js>.createAdder.base",
+			"name": "base",
+			"type": "parameter",
 			"parent": 1,
 			"location": {
 				"start": {
-					"line": 2,
-					"column": 12
+					"line": 18,
+					"column": 22
 				},
 				"end": {
-					"line": 2,
-					"column": 12
-				}
-			},
-			"isValidThis": false,
-			"thisPointsTo": [],
-			"isAsync": false,
-			"isGenerator": false,
-			"isArrowFunction": true,
-			"id": 2
-		},
-		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\lambda_return_call.js>.func.<Anon ArrowFunction>@2:12.x",
-			"name": "x",
-			"type": "parameter",
-			"parent": 2,
-			"location": {
-				"start": {
-					"line": 2,
-					"column": 12
-				},
-				"end": {
-					"line": 2,
-					"column": 13
+					"line": 18,
+					"column": 26
 				}
 			},
 			"isValidThis": false,
@@ -81,35 +59,88 @@
 					"key": "0"
 				}
 			],
+			"id": 2
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\extra\\demo.js>.createAdder.<Anon ArrowFunction>@19:12",
+			"name": "<Anon ArrowFunction>",
+			"type": "function",
+			"parent": 1,
+			"location": {
+				"start": {
+					"line": 19,
+					"column": 12
+				},
+				"end": {
+					"line": 19,
+					"column": 12
+				}
+			},
+			"isValidThis": false,
+			"thisPointsTo": [],
+			"isAsync": false,
+			"isGenerator": false,
+			"isArrowFunction": true,
 			"id": 3
 		},
 		{
-			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\docs\\implicit\\functions\\lambda_return_call.js>.y",
-			"name": "y",
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\extra\\demo.js>.createAdder.<Anon ArrowFunction>@19:12.x",
+			"name": "x",
+			"type": "parameter",
+			"parent": 3,
+			"location": {
+				"start": {
+					"line": 19,
+					"column": 13
+				},
+				"end": {
+					"line": 19,
+					"column": 14
+				}
+			},
+			"isValidThis": false,
+			"thisPointsTo": [],
+			"path": [
+				{
+					"type": "array"
+				},
+				{
+					"type": "key",
+					"key": "0"
+				}
+			],
+			"id": 4
+		},
+		{
+			"fullname": "<File D:\\repo\\ENRE-ts\\debug\\extra\\demo.js>.adder",
+			"name": "adder",
 			"type": "variable",
 			"parent": 0,
 			"location": {
 				"start": {
-					"line": 5,
+					"line": 21,
 					"column": 7
 				},
 				"end": {
-					"line": 5,
-					"column": 8
+					"line": 21,
+					"column": 12
 				}
 			},
 			"isValidThis": false,
 			"thisPointsTo": [],
 			"kind": "const",
-			"id": 4
+			"typeID": 6,
+			"typeRepr": "",
+			"typeName": "undefined",
+			"id": 5
 		}
 	],
 	"relations": [
 		{
 			"from": 0,
-			"to": 4,
+			"to": 5,
 			"location": {
-				"line": 5,
+				"line": 21,
 				"column": 7
 			},
 			"isImplicit": false,
@@ -117,11 +148,21 @@
 			"isInit": true
 		},
 		{
+			"from": 1,
+			"to": 3,
+			"location": {
+				"line": 19,
+				"column": 12
+			},
+			"isImplicit": false,
+			"type": "use"
+		},
+		{
 			"from": 0,
 			"to": 1,
 			"location": {
-				"line": 5,
-				"column": 11
+				"line": 21,
+				"column": 15
 			},
 			"isImplicit": false,
 			"type": "call",
@@ -129,12 +170,23 @@
 		},
 		{
 			"from": 0,
-			"to": 4,
+			"to": 5,
 			"location": {
-				"line": 6,
+				"line": 22,
 				"column": 1
 			},
 			"isImplicit": false,
+			"type": "call",
+			"isNew": false
+		},
+		{
+			"from": 0,
+			"to": 3,
+			"location": {
+				"line": 22,
+				"column": 1
+			},
+			"isImplicit": true,
 			"type": "call",
 			"isNew": false
 		}

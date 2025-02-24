@@ -30,7 +30,8 @@ import {
   recordRelationSet,
   recordRelationType,
   recordRelationUse,
-  rGraph
+  rGraph,
+  literalTypes
 } from '@enre-ts/data';
 import lookup from './lookup';
 import {codeLogger} from '@enre-ts/core';
@@ -48,6 +49,7 @@ import { PointerAnalyzer as PTAnalyzer} from '../callgraph/PointerAnalysis';
 import { time } from 'console';
 // const CHAnalyzer = ClassHierarchyAnalyzer
 import _ from 'lodash';
+
 
 type WorkingPseudoR<T extends ENRERelationAbilityBase> = ENREPseudoRelation<T> & {
   resolved: boolean
@@ -221,6 +223,7 @@ export default () => {
             if (op.operation === 'assign') {
               let resolved = bindRepr2Entity(op.operand1, task.scope);
               if (resolved.type !== 'object') {
+                // literal bug
                 resolved = resolved.pointsTo[0];
               }
 
@@ -326,6 +329,7 @@ export default () => {
                         }
                       }
                     });
+
                     cursor = _cursor;
                   }
                 }
@@ -333,6 +337,10 @@ export default () => {
                 cursor.forEach(c => {
                   if (!bindingRepr.entity.pointsTo.includes(c)) {
                     bindingRepr.entity.pointsTo.push(c);
+                    
+                    if(bindingRepr.entity.typeName == 'undefined'){
+                      bindingRepr.entity.typeName = c.callable[0].returns[0].typeName;
+                    }
                     if (task.onFinish){
                       // task.onFinish(c);
                       task.scope.pointsTo[0].kv[bindingRepr.entity.name.codeName] = c
@@ -707,7 +715,10 @@ export default () => {
                                       })
                                     }
                                   });
-                                } else {
+                                } else if (literalTypes.includes(selected.type)){
+                                  // TODO: literal
+                                  
+                                } else{
                                   _cursor.push(...selected.pointsTo);
                                 }
                               }
