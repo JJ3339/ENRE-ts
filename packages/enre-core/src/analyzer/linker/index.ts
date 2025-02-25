@@ -183,7 +183,7 @@ export default () => {
   // }, true) as ENREEntityCollectionAll;
 
 
-  let iterCount = 10;
+  let iterCount = 20;
   /**
    * prevUpdated
    *   - Indicate whether the previous iteration updated points-to relations, its value can only be set by the loop and
@@ -212,6 +212,9 @@ export default () => {
   let prevUpdated = undefined, currUpdated = undefined;
   while (iterCount >= 0 || prevUpdated === false) {
     currUpdated = false;
+    if (iterCount === 9){
+      console.log('asd')
+    }
     /**
      * Declarations, imports/exports should all be resolved, that is, the symbol structure should already be built,
      * next working on postponed tasks to resolve points-to relations.
@@ -717,7 +720,7 @@ export default () => {
                                   });
                                 } else if (literalTypes.includes(selected.type)){
                                   // TODO: literal
-                                  
+                                  //param.typeName.push(selected.type);
                                 } else{
                                   _cursor.push(...selected.pointsTo);
                                 }

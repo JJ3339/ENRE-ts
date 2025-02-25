@@ -71,8 +71,17 @@ export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
           s.callable.forEach(c => {
             // c.returns - ENREEntity as symbol
             if(mode === GETENTITY){
-              
-              callableEntity.pointsTo[0].callable[0].returns.push(c.entity);
+              //TODO: c.entity? c.return
+              if (c.entity.kind == 'constructor'){
+                if (c.returns.length === 0){
+                  return false;
+                }
+                callableEntity.pointsTo[0].callable[0].returns.push(c.returns[0]);
+              }
+              else{
+                callableEntity.pointsTo[0].callable[0].returns.push(c.entity);
+              }
+              //callableEntity.pointsTo[0].callable[0].returns.push(c.entity);
               
             }else{
               //GETRETURN 
