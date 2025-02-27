@@ -20,6 +20,7 @@ const ignorePropList = [
   'getQualifiedName',
   'getSourceFile',
   'pkgJson',
+  'thisPointsTo',
 ];
 
 export default function (opts: any) {
@@ -71,7 +72,7 @@ export default function (opts: any) {
   }
   const seen = new WeakSet();
   const stringify = JSON.stringify(obj,function replacer(key, value) {
-    if (typeof value === "object" && value !== null) {
+    if (typeof value === 'object' && value !== null) {
       if (seen.has(value)) {
           return;  // 移除循环引用的属性
       }
@@ -85,10 +86,10 @@ export default function (opts: any) {
   }, '\t');
   fs.writeFile(opts.output, stringify);
   // CHAnalyzer.dumpToJson(opts.callgraph)
-  fs.writeFile(opts.callgraph, CHAnalyzer.dumpToJson());
-  fs.writeFile(opts.RTA, RTAnalyzer.dumpToJson())
-  fs.writeFile(opts.PTA, PTAnalyzer.dumpToJson())
-  console.log(...RTAnalyzer.newClass)
+  // fs.writeFile(opts.callgraph, CHAnalyzer.dumpToJson());
+  // fs.writeFile(opts.RTA, RTAnalyzer.dumpToJson())
+  // fs.writeFile(opts.PTA, PTAnalyzer.dumpToJson())
+  // console.log(...RTAnalyzer.newClass)
   // fs.writeFile(opts.callgraph, CHAnalyzer.jsonString);
   logger.info(`Results dumped to ${opts.output} in JSON format with ${obj.entities.length} entities and ${obj.relations.length} dependencies`);
 }

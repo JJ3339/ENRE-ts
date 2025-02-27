@@ -34,33 +34,69 @@ import expressionHandler, {
 declare interface raw_type{
   type_id:number,
   type_repr:string,
-  type_name:string,
+  type_name:string[],
+}
+//输入一个基础类，输出其type名
+function Primitive_Type(annotation:TSType):string{
+  if (annotation.type === 'TSStringKeyword') {
+    return 'string';
+  } else if (annotation.type === 'TSNumberKeyword') {
+    return 'number';
+  } else if (annotation.type === 'TSBooleanKeyword') {
+    return 'boolean';
+  } else if (annotation.type === 'TSNullKeyword') {
+    return 'null';
+  } else if (annotation.type === 'TSBigIntKeyword') {
+    return 'bigint';
+  } else if (annotation.type === 'TSUndefinedKeyword') {
+    return 'undefined';
+  } else if (annotation.type === 'TSArrayType') {
+    return Primitive_Type(annotation.elementType)+'[]';
+  } else if (annotation.type === 'TSTypeReference') {
+    ID += 1; // 保留ID的修改逻辑
+    return ((annotation as TSTypeReference).typeName as Identifier).name;
+  } else {
+    return 'Need_TO_DO';
+  }
 }
 export function Type_is(annotation:TSType|undefined,ID:number):raw_type{
   const type_annotation=annotation?.type;
-  let number_id=-1;
-  let string_name='';
+  let number_id;
+  const string_name=[];
   switch (type_annotation) {
     case 'TSStringKeyword':
-      number_id=1;string_name='string';break;
+      number_id=1;string_name.push('string');break;
     case 'TSNumberKeyword':
-      number_id=2;string_name='number';break;
+      number_id=2;string_name.push('number');break;
     case 'TSBooleanKeyword':
-      number_id=3;string_name='boolean';break;
+      number_id=3;string_name.push('boolean');break;
     case 'TSNullKeyword':
-      number_id=4;string_name='null';break;
+      number_id=4;string_name.push('null');break;
     case 'TSBigIntKeyword':
-      number_id=5;string_name='bigint';break;
+      number_id=5;string_name.push('bigint');break;
     case 'TSUndefinedKeyword':
-      number_id=6;string_name='undefined';break;
+      number_id=6;string_name.push('undefined');break;
     case 'TSTypeReference':
       ID+=1;number_id=ID;//TODO：目前处理方式是直接id+1，最后转为TENET需要根据名字重新定义id
-      string_name=((annotation as TSTypeReference).typeName as Identifier).name;
+      string_name.push(((annotation as TSTypeReference).typeName as Identifier).name);
       break;
-
+    case 'TSArrayType':
+      number_id=0;
+      string_name.push(Primitive_Type(annotation.elementType)+'[]');
+      break;
+    case 'TSUnionType':
+      number_id=-1;//组合类型
+      for(const e of annotation.types){
+        string_name.push(Primitive_Type(e));
+      }
+      break;
+    case undefined:
+      number_id=6;
+        //DO Nothing
+      break;
     default: {
       //logger.info('type_annotation is undefined');
-      number_id=6;string_name='undefined';break;
+      number_id=6;string_name.push('Need_TO_DO');break;
     }
   }
 
@@ -100,7 +136,7 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
         entity.isValidThis = true;
         isScope = true;
       }
-      
+
     }
 
     return entity;
@@ -108,7 +144,7 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
 };
 let ID=6;
 type PathType = NodePath<VariableDeclarator>
-let isScope:boolean
+let isScope:boolean;
 export default {
   enter: (path: PathType, {scope, modifiers}: ENREContext) => {
     isScope = false;
@@ -116,13 +152,13 @@ export default {
     const declarator: VariableDeclarator = path.node as VariableDeclarator;
     let objRepr: JSMechanism | DescendPostponedTask | undefined = resolveJSObj(declarator.init);
     // The init value is not a literal, but an expression.
-    let instanceName = undefined
+    let instanceName = undefined;
     if (declarator.init && !objRepr) {
     objRepr = expressionHandler(declarator.init, scope);
     if (declarator.init.type == 'NewExpression'){
       //instanceName = declarator.init.callee.name;
     }
-    instanceName = undefined
+    instanceName = undefined;
     }
     // ForStatement is not supported due to the complexity of the AST structure.
     if (['ForOfStatement', 'ForInStatement'].includes(path.parentPath.parent.type)) {
@@ -131,7 +167,7 @@ export default {
 
     const typeAnnotation: TSTypeAnnotation|undefined = Reflect.get(declarator.id, 'typeAnnotation')?.typeAnnotation;
     // const typeName = Reflect.get(typeAnnotation, 'typeName').name
-    let typeName = undefined;
+    const typeName = undefined;
     // if (typeAnnotation){
     //     typeName = Reflect.get(typeAnnotation, 'typeName').name
     // }
@@ -146,9 +182,9 @@ export default {
 
     // 未进行类型注解
     // TODO: 查看objRepr的各种情况
-    if (types.type_name == 'undefined' && objRepr){
+    if (types.type_name.length===0 && objRepr){
       if (literalTypes.includes(objRepr.type)){
-        types.type_name = objRepr.type;
+        types.type_name.push(objRepr.type);
       }
     }
 
@@ -216,7 +252,7 @@ export default {
         } as AscendPostponedTask);
     }
     }
-    
+
     /**
      * Setup to extract properties from object literals,
      * which expects id to be an identifier.
@@ -227,7 +263,7 @@ export default {
     //   if (declarator.init?.type === 'ObjectExpression') {
     //     if (returned) {
     //       scope.push(returned);
-    
+
     //       const key = `${path.node.loc!.start.line}:${path.node.loc!.start.column}`;
     //       modifiers.set(key, ({
     //         type: ModifierType.acceptProperty,
@@ -241,7 +277,7 @@ export default {
   exit: (path: PathType, {scope, modifiers}: ENREContext) => {
     console.log('exit var');
     if(scope.last().type === 'variable' && isScope){
-      scope.pop()
+      scope.pop();
     }
     // const varEntity = scope.last<ENREEntityClass>();
     // if (varEntity.pointsTo[0].callable.length === 0) {
@@ -254,7 +290,7 @@ export default {
     //      */
     //     returns: [varEntity],
     //   });
-    // }  
+    // }
     // const length = path.node.declarations.length;
     // for (let i = 0; i < length; i++) {
     //     scope.pop();

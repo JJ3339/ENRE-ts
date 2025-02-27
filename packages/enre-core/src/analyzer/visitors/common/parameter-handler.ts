@@ -36,6 +36,10 @@ function onRecord(
     new ENREName('Norm', name),
     location,
     scope.last<ENREEntityCollectionCallable>(),
+    //TODO:Type of param
+    {typeID:-2,
+      typeRepr: '',
+      typeName: ['TODO'],},
     {path, defaultAlter},
   );
 

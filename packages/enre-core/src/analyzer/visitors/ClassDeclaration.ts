@@ -24,15 +24,15 @@ import ENREName from '@enre-ts/naming';
 import {ENREContext} from '../context';
 import expressionHandler from './common/expression-handler';
 import {createJSObjRepr} from './common/literal-handler';
-import { ClassHierarchyAnalyzer as CHAnalyzer}from '../callgraph/ClassHierarchyAnalysisAlgorithm'; 
+import { ClassHierarchyAnalyzer as CHAnalyzer}from '../callgraph/ClassHierarchyAnalysisAlgorithm';
 
 type PathType = NodePath<ClassDeclaration | ClassExpression>
 
 export default {
   enter: (path: PathType, {scope}: ENREContext) => {
     let entity: ENREEntityClass;
-    let clsName: String;
-    let basecls: String;
+    let clsName: string;
+    let basecls: string;
     if (path.node.id) {
       entity = recordEntityClass(
         new ENREName('Norm', path.node.id.name),
@@ -44,13 +44,13 @@ export default {
         {
           typeID:0,
           typeRepr:'',
-          typeName: path.node.id.name,
+          typeName: [path.node.id.name],
         },
         {
           isAbstract: 'abstract' in path.node ? path.node.abstract ?? false : false,
         },
       );
-      clsName = path.node.id.name
+      clsName = path.node.id.name;
 
     } else {
       entity = recordEntityClass(
@@ -65,15 +65,15 @@ export default {
         {
           typeID:0,
           typeRepr:'',
-          typeName: 'AnonClass',
+          typeName: ['AnonClass'],
         },
         {
           isAbstract: 'abstract' in path.node ? path.node.abstract ?? false : false,
         },
       );
-      
+
       // TODO: unnamed class in CHA
-      clsName = `Anon-${path.node.start}:${path.node.end}`
+      clsName = `Anon-${path.node.start}:${path.node.end}`;
       //
     }
 
@@ -93,10 +93,10 @@ export default {
 
     if (path.node.superClass) {
       if ('name' in path.node.superClass){
-        CHAnalyzer.addClass(entity, path.node.superClass.name)
-        console.log(entity.name.codeName)
+        CHAnalyzer.addClass(entity, path.node.superClass.name);
+        console.log(entity.name.codeName);
       }
-        
+
       expressionHandler(path.node.superClass, scope, {
         onFinishEntity: (parentClasses) => {
           if (parentClasses.length >= 0) {
@@ -114,10 +114,10 @@ export default {
       });
     }
     else{
-        CHAnalyzer.addClass(entity, undefined)
-        console.log(entity.name.codeName)
+        CHAnalyzer.addClass(entity, undefined);
+        console.log(entity.name.codeName);
     }
-    
+
     // CHAnalyzer.addClass(entity,undefined)
     for (const im of path.node.implements || []) {
       if (im.type === 'TSExpressionWithTypeArguments') {

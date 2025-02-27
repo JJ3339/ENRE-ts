@@ -7,7 +7,7 @@ import {recordEntity} from '../../utils/wrapper';
 export interface ENREEntityInterface extends ENREEntityAbilityBase {
   type: 'interface';
 }
-
+//应该也加类型
 export const createEntityInterface = (
   name: ENREName<any>,
   location: ENRELocation,
