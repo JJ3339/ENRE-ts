@@ -127,6 +127,8 @@ interface AccessToken extends BaseToken {
   operand0?: any,
   // Not exist if operand0 exist
   operand1: string | symbol,
+
+  computed?: boolean
 }
 
 /**
@@ -439,6 +441,7 @@ function recursiveTraverse(
       const objectTokens = recursiveTraverse(node.object, scope, handlers);
 
       const prop = node.property;
+      
       let propName: string | symbol | undefined = undefined;
       if (prop.type === 'Identifier') {
         propName = prop.name;
@@ -466,7 +469,8 @@ function recursiveTraverse(
         tokenStream.push({
           operation: 'access',
           operand1: propName,
-          location: toENRELocation(node.property.loc)
+          location: toENRELocation(node.property.loc),
+          computed: node.computed
         }, ...objectTokens);
       } else {
         const propTask = resolve(node.property, scope, undefined);

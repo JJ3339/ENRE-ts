@@ -172,8 +172,8 @@ export default () => {
   }
 
   //callgraph
-  CHAnalyzer.processExpr()
-  RTAnalyzer.processExpr()
+  // CHAnalyzer.processExpr()
+  // RTAnalyzer.processExpr()
   
   // CHAnalyzer.printHierarchy('B')
   // const found = lookup({
@@ -225,7 +225,10 @@ export default () => {
           for (const op of task.payload) {
             if (op.operation === 'assign') {
               let resolved = bindRepr2Entity(op.operand1, task.scope);
-              if (resolved.type !== 'object') {
+              if (literalTypes.includes(resolved.type)){
+                //literal handle
+              }
+              else if (resolved.type !== 'object') {
                 // literal bug
                 resolved = resolved.pointsTo[0];
               }
@@ -299,6 +302,9 @@ export default () => {
                     // Failed to resolve
                     else if (resolved.type === 'reference') {
                       // Leave cursor to be empty
+                    }
+                    else if (literalTypes.includes(resolved.type)){
+                      cursor.push(resolved);
                     }
                     // Maybe destructuring, cursor should be JSObjRepr
                     else {
@@ -437,7 +443,18 @@ export default () => {
                   // Access a property of a (previously evaluated) symbol
                   else if (prevSymbol.length !== 0) {
                     prevSymbol.forEach(s => {
-                      const found = lookdown('name', token.operand1, s);
+                      let found = undefined;
+                      if (token.computed){
+                        found = lookup({
+                          role: 'value',
+                          identifier: token.operand1,
+                          at: task.scope,
+                          loc: token.location
+                        }, true) as ENREEntityCollectionAll;
+                      }
+                      else{
+                        found = lookdown('name', token.operand1, s);
+                      }
                       if (found) {
                         if (found.type === 'receipt'){
                           const subfound = lookup({
@@ -461,6 +478,7 @@ export default () => {
                         }
                         
                       }
+                      
                     });
                   } else {
                     // Try to access a property of a symbol, but the symbol is not found
@@ -802,8 +820,10 @@ export default () => {
             }
           }
         }
-      } catch {
-        console.log('catch error!');
+      } catch(error) {
+         // 输出错误信息
+        codeLogger.error(`Error details: ${error.message}`);  // 错误的消息
+        codeLogger.error(`Stack trace: ${error.stack}`);      // 错误的堆栈信息
         if (task.scope) {
           const filePath = task.scope.type === 'file' ? task.scope.path : task.scope.getSourceFile().path;
           codeLogger.error(`Points-to relation resolving is experimental, and it fails at ${filePath} (Task ${index}/${postponedTask.all.length})`);

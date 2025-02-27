@@ -78,17 +78,17 @@ export default function (opts: any) {
       seen.add(value);
   }
     // 过滤掉 'base' 和 'extcls' 属性
-    if (key === 'base' || key === 'extcls') {
+    if (key === 'base' || key === 'extcls' || key === 'thisPointsTo') {
         return undefined;
     }
     return value;
   }, '\t');
   fs.writeFile(opts.output, stringify);
   // CHAnalyzer.dumpToJson(opts.callgraph)
-  fs.writeFile(opts.callgraph, CHAnalyzer.dumpToJson());
-  fs.writeFile(opts.RTA, RTAnalyzer.dumpToJson())
+  //fs.writeFile(opts.callgraph, CHAnalyzer.dumpToJson());
+  //fs.writeFile(opts.RTA, RTAnalyzer.dumpToJson())
   fs.writeFile(opts.PTA, PTAnalyzer.dumpToJson())
-  console.log(...RTAnalyzer.newClass)
+  //console.log(...RTAnalyzer.newClass)
   // fs.writeFile(opts.callgraph, CHAnalyzer.jsonString);
   logger.info(`Results dumped to ${opts.output} in JSON format with ${obj.entities.length} entities and ${obj.relations.length} dependencies`);
 }
