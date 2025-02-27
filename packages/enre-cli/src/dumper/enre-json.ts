@@ -20,6 +20,7 @@ const ignorePropList = [
   'getQualifiedName',
   'getSourceFile',
   'pkgJson',
+  'thisPointsTo',
 ];
 
 export default function (opts: any) {
@@ -71,7 +72,7 @@ export default function (opts: any) {
   }
   const seen = new WeakSet();
   const stringify = JSON.stringify(obj,function replacer(key, value) {
-    if (typeof value === "object" && value !== null) {
+    if (typeof value === 'object' && value !== null) {
       if (seen.has(value)) {
           return;  // 移除循环引用的属性
       }

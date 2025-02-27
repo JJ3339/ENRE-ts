@@ -26,7 +26,7 @@ export const createEntityClass = (
   {
     typeID=0,
     typeRepr='',
-    typeName='',
+    typeName=[''],
   },
   {
     isAbstract = false,

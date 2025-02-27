@@ -41,7 +41,7 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
       {
         typeID:-1,
         typeRepr:'-1',
-        typeName:'Dont use',
+        typeName:['Dont use'],
       },
       typeName,
       instanceName
@@ -65,7 +65,7 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
       //   scope.push(entity);
       //   entity.isValidThis = true;
       // }
-      
+
     }
 
     return entity;
@@ -80,10 +80,10 @@ export default {
     for (const declarator of path.node.declarations) {
       let objRepr: JSMechanism | DescendPostponedTask | undefined =  resolveJSObj(declarator.init);
       // The init value is not a literal, but an expression.
-      let instanceName = undefined
+      let instanceName = undefined;
       if (declarator.init && !objRepr) {
         objRepr = expressionHandler(declarator.init, scope);
-        instanceName = undefined
+        instanceName = undefined;
       }
 
       // ForStatement is not supported due to the complexity of the AST structure.
@@ -96,14 +96,14 @@ export default {
       // }else{
       //   const entity = undefined
       // }
-      const typeAnnotation: TSTypeAnnotation|undefined = Reflect.get(declarator.id, 'typeAnnotation')?.typeAnnotation
+      const typeAnnotation: TSTypeAnnotation|undefined = Reflect.get(declarator.id, 'typeAnnotation')?.typeAnnotation;
       // const typeName = Reflect.get(typeAnnotation, 'typeName').name
-      let typeName = undefined
+      let typeName = undefined;
       if (typeAnnotation){
-          typeName = Reflect.get(typeAnnotation, 'typeName').name
+          typeName = Reflect.get(typeAnnotation, 'typeName').name;
       }
       // const typeName = typeAnnotation?.typeName?.name ?? undefined;
-      
+
       const returned = traverseBindingPattern<ENREEntityVariable>(
         declarator.id,
         scope,
@@ -179,7 +179,7 @@ export default {
       //   if (declarator.init?.type === 'ObjectExpression') {
       //     if (returned) {
       //       scope.push(returned);
-      
+
       //       const key = `${path.node.loc!.start.line}:${path.node.loc!.start.column}`;
       //       modifiers.set(key, ({
       //         type: ModifierType.acceptProperty,
@@ -193,7 +193,7 @@ export default {
 
   exit: (path: PathType, {scope, modifiers}: ENREContext) => {
     console.log('exit var');
-    
+
     // const varEntity = scope.last<ENREEntityClass>();
     // if (varEntity.pointsTo[0].callable.length === 0) {
     //   varEntity.pointsTo[0].callable.push({
@@ -205,7 +205,7 @@ export default {
     //      */
     //     returns: [varEntity],
     //   });
-    // }  
+    // }
     // const length = path.node.declarations.length;
     // for (let i = 0; i < length; i++) {
     //     scope.pop();

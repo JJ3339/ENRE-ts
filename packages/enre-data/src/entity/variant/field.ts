@@ -27,7 +27,7 @@ export const createEntityField = (
     TSVisibility = undefined,
     typeID=0,
     typeRepr='',
-    typeName='',
+    typeName=[''],
   }: Partial<Pick<ENREEntityField, 'isStatic' | 'isPrivate' | 'isAbstract' | 'TSVisibility'|'typeID'|'typeRepr'|'typeName'>>
 ): ENREEntityField => {
   return {

@@ -6,16 +6,24 @@
  */
 
 import {NodePath} from '@babel/traverse';
-import {TSPropertySignature} from '@babel/types';
+import {TSPropertySignature,TSTypeAnnotation} from '@babel/types';
 import {ENREEntityCollectionAnyChildren, ENREEntityProperty, id, recordEntityProperty} from '@enre-ts/data';
 import {toENRELocation} from '@enre-ts/location';
 import ENREName from '@enre-ts/naming';
 import {ENREContext} from '../context';
-
+import {Type_is} from './VariableDeclarator';
+let property_ID=6;
 type PathType = NodePath<TSPropertySignature>
 
 export default (path: PathType, {scope}: ENREContext) => {
   let entity: ENREEntityProperty | undefined = undefined;
+
+  let annotation;
+  if ('typeAnnotation' in path.node) {
+    annotation = (path.node.typeAnnotation as TSTypeAnnotation).typeAnnotation;
+  }
+  const types=Type_is(annotation,property_ID);
+  if(types.type_id>=property_ID)property_ID+=1;
 
   switch (path.node.key.type) {
     case 'Identifier':
@@ -23,6 +31,11 @@ export default (path: PathType, {scope}: ENREContext) => {
         new ENREName('Norm', path.node.key.name),
         toENRELocation(path.node.key.loc),
         scope.last(),
+        {
+          typeID: types.type_id,
+          typeRepr: '',
+          typeName: types.type_name,
+        }
       );
       break;
 
@@ -32,6 +45,11 @@ export default (path: PathType, {scope}: ENREContext) => {
         new ENREName('Str', path.node.key.value),
         toENRELocation(path.node.key.loc),
         scope.last(),
+        {
+          typeID: types.type_id,
+          typeRepr: '',
+          typeName: types.type_name,
+        }
       );
       break;
 
@@ -40,6 +58,11 @@ export default (path: PathType, {scope}: ENREContext) => {
         new ENREName('Num', path.node.key.extra?.raw as string, path.node.key.value),
         toENRELocation(path.node.key.loc),
         scope.last(),
+        {
+          typeID: types.type_id,
+          typeRepr: '',
+          typeName: types.type_name,
+        }
       );
       break;
 

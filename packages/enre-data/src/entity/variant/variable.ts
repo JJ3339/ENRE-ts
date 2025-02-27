@@ -22,7 +22,7 @@ export const createEntityVariable = (
   {
     typeID=0,
     typeRepr='',
-    typeName='',
+    typeName=[''],
   },
   typName: string|undefined,
   instanceName: string | undefined
