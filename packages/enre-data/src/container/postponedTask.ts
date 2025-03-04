@@ -2,8 +2,13 @@ const createPostponedTaskContainer = () => {
   let pt: any[] = [];
 
   return {
-    add: (task: any) => {
-      pt.push(task);
+    add: (task: any, idx?: number) => {
+      if(!idx){
+        pt.push(task);
+      }
+      else{
+        pt.splice(idx, 0, task);
+      }
     },
 
     get all() {

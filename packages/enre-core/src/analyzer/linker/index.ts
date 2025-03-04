@@ -800,7 +800,7 @@ export default () => {
           
            if (task.onFinish) {
 
-            const executionSuccess = task.onFinish(prevSymbol);
+            const executionSuccess = task.onFinish(prevSymbol, Number(index) + 1);
             // && (_.isEqual(prevSymbol, token.lastSymbol))
             /**
              * FIXME: The arguments of hook call should be memo-ed, so that the next time

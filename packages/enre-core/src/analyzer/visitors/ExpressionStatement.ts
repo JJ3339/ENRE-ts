@@ -19,5 +19,5 @@ import expressionHandler from './common/expression-handler';
 type PathType = NodePath<ExpressionStatement>
 
 export default (path: PathType, {scope}: ENREContext) => {
-  expressionHandler(path.node.expression, scope);
+    expressionHandler(path.node.expression, scope);
 };

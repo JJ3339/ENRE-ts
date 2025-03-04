@@ -51,7 +51,7 @@ export type DescendPostponedTask = {
   type: 'descend',
   payload: TokenStream,
   scope: ENREEntityCollectionScoping,
-  onFinish?: (symbolSnapshot: any) => boolean,
+  onFinish?: (symbolSnapshot: any, idx?: number) => boolean,
   onFinishEntity?: (symbolSnapshot: any) => boolean,
 }
 
@@ -219,7 +219,7 @@ function recursiveTraverse(
           const assignmentTarget = leftTask.payload.shift();
 
           if (leftTask) {
-            leftTask.onFinish = (symbolSnapshot) => {
+            leftTask.onFinish = (symbolSnapshot, idx) => {
               postponedTask.add({
                 type: 'descend',
                 payload: [
@@ -235,7 +235,7 @@ function recursiveTraverse(
                 ],
                 scope: scope.last(),
                 onFinish: undefined,
-              } as DescendPostponedTask);
+              } as DescendPostponedTask, idx);
 
               return true;
             };
