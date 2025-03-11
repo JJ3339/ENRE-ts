@@ -17,6 +17,7 @@ import {recordEntity} from '../../utils/wrapper';
 export interface ENREEntityMethod extends ENREEntityAbilityBase, ENREEntityAbilityClassMember, ENREEntityAbilityCallable, ENREEntityAbilityAbstractable {
   type: 'method',
   kind: methodKind,
+  
 }
 
 export const createEntityMethod = (
@@ -32,13 +33,14 @@ export const createEntityMethod = (
     isAbstract = false,
     TSVisibility = undefined,
   }: Partial<Pick<ENREEntityMethod, 'kind' | 'isStatic' | 'isPrivate' | 'isAsync' | 'isGenerator' | 'isAbstract' | 'TSVisibility'>>,
+  returnType = []
 ): ENREEntityMethod => {
   return {
     ...addAbilityBase(name, location, parent),
 
     ...addAbilityClassMember(isStatic!, isPrivate!, TSVisibility),
 
-    ...addAbilityCallable(isAsync!, isGenerator!),
+    ...addAbilityCallable(isAsync!, isGenerator!, returnType),
 
     ...addAbilityAbstractable(isAbstract!),
 

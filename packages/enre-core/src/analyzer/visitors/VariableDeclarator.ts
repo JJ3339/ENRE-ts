@@ -29,7 +29,7 @@ import expressionHandler, {
   AscendPostponedTask,
   DescendPostponedTask
 } from './common/expression-handler';
-
+import { cloneDeep } from 'lodash';
 
 declare interface raw_type{
   type_id:number,
@@ -154,7 +154,8 @@ export default {
     // The init value is not a literal, but an expression.
     let instanceName = undefined;
     if (declarator.init && !objRepr) {
-    objRepr = expressionHandler(declarator.init, scope);
+      objRepr = expressionHandler(declarator.init, scope);
+
     if (declarator.init.type == 'NewExpression'){
       //instanceName = declarator.init.callee.name;
     }
@@ -182,9 +183,11 @@ export default {
 
     // 未进行类型注解
     // TODO: 查看objRepr的各种情况
-    if (types.type_name.length===0 && objRepr){
-      if (literalTypes.includes(objRepr.type)){
+    if ( types.type_name.length === 0 && objRepr ){
+      if ( literalTypes.includes(objRepr.type)){
         types.type_name.push(objRepr.type);
+      } else if(objRepr.type === 'object'){
+          
       }
     }
 
@@ -192,7 +195,7 @@ export default {
         declarator.id,
         scope,
         undefined,
-        buildOnRecord(kind as variableKind, typeName, instanceName, objRepr,types),
+        buildOnRecord(kind as variableKind, typeName, instanceName, objRepr, types),
     );
     // returned[0].entity.pointsTo.push(createJSObjRepr('obj'));
     if (returned && objRepr) {
@@ -206,10 +209,10 @@ export default {
         variant = 'for-in';
     }
     if ('callable' in objRepr){
-            objRepr.callable.push({
-            entity: undefined,
-            returns: [returned[0].entity],
-        });
+        objRepr.callable.push({
+        entity: undefined,
+        returns: [returned[0].entity],
+      });
     }
     // 确保 objRepr.callable 是一个数组
     // if (!('callable' in objRepr)) {

@@ -9,6 +9,7 @@ export interface ENREEntityFunction extends ENREEntityAbilityBase, ENREEntityAbi
   type: 'function',
   // Arrow functions capture current `this`, we need this to determine reference to `this`.
   isArrowFunction: boolean,
+
 }
 
 export const createEntityFunction = (
@@ -20,15 +21,17 @@ export const createEntityFunction = (
     isAsync = false,
     isGenerator = false,
   },
+  returnType = []
 ): ENREEntityFunction => {
   return {
     ...addAbilityBase(name, location, parent),
 
-    ...addAbilityCallable(isAsync, isGenerator),
+    ...addAbilityCallable(isAsync, isGenerator, returnType),
 
     type: 'function',
 
     isArrowFunction,
+
   };
 };
 

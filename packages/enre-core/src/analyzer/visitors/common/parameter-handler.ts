@@ -39,7 +39,7 @@ function onRecord(
     //TODO:Type of param
     {typeID:-2,
       typeRepr: '',
-      typeName: ['TODO'],},
+      typeName: [],},
     {path, defaultAlter},
   );
 

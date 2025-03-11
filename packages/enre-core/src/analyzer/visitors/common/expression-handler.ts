@@ -253,7 +253,7 @@ function recursiveTraverse(
 
         if (rightTask && assignmentTarget) {
           rightTask.onFinish = (symbolSnapshotRight: any) => {
-            leftTask.onFinish = (symbolSnapshotLeft: any) => {
+            leftTask.onFinish = (symbolSnapshotLeft: any, idx?: number) => {
               postponedTask.add({
                 type: 'descend',
                 payload: [
@@ -269,7 +269,7 @@ function recursiveTraverse(
                 ],
                 scope: scope.last(),
                 onFinish: undefined,
-              } as DescendPostponedTask);
+              } as DescendPostponedTask, idx);
 
               return true;
             };
@@ -278,6 +278,11 @@ function recursiveTraverse(
           };
         }
       }
+      break;
+    }
+    case "ConditionalExpression" :{
+      // let atlerTask = recursiveTraverse(node.alternate as Expression, scope, handlers);
+      // let conseqTask = recursiveTraverse(node.consequent as Expression, scope, handlers);
       break;
     }
     //取消该分析，classProperty分析参考对应的节点分析

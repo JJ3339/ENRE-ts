@@ -183,7 +183,7 @@ export default () => {
   // }, true) as ENREEntityCollectionAll;
 
 
-  let iterCount = 20;
+  let iterCount = 10;
   /**
    * prevUpdated
    *   - Indicate whether the previous iteration updated points-to relations, its value can only be set by the loop and
@@ -212,9 +212,6 @@ export default () => {
   let prevUpdated = undefined, currUpdated = undefined;
   while (iterCount >= 0 || prevUpdated === false) {
     currUpdated = false;
-    if (iterCount === 9){
-      console.log('asd')
-    }
     /**
      * Declarations, imports/exports should all be resolved, that is, the symbol structure should already be built,
      * next working on postponed tasks to resolve points-to relations.
@@ -225,6 +222,7 @@ export default () => {
           for (const op of task.payload) {
             if (op.operation === 'assign') {
               let resolved = bindRepr2Entity(op.operand1, task.scope);
+              console.log(resolved.kv['a'].name.codeName);
               if (literalTypes.includes(resolved.type)){
                 //literal handle
               }
@@ -345,14 +343,18 @@ export default () => {
 
                 cursor.forEach(c => {
                   if (!bindingRepr.entity.pointsTo.includes(c)) {
-                    bindingRepr.entity.pointsTo.push(c);
+                    // TODO: strong update？(hjj)
+                    // TODO: 传递原任务的clone?
+                    const obj = _.cloneDeep(c);
+                    bindingRepr.entity.pointsTo.pop();
+                    bindingRepr.entity.pointsTo.push(obj);
                     
                     if(bindingRepr.entity.typeName == 'undefined'){
-                      bindingRepr.entity.typeName = c.callable[0].returns[0].typeName;
+                      bindingRepr.entity.typeName = obj.callable[0].returns[0].typeName;
                     }
                     if (task.onFinish){
                       // task.onFinish(c);
-                      task.scope.pointsTo[0].kv[bindingRepr.entity.name.codeName] = c
+                      task.scope.pointsTo[0].kv[bindingRepr.entity.name.codeName] = obj
                       task.onFinish = undefined;
                     }
                     currUpdated = true;
@@ -739,6 +741,9 @@ export default () => {
                                 } else if (literalTypes.includes(selected.type)){
                                   // TODO: literal
                                   //param.typeName.push(selected.type);
+                                  if (!param.typeName.includes(selected.type)){
+                                    param.typeName.push(selected.type)
+                                  }
                                 } else{
                                   _cursor.push(...selected.pointsTo);
                                 }
@@ -838,6 +843,7 @@ export default () => {
     // First count down the iteration counter
     iterCount -= 1;
 
+    console.log("iterCount=" + iterCount);
     // If this iteration is already the last one, then jump out of the loop
     if (prevUpdated === false) {
       break;

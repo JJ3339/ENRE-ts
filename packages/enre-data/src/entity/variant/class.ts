@@ -36,7 +36,7 @@ export const createEntityClass = (
     ...addAbilityBase(name, location, parent),
 
     ...addAbilityAbstractable(isAbstract),
-    ...addAbilityRawType(typeID,typeRepr,typeName),
+    ...addAbilityRawType(typeID, typeRepr, typeName),
     type: 'class',
     base: undefined,
     extcls: new Map()

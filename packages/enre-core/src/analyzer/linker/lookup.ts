@@ -69,8 +69,8 @@ export default function (sg: SearchingGuidance, omitAlias = false): ENREEntityCo
       }
       for (const e of curr.children) {
         // TODO: Refactor this to clearly distinguish valid identifier and string literal
-        console.log(Anon.includes(sg.identifier));
-        console.log(_.isEqual(((e as ENREEntityAbilityBase).location), sg?.loc));
+        // console.log(Anon.includes(sg.identifier));
+        // console.log(_.isEqual(((e as ENREEntityAbilityBase).location), sg?.loc));
         
         if (sg.identifier === e.name.codeName || (Anon.includes(sg.identifier) && _.isEqual(((e as ENREEntityAbilityBase).location), sg?.loc) )){
           // @ts-ignore
