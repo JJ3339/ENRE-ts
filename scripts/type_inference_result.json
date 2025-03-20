@@ -1,0 +1,36 @@
+{
+  "identifier": [
+    {
+      "name": "adder",
+      "type": "(string) => number | string"
+    },
+    {
+      "name": "createAdder",
+      "type": "(number) => (string) => number | string"
+    },
+    {
+      "name": "retAssign",
+      "type": "(string) => string"
+    },
+    {
+      "name": "add",
+      "type": "number | string"
+    },
+    {
+      "name": "add.a",
+      "type": "number | string"
+    },
+    {
+      "name": "add.b",
+      "type": "number | string"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "age",
+      "type": "number"
+    }
+  ]
+}

@@ -222,7 +222,7 @@ export default () => {
           for (const op of task.payload) {
             if (op.operation === 'assign') {
               let resolved = bindRepr2Entity(op.operand1, task.scope);
-              console.log(resolved.kv['a'].name.codeName);
+              
               if (literalTypes.includes(resolved.type)){
                 //literal handle
               }
@@ -343,15 +343,43 @@ export default () => {
 
                 cursor.forEach(c => {
                   if (!bindingRepr.entity.pointsTo.includes(c)) {
+                    //!bindingRepr.entity.pointsTo.some(item => _.isEqual(item, c))
                     // TODO: strong update？(hjj)
                     // TODO: 传递原任务的clone?
-                    const obj = _.cloneDeep(c);
-                    bindingRepr.entity.pointsTo.pop();
-                    bindingRepr.entity.pointsTo.push(obj);
                     
-                    if(bindingRepr.entity.typeName == 'undefined'){
-                      bindingRepr.entity.typeName = obj.callable[0].returns[0].typeName;
+                    //const obj = _.cloneDeep(c);
+                    //bindingRepr.entity.pointsTo.pop();
+                    // bindingRepr.entity.pointsTo = bindingRepr.entity.pointsTo.filter
+                    // if (obj.isBranch){
+                    //   bindingRepr.entity.pointsTo = bindingRepr.entity.pointsTo.filter(item => !item.isBranch)
+                    // } else{
+                    //   bindingRepr.entity.pointsTo = []
+                    // }
+                    // bindingRepr.entity.pointsTo.forEach(element => {
+
+                    const obj = c;
+                    // });
+                    bindingRepr.entity.pointsTo.push(obj);
+                    if (obj.typeName){
+                      bindingRepr.entity.typeName.push(...obj.typeName);
                     }
+                    obj.callable.forEach(element => {
+                      if (element.entity) {
+                        if (element.entity.typeName){
+                            bindingRepr.entity.typeName.push(...element.entity.typeName);
+                        }else if (element.entity.returnType){
+                            bindingRepr.entity.typeName.push(...element.entity.returnType);
+                        }
+                        
+                    }
+                      element.returns.forEach(t => {
+                        bindingRepr.entity.typeName.push(...t.typeName);
+                      });
+                    });
+                    // if(obj.callable[0].returns[0].typeName){
+                    //   bindingRepr.entity.typeName.push(...obj.callable[0].returns[0].typeName);
+                    // }
+                    
                     if (task.onFinish){
                       // task.onFinish(c);
                       task.scope.pointsTo[0].kv[bindingRepr.entity.name.codeName] = obj
@@ -447,12 +475,22 @@ export default () => {
                     prevSymbol.forEach(s => {
                       let found = undefined;
                       if (token.computed){
-                        found = lookup({
+                        value = lookup({
                           role: 'value',
                           identifier: token.operand1,
                           at: task.scope,
                           loc: token.location
                         }, true) as ENREEntityCollectionAll;
+                        value.pointsTo.array.forEach(element => {
+                          //TODO: 多个赋值情况？（HJJ）
+                          if (literalTypes.includes(element.type)){
+                            found = lookdown('name', element.value, s)
+                          }
+                          else {
+                            found = undefined
+                          }
+                        });
+                        // found = lookdown('name', found.pointsTo[0], s);
                       }
                       else{
                         found = lookdown('name', token.operand1, s);
@@ -565,6 +603,21 @@ export default () => {
 
                   if (found) {
                     found.pointsTo.push(resolved);
+                    if (resolved.typeName){
+                      found.typeName.push(...resolved.typeName);
+                    }
+                    resolved.callable.forEach(element => {
+                      if (element.entity){
+                        found.typeName.push(...element.entity.typeName);
+                      }
+                      element.returns.forEach(t => {
+                        found.typeName.push(...t.typeName);
+                        
+                      });
+                    }); 
+                    // if (resolved.callable[0].returns[0].typeName){
+                    //   found.typeName.push(resolved.callable[0].returns[0].typeName);
+                    // }
                     currSymbol = found.pointsTo;
                   }
                 } else {
@@ -575,7 +628,16 @@ export default () => {
                     } else if (token.operand0.operand1 === Symbol.asyncIterator) {
                       s.callable.asyncIterator = resolved;
                     } else {
+                      if (token.operand0.computed){
+                        const value = lookup({
+                          role: 'value',
+                          identifier: token.operand0.operand1,
+                          at: task.scope,
+                        }, true) as ENREEntityCollectionAll;
+                        s.kv[value.value] = resolved;
+                      } else {
                       s.kv[token.operand0.operand1] = resolved;
+                      }
                     }
                     currUpdated = true;
                   });
@@ -758,6 +820,20 @@ export default () => {
                       cursor.forEach(c => {
                         if (!param.pointsTo.includes(c)) {
                           param.pointsTo.push(c);
+                          if (c.typeName){
+                            param.typeName.push(...c.typeName);
+                          }
+                          c.callable.array.forEach(element => {
+                            if(element.entity){
+                              param.typeName.push(...element.entity.typeName);
+                            }
+                            element.returns.forEach(t => {
+                              param.typeName.push(...t.typeName);
+                            });
+                          });
+                          // if(c.callable[0].returns[0].typeName){
+                          //   param.typeName.push(c.callable[0].returns[0].typeName);
+                          // }
                           currUpdated = true;
                         }
                       });

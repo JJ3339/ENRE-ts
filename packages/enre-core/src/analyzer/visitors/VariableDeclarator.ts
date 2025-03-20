@@ -56,7 +56,7 @@ function Primitive_Type(annotation:TSType):string{
     ID += 1; // 保留ID的修改逻辑
     return ((annotation as TSTypeReference).typeName as Identifier).name;
   } else {
-    return 'Need_TO_DO';
+    return '';
   }
 }
 export function Type_is(annotation:TSType|undefined,ID:number):raw_type{
@@ -96,7 +96,9 @@ export function Type_is(annotation:TSType|undefined,ID:number):raw_type{
       break;
     default: {
       //logger.info('type_annotation is undefined');
-      number_id=6;string_name.push('Need_TO_DO');break;
+      number_id=6;
+      //string_name.push('');
+      break;
     }
   }
 
@@ -214,6 +216,7 @@ export default {
         returns: [returned[0].entity],
       });
     }
+    
     // 确保 objRepr.callable 是一个数组
     // if (!('callable' in objRepr)) {
     //   objRepr.callable = [];
@@ -253,7 +256,10 @@ export default {
         }],
         scope: scope.last(),
         } as AscendPostponedTask);
-    }
+        if (path.parentPath.parent.type === 'BlockStatement'){
+          objRepr.isBranch = true;
+        }
+      }
     }
 
     /**

@@ -21,6 +21,11 @@ const ignorePropList = [
   'getSourceFile',
   'pkgJson',
   'thisPointsTo',
+  'base',
+  'extcls',
+  'isValidThis',
+  'typeID',
+  'typeRepr'
 ];
 
 export default function (opts: any) {
@@ -79,8 +84,17 @@ export default function (opts: any) {
       seen.add(value);
   }
     // 过滤掉 'base' 和 'extcls' 属性
-    if (key === 'base' || key === 'extcls' || key === 'thisPointsTo') {
+    if (ignorePropList.includes(key)) {
         return undefined;
+    }
+    if (key === 'typeName' && value.length === 0){
+      return undefined;
+    }
+    if (key === 'returnType' && value.length === 0){
+      return undefined;
+    }
+    if (key === 'typeName'){
+      value = [...new Set(value)];
     }
     return value;
   }, '\t');

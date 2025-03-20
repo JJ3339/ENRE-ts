@@ -1,0 +1,28 @@
+{
+  "identifier": [
+    {
+      "name": "adder",
+      "type": "(string) => number | string"
+    },
+    {
+      "name": "createAdder",
+      "type": "(number) => (number | string) => number | string"
+    },
+    {
+      "name": "retAssign",
+      "type": "(string) => string"
+    },
+    {
+      "name": "base",
+      "type": "number"
+    },
+    {
+      "name": "x",
+      "type": "number | string"
+    },
+    {
+      "name": "ret",
+      "type": "string"
+    }
+  ]
+}

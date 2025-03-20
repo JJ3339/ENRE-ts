@@ -1,18 +1,17 @@
 export interface ENRETypeAbilityBase{
-    typeName: any
-    // isPrimitive: boolean
-    // isReference: boolean
- 
+    statInferTypes: any[], // 普通变量的自身类型/函数的返回值类型
+    resType: any,
+    LLMInferTypes: any[],
+   
+    
 }
 
 export const addAbilityBaseType = (
-    typeName: any,
-    // isPrimitive: boolean,
-    // isReference: boolean
+    statInferTypes: any[]
 ): ENRETypeAbilityBase => {
     return {
-        typeName,
-        // isPrimitive,
-        // isReference
+        statInferTypes: statInferTypes,
+        resType: undefined,
+        LLMInferTypes: []
     }
 };

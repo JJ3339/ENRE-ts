@@ -21,31 +21,37 @@ export interface JSReference {
   type: 'reference',
   value: string,
   location: ENRELocation,
+  isBranch?: Boolean
 }
 
 export interface JSReceipt {
   type: 'receipt',
   key: ENRELocKey,
+  isBranch?: Boolean
 }
 
 export interface JSCallable {
   entity: ENREEntityFunction | ENREEntityMethod | undefined,
   returns: any[],
+  isBranch?: Boolean
 }
 
 export interface JSStringLiteral {
   type: 'string',
   value: string,
+  isBranch?: Boolean
 }
 
 export interface JSNumberLiteral {
   type: 'number',
   value: number,
+  isBranch?: Boolean
 }
 
 export interface JSBooleanLiteral {
   type: 'boolean',
   value: boolean,
+  isBranch?: Boolean
 }
 
 export interface JSObjRepr {
@@ -71,6 +77,7 @@ export interface JSObjRepr {
     // Symbol.asyncIterator
     asyncIterator?: JSCallable[],
   },
+  isBranch?: Boolean
 }
 
 

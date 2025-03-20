@@ -1,0 +1,24 @@
+{
+  "identifier": [
+    {
+      "name": "add",
+      "type": "(number | string, number | string) => number | string"
+    },
+    {
+      "name": "add.a",
+      "type": "number | string"
+    },
+    {
+      "name": "add.b",
+      "type": "number | string"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "age",
+      "type": "number"
+    }
+  ]
+}

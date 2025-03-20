@@ -1,22 +1,21 @@
 import {ENRETypeAbilityBase, addAbilityBaseType} from "./base-type"
 
-export interface ENRETypePrimitive extends ENRETypeAbilityBase{
+export interface ENRETypeArray extends ENRETypeAbilityBase{
     elementTypeList: ENRETypeAbilityBase[];
-    isReference: boolean;
+    isArray: boolean;
     toString: () => string;
     updateElement: (elementType: ENRETypeAbilityBase) => void;
 }
 
 export const addAbilityArrayType = (
-    typeName: any,
     element: ENRETypeAbilityBase[] | undefined
     // isPrimitive: boolean,
     // isReference: boolean
-): ENRETypePrimitive => {
+): ENRETypeArray => {
     return {
-        ...addAbilityBaseType(typeName),
+        ...addAbilityBaseType([]),
         elementTypeList: element === undefined ? [] : element,
-        isReference: true,
+        isArray: true,
         toString(): string {
             return `Array<${this.elementTypeList.toString()}>`;
             // const typeNames = this.elementTypeList.map(t => t.toString()).join(" | ");

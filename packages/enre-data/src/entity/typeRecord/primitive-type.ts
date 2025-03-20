@@ -1,23 +1,19 @@
 import {ENRETypeAbilityBase, addAbilityBaseType} from "./base-type"
 
 export interface ENRETypePrimitive extends ENRETypeAbilityBase{
-    // typeName: any[];
+
     isPrimitive: boolean;
     toString: () => string;
 }
 
 export const addAbilityPrimitiveType = (
-    typeName: any,
-    // isPrimitive: boolean,
-    // isReference: boolean
+    statInferTypes: any[],
 ): ENRETypePrimitive => {
     return {
-        ...addAbilityBaseType(typeName),
+        ...addAbilityBaseType(statInferTypes),
         isPrimitive: true,
         toString(): string {
-            return `Primitive<${this.typeName}>`;
+            return `Primitive<${this.resType}>`;
         }
-        // isPrimitive,
-        // isReference
     }
 };

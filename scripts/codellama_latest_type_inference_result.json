@@ -1,0 +1,16 @@
+{
+  "identifier": [
+    {
+      "name": "add",
+      "type": "(number | string, number | string) => number | string"
+    },
+    {
+      "name": "adder",
+      "type": "(x: string | number) => number | string"
+    },
+    {
+      "name": "retAssign",
+      "type": "(ret: any) => any"
+    }
+  ]
+}
