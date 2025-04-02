@@ -79,10 +79,9 @@ export default async (
    * SECOND PASS: Work on pseudo relation container and postponed task container to link string into correlated entity object.
    */
   // CHAnalyzer.printHierarchy('B')
-  CHAnalyzer.processClasses()
+  CHAnalyzer.processClasses();
   logger.info('Starting pass 2: (Explicit/Implicit) Dependency resolving');
   linker();
-
   /**
    * THIRD PASS: Based on full entity-relation graph, extracting relations that depends on full data (like 'override').
    */

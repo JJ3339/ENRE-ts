@@ -174,7 +174,7 @@ export default () => {
   //callgraph
   // CHAnalyzer.processExpr()
   // RTAnalyzer.processExpr()
-  
+
   // CHAnalyzer.printHierarchy('B')
   // const found = lookup({
   //   role: 'value',
@@ -222,7 +222,7 @@ export default () => {
           for (const op of task.payload) {
             if (op.operation === 'assign') {
               let resolved = bindRepr2Entity(op.operand1, task.scope);
-              
+
               if (literalTypes.includes(resolved.type)){
                 //literal handle
               }
@@ -346,7 +346,7 @@ export default () => {
                     //!bindingRepr.entity.pointsTo.some(item => _.isEqual(item, c))
                     // TODO: strong update？(hjj)
                     // TODO: 传递原任务的clone?
-                    
+
                     //const obj = _.cloneDeep(c);
                     //bindingRepr.entity.pointsTo.pop();
                     // bindingRepr.entity.pointsTo = bindingRepr.entity.pointsTo.filter
@@ -363,6 +363,9 @@ export default () => {
                     if (obj.typeName){
                       bindingRepr.entity.typeName.push(...obj.typeName);
                     }
+                    if(obj.callable===undefined){
+                      1;
+                    }
                     obj.callable.forEach(element => {
                       if (element.entity) {
                         if (element.entity.typeName){
@@ -370,7 +373,7 @@ export default () => {
                         }else if (element.entity.returnType){
                             bindingRepr.entity.typeName.push(...element.entity.returnType);
                         }
-                        
+
                     }
                       element.returns.forEach(t => {
                         bindingRepr.entity.typeName.push(...t.typeName);
@@ -379,7 +382,7 @@ export default () => {
                     // if(obj.callable[0].returns[0].typeName){
                     //   bindingRepr.entity.typeName.push(...obj.callable[0].returns[0].typeName);
                     // }
-                    
+
                     if (task.onFinish){
                       // task.onFinish(c);
                       task.scope.pointsTo[0].kv[bindingRepr.entity.name.codeName] = obj
@@ -423,7 +426,7 @@ export default () => {
                       //   }
                       // }
                       if(cursor.thisPointsTo.length !==0 ){
-                        
+
                         cursor.thisPointsTo.forEach(t => {
                           if (token.operand1 === 'super'){
                             currSymbol.push(t.base);
@@ -514,11 +517,11 @@ export default () => {
                             // ENREEntity as symbol
                             currSymbol.push(found);
                           }
-                          
+
                         }
-                        
+
                       }
-                      
+
                     });
                   } else {
                     // Try to access a property of a symbol, but the symbol is not found
@@ -542,14 +545,14 @@ export default () => {
                             //   from = from + created.location.start.line + ':' + created.location.start
                             // }
                             let to = created.to.getQualifiedName()
-                            
+
                             // if (!PTAnalyzer.callGraph.has(from)) {
                             //   PTAnalyzer.callGraph.set(from, new Set());
                             // }
                             // PTAnalyzer.callGraph.get(from)?.add(to);
                             PTAnalyzer.add(from, to, created.location)
                             console.log('from:'+from+'to:'+to);
-                            // to.forEach(edge => PTAnalyzer.callGraph.get(from)?.add(edge)) 
+                            // to.forEach(edge => PTAnalyzer.callGraph.get(from)?.add(edge))
                           } else {
                             recordRelationUse(
                               task.scope,
@@ -612,9 +615,9 @@ export default () => {
                       }
                       element.returns.forEach(t => {
                         found.typeName.push(...t.typeName);
-                        
+
                       });
-                    }); 
+                    });
                     // if (resolved.callable[0].returns[0].typeName){
                     //   found.typeName.push(resolved.callable[0].returns[0].typeName);
                     // }
@@ -717,7 +720,7 @@ export default () => {
                         s.arguments = [argRepr];
                         currUpdated = true;
                       }
-                      
+
                       params.push(...s.children.filter(e => e.type === 'parameter'));
                       // let cursor = s;
                       // while(!cursor.isValidThis){
@@ -736,7 +739,7 @@ export default () => {
                           });
                         }
                       }
-                      
+
                     });
 
                     for (const param of params) {
@@ -839,8 +842,8 @@ export default () => {
                       });
                     }
                   }
-                  
-                  
+
+
                   // Make function's returns currSymbol for next token
                   currSymbol = [];
                   prevSymbol.forEach(s => {
@@ -853,7 +856,7 @@ export default () => {
                           }else{
                             currSymbol.push(r);
                           }
-                          
+
                         } else {
                           if(r.pointsTo){
                             currSymbol.push(...r.pointsTo);
@@ -873,12 +876,12 @@ export default () => {
             currSymbol = [];
             task.payload[i].lastSymbol = prevSymbol
             // if('lastSymbol' in task.payload[i]){
-              
+
             // }else{
             //   task.payload[i].lastSymbol = prevSymbol
             // }
           }
-          
+
            if (task.onFinish) {
 
             const executionSuccess = task.onFinish(prevSymbol, Number(index) + 1);
@@ -919,7 +922,7 @@ export default () => {
     // First count down the iteration counter
     iterCount -= 1;
 
-    console.log("iterCount=" + iterCount);
+    console.log('iterCount=' + iterCount);
     // If this iteration is already the last one, then jump out of the loop
     if (prevUpdated === false) {
       break;

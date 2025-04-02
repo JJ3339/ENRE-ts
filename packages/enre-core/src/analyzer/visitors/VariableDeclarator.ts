@@ -29,85 +29,14 @@ import expressionHandler, {
   AscendPostponedTask,
   DescendPostponedTask
 } from './common/expression-handler';
-import { cloneDeep } from 'lodash';
+import {Type_is} from './common/binding-pattern-handler';
 
 declare interface raw_type{
   type_id:number,
   type_repr:string,
   type_name:string[],
 }
-//输入一个基础类，输出其type名
-function Primitive_Type(annotation:TSType):string{
-  if (annotation.type === 'TSStringKeyword') {
-    return 'string';
-  } else if (annotation.type === 'TSNumberKeyword') {
-    return 'number';
-  } else if (annotation.type === 'TSBooleanKeyword') {
-    return 'boolean';
-  } else if (annotation.type === 'TSNullKeyword') {
-    return 'null';
-  } else if (annotation.type === 'TSBigIntKeyword') {
-    return 'bigint';
-  } else if (annotation.type === 'TSUndefinedKeyword') {
-    return 'undefined';
-  } else if (annotation.type === 'TSArrayType') {
-    return Primitive_Type(annotation.elementType)+'[]';
-  } else if (annotation.type === 'TSTypeReference') {
-    ID += 1; // 保留ID的修改逻辑
-    return ((annotation as TSTypeReference).typeName as Identifier).name;
-  } else {
-    return '';
-  }
-}
-export function Type_is(annotation:TSType|undefined,ID:number):raw_type{
-  const type_annotation=annotation?.type;
-  let number_id;
-  const string_name=[];
-  switch (type_annotation) {
-    case 'TSStringKeyword':
-      number_id=1;string_name.push('string');break;
-    case 'TSNumberKeyword':
-      number_id=2;string_name.push('number');break;
-    case 'TSBooleanKeyword':
-      number_id=3;string_name.push('boolean');break;
-    case 'TSNullKeyword':
-      number_id=4;string_name.push('null');break;
-    case 'TSBigIntKeyword':
-      number_id=5;string_name.push('bigint');break;
-    case 'TSUndefinedKeyword':
-      number_id=6;string_name.push('undefined');break;
-    case 'TSTypeReference':
-      ID+=1;number_id=ID;//TODO：目前处理方式是直接id+1，最后转为TENET需要根据名字重新定义id
-      string_name.push(((annotation as TSTypeReference).typeName as Identifier).name);
-      break;
-    case 'TSArrayType':
-      number_id=0;
-      string_name.push(Primitive_Type(annotation.elementType)+'[]');
-      break;
-    case 'TSUnionType':
-      number_id=-1;//组合类型
-      for(const e of annotation.types){
-        string_name.push(Primitive_Type(e));
-      }
-      break;
-    case undefined:
-      number_id=6;
-        //DO Nothing
-      break;
-    default: {
-      //logger.info('type_annotation is undefined');
-      number_id=6;
-      //string_name.push('');
-      break;
-    }
-  }
-
-  return {
-    type_id:number_id,
-    type_repr:'',
-    type_name:string_name,
-  };
-}
+let ID=6;
 const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceName: string|undefined ,
   hasInit: any,Type:raw_type) => {
   return (name: string, location: ENRELocation, scope: ENREContext['scope']) => {
@@ -144,7 +73,6 @@ const buildOnRecord = (kind: variableKind, typeName: string|undefined ,instanceN
     return entity;
   };
 };
-let ID=6;
 type PathType = NodePath<VariableDeclarator>
 let isScope:boolean;
 export default {
@@ -158,10 +86,10 @@ export default {
     if (declarator.init && !objRepr) {
       objRepr = expressionHandler(declarator.init, scope);
 
-    if (declarator.init.type == 'NewExpression'){
-      //instanceName = declarator.init.callee.name;
-    }
-    instanceName = undefined;
+      if (declarator.init.type == 'NewExpression'){
+        //instanceName = declarator.init.callee.name;
+      }
+      instanceName = undefined;
     }
     // ForStatement is not supported due to the complexity of the AST structure.
     if (['ForOfStatement', 'ForInStatement'].includes(path.parentPath.parent.type)) {
@@ -189,7 +117,11 @@ export default {
       if ( literalTypes.includes(objRepr.type)){
         types.type_name.push(objRepr.type);
       } else if(objRepr.type === 'object'){
-          
+        const OBJ_name='object';
+        // for(let i=0;i<objRepr.kv;i++){
+        //
+        // }
+        types.type_name.push(OBJ_name);
       }
     }
 
@@ -216,7 +148,7 @@ export default {
         returns: [returned[0].entity],
       });
     }
-    
+
     // 确保 objRepr.callable 是一个数组
     // if (!('callable' in objRepr)) {
     //   objRepr.callable = [];
@@ -284,7 +216,6 @@ export default {
   },
 
   exit: (path: PathType, {scope, modifiers}: ENREContext) => {
-    console.log('exit var');
     if(scope.last().type === 'variable' && isScope){
       scope.pop();
     }

@@ -252,7 +252,9 @@ function recursiveTraverse(
         const assignmentTarget = leftTask?.payload.shift();
 
         if (rightTask && assignmentTarget) {
+
           rightTask.onFinish = (symbolSnapshotRight: any) => {
+            if(symbolSnapshotRight.length===0) {return false;}
             leftTask.onFinish = (symbolSnapshotLeft: any, idx?: number) => {
               postponedTask.add({
                 type: 'descend',
@@ -292,7 +294,7 @@ function recursiveTraverse(
     //     break;
     //   }
     //   const leftTask = resolve(node.key, scope, handlers)!;
-      
+
     //   if (['FunctionExpression', 'ArrowFunctionExpression', 'ClassExpression'].includes(node.value.type)) {
     //     // This should give us a receipt for the literal, which will be used for retrieve the entity
     //     const objRepr = resolveJSObj(node.value);
@@ -425,20 +427,20 @@ function recursiveTraverse(
       CHAnalyzer.addExpr(scope.last(), node)
       if (operation === 'new'){
         const newExpr = lookup(
-        {role: 'value', 
-          identifier: calleeTokens[0].operand1, 
+        {role: 'value',
+          identifier: calleeTokens[0].operand1,
           at: scope.last(),
         }, true) as ENREEntityCollectionScoping;
         if (newExpr){
           RTAnalyzer.newClass.push(newExpr)
-        }  
-      }  
+        }
+      }
       tokenStream.push({
         operation,
         operand1: argsRepr,
         location: toENRELocation(node.callee.loc, ToENRELocationPolicy.PartialEnd),
       }, ...calleeTokens);
-     break; 
+     break;
     }
 
     case 'OptionalMemberExpression':
@@ -446,7 +448,7 @@ function recursiveTraverse(
       const objectTokens = recursiveTraverse(node.object, scope, handlers);
 
       const prop = node.property;
-      
+
       let propName: string | symbol | undefined = undefined;
       if (prop.type === 'Identifier') {
         propName = prop.name;
@@ -531,7 +533,7 @@ function recursiveTraverse(
     //     //   entity.location,
     //     //   {isNew: false},
     //     // ).isImplicit = true;
-    //     // let from = 
+    //     // let from =
     //     // let to = created.to.getQualifiedName()
     //     //                     if (!PTAnalyzer.callGraph.has(from)) {
     //     //                       PTAnalyzer.callGraph.set(from, new Set());

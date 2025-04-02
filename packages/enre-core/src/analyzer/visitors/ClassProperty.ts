@@ -12,7 +12,7 @@ import {ENREEntityClass, ENREEntityCollectionAnyChildren, ENREEntityField, ENREL
 import {ENRELocation, toENRELocation, ToENRELocationPolicy} from '@enre-ts/location';
 import ENREName from '@enre-ts/naming';
 import {ENREContext} from '../context';
-import {Type_is} from './VariableDeclarator';
+import {Type_is} from './common/binding-pattern-handler';
 import expressionHandler, { AscendPostponedTask, DescendPostponedTask } from './common/expression-handler';
 import resolveJSObj, {JSMechanism, JSObjRepr, createJSObjRepr} from './common/literal-handler';
 import traverseBindingPattern from './common/binding-pattern-handler';
@@ -47,7 +47,7 @@ const buildOnRecord = (entity: ENREEntityField,
         entity.isValidThis = true;
         // isScope = true;
       }
-      
+
     }
 
     return entity;
@@ -229,6 +229,6 @@ export default (path: PathType, {file: {lang, logs}, scope}: ENREContext) => {
       }
       //expressionHandler(path.node, scope);
       }
-      
+
     }
 };

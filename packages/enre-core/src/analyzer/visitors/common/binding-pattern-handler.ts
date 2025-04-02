@@ -1,10 +1,96 @@
-import {LVal, PatternLike, TSParameterProperty} from '@babel/types';
+import {
+  Identifier,
+  LVal,
+  PatternLike,
+  TSParameterProperty,
+  TSType, TSTypeAnnotation,
+  TSTypeReference
+} from '@babel/types';
 import {ENREEntityField, ENREEntityParameter, ENREEntityVariable} from '@enre-ts/data';
 import {ENRELocation, toENRELocation} from '@enre-ts/location';
 import {ENREContext} from '../../context';
 import {TSVisibility} from '@enre-ts/shared';
 import {ENREScope} from '../../context/scope';
 import resolveJSObj, {JSMechanism} from './literal-handler';
+
+declare interface raw_type{
+  type_id:number,
+  type_repr:string,
+  type_name:string[],
+}
+export let ID=6;
+//输入一个基础类，输出其type名
+function Primitive_Type(annotation:TSType):string{
+  if (annotation.type === 'TSStringKeyword') {
+    return 'string';
+  } else if (annotation.type === 'TSNumberKeyword') {
+    return 'number';
+  } else if (annotation.type === 'TSBooleanKeyword') {
+    return 'boolean';
+  } else if (annotation.type === 'TSNullKeyword') {
+    return 'null';
+  } else if (annotation.type === 'TSBigIntKeyword') {
+    return 'bigint';
+  } else if (annotation.type === 'TSUndefinedKeyword') {
+    return 'undefined';
+  } else if (annotation.type === 'TSArrayType') {
+    return Primitive_Type(annotation.elementType)+'[]';
+  } else if (annotation.type === 'TSTypeReference') {
+    ID += 1; // 保留ID的修改逻辑
+    return ((annotation as TSTypeReference).typeName as Identifier).name;
+  } else {
+    return '';
+  }
+}
+export function Type_is(annotation:TSType|undefined,ID:number):raw_type{
+  const type_annotation=annotation?.type;
+  let number_id;
+  const string_name=[];
+  switch (type_annotation) {
+    case 'TSStringKeyword':
+      number_id=1;string_name.push('string');break;
+    case 'TSNumberKeyword':
+      number_id=2;string_name.push('number');break;
+    case 'TSBooleanKeyword':
+      number_id=3;string_name.push('boolean');break;
+    case 'TSNullKeyword':
+      number_id=4;string_name.push('null');break;
+    case 'TSBigIntKeyword':
+      number_id=5;string_name.push('bigint');break;
+    case 'TSUndefinedKeyword':
+      number_id=6;string_name.push('undefined');break;
+    case 'TSTypeReference':
+      ID+=1;number_id=ID;//TODO：目前处理方式是直接id+1，最后转为TENET需要根据名字重新定义id
+      string_name.push(((annotation as TSTypeReference).typeName as Identifier).name);
+      break;
+    case 'TSArrayType':
+      number_id=0;
+      string_name.push(Primitive_Type(annotation.elementType)+'[]');
+      break;
+    case 'TSUnionType':
+      number_id=-1;//组合类型
+      for(const e of annotation.types){
+        string_name.push(Primitive_Type(e));
+      }
+      break;
+    case undefined:
+      number_id=6;
+      //DO Nothing
+      break;
+    default: {
+      //logger.info('type_annotation is undefined');
+      number_id=6;
+      //string_name.push('');
+      break;
+    }
+  }
+
+  return {
+    type_id:number_id,
+    type_repr:'',
+    type_name:string_name,
+  };
+}
 
 type PossibleEntityTypes = ENREEntityVariable | ENREEntityParameter | ENREEntityField;
 
@@ -40,6 +126,7 @@ export type RecordEntityFromBindingPatternHookType<T> = (
   scope: ENREContext['scope'],
   path: BindingPath,
   defaultAlter: any,
+  Type?:raw_type,
 ) => T
 
 export type RecordConstructorFieldFromBindingPatternHookType = (
@@ -79,6 +166,7 @@ export default function <T extends PossibleEntityTypes>(
         scope,
         item.path,
         item.default,
+        item.type
       ),
       default: item.default,
     };
@@ -93,6 +181,7 @@ function recursiveTraverse(
   name: string,
   location: ENRELocation,
   default?: JSMechanism,
+  type?:raw_type
 }[] {
   // TODO: Snapshot test this function based on test cases in /docs/entity/variable.md
 
@@ -111,11 +200,16 @@ function recursiveTraverse(
       )) {
         _prefix.push({type: 'key', key: id.name});
       }
-
+      let types;
+      if ('typeAnnotation' in id) {
+        const annotation = (id.typeAnnotation as TSTypeAnnotation).typeAnnotation;
+        types=Type_is(annotation,ID);
+      }
       result.push({
         path: _prefix,
         name: id.name,
-        location: toENRELocation(id.loc)
+        location: toENRELocation(id.loc),
+        types
       });
       break;
     }

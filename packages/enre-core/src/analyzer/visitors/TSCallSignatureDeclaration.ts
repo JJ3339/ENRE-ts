@@ -4,7 +4,7 @@ import {ENREEntityCollectionAnyChildren, recordEntityProperty} from '@enre-ts/da
 import {toENRELocation} from '@enre-ts/location';
 import ENREName from '@enre-ts/naming';
 import {ENREContext} from '../context';
-import {Type_is} from './VariableDeclarator';
+import {Type_is} from './common/binding-pattern-handler';
 let property_ID=6;
 type PathType = NodePath<TSCallSignatureDeclaration>
 

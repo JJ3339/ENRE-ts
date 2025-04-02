@@ -7,7 +7,10 @@ import lookdown from './lookdown';
  * with the symbol's pointsTo.
  */
 export default function bind(objRepr: JSMechanism, scope: any): any {
-  if (objRepr.type === 'reference') {
+  if(objRepr===undefined) {
+    const a=1;
+  }
+  if (objRepr.type&& objRepr.type=== 'reference') {
     const found = lookup({
       role: 'value',
       identifier: objRepr.value,
@@ -17,7 +20,7 @@ export default function bind(objRepr: JSMechanism, scope: any): any {
     if (found) {
       return found;
     }
-  } else if (objRepr.type === 'receipt') {
+  } else if (objRepr.type&& objRepr.type === 'receipt') {
     const found = lookdown('loc-key', objRepr.key, scope);
 
     if (found) {

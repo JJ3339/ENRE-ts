@@ -25,21 +25,33 @@ import {ENRELocation} from '@enre-ts/location';
 import ENREName from '@enre-ts/naming';
 import {JSObjRepr} from './literal-handler';
 
+declare interface raw_type{
+  type_id:number,
+  type_repr:string,
+  type_name:string[],
+}
+
 function onRecord(
   name: string,
   location: ENRELocation,
   scope: ENREContext['scope'],
   path: BindingPath,
-  defaultAlter: JSObjRepr
+  defaultAlter: JSObjRepr,
+  Type?:raw_type
 ) {
+  if(Type===undefined){
+    Type={
+      type_id:-1,
+      type_repr:'',
+      type_name:['']
+    };
+  }
   const entity = recordEntityParameter(
     new ENREName('Norm', name),
     location,
     scope.last<ENREEntityCollectionCallable>(),
     //TODO:Type of param
-    {typeID:-2,
-      typeRepr: '',
-      typeName: [],},
+    {typeID:Type.type_id,typeRepr:Type.type_repr,typeName:Type.type_name},
     {path, defaultAlter},
   );
 

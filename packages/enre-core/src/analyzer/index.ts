@@ -26,7 +26,7 @@ export const analyze = async (fileEntity: ENREEntityFile) => {
       sourceType: fileEntity.sourceType,
       // @ts-ignore
       plugins,
-      /** 
+      /**
        * Enabling error recovery suppresses some TS errors
        * and make it possible to deal with in user space.
        */
@@ -36,8 +36,8 @@ export const analyze = async (fileEntity: ENREEntityFile) => {
     logger.error(`Failed to parse the file ${fileEntity.getQualifiedName()}`);
   }
 
-  
-  
+
+
   if (ast) {
     /**
      * A stack to help trace AST traverse process for parent determination.
@@ -64,7 +64,7 @@ export const analyze = async (fileEntity: ENREEntityFile) => {
       // @ts-ignore
       traverse.default<ENREContext>(ast, traverseOpts, undefined, context);
     }
-    
+
     // traverse<ENREContext>(ast, {
     //     ClassDeclaration(path) {
     //         const className = path.node.id.name;

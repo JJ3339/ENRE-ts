@@ -4,7 +4,7 @@ import {ENREEntityCollectionAnyChildren, ENREEntityProperty, id, recordEntityPro
 import {toENRELocation} from '@enre-ts/location';
 import {ENREContext} from '../context';
 import ENREName from '@enre-ts/naming';
-import {Type_is} from './VariableDeclarator';
+import {Type_is} from './common/binding-pattern-handler';
 let property_ID=6;
 type PathType = NodePath<TSIndexSignature>
 
