@@ -76,7 +76,15 @@ export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
       });
       // If symbolSnapshot is an entity type, convert it to an obj type.
       // 在task中，若只有一个access，则不会将其转换为obj, 见index437:443
-      symbolSnapshot = symbolSnapshot.map((s: { pointsTo: any; }) => s.pointsTo ?? [s]).reduce((p: any, c: any) => [...p, ...c], []);
+      
+      // 处理数据结构，可能会增加s.type判断类型
+      symbolSnapshot = symbolSnapshot
+        .map((s: { pointsTo: any; type: string }) => 
+          s.type === 'variable' ? [s] : s.pointsTo ?? [s]
+        )
+        .reduce((p: any, c: any) => [...p, ...c], []);
+
+      // symbolSnapshot = symbolSnapshot.map((s: { pointsTo: any; }) => s.pointsTo ?? [s]).reduce((p: any, c: any) => [...p, ...c], []);
       
       if ('pointsTo' in callableEntity) {
         // 避免因symbolSnapshot为空时导致的传播失败（因为return true）
@@ -85,37 +93,41 @@ export default (path: PathType, {file: {logs}, scope}: ENREContext) => {
         }
         
         symbolSnapshot.forEach((s: { callable: any[]; }) => {
-          s.callable.forEach(c => {
-            // c.returns - ENREEntity as symbol
-            if(mode === GETENTITY){
-              //TODO: c.entity? c.return
-              if (c.entity.kind == 'constructor'){
-                if (c.returns.length === 0){   
-                  return false;
+          if (s.callable) {
+            s.callable.forEach(c => {
+              // c.returns - ENREEntity as symbol
+              if(mode === GETENTITY){
+                //TODO: c.entity? c.return
+                if (c.entity.kind == 'constructor'){
+                  if (c.returns.length === 0){   
+                    return false;
+                  }
+                  callableEntity.pointsTo[0].callable[0].returns.push(c.returns[0]);
                 }
-                callableEntity.pointsTo[0].callable[0].returns.push(c.returns[0]);
-              }
-              else{
-                callableEntity.pointsTo[0].callable[0].returns.push(c.entity);
-              }
-              //callableEntity.pointsTo[0].callable[0].returns.push(c.entity);
-              
-            }else{
-              //GETRETURN 
-              c.returns.forEach((r: any) => {
-              callableEntity.pointsTo[0].callable[0].returns.push(r);
-            });
-            }
-            callableEntity.pointsTo[0].callable[0].returns.forEach((r: { typeName: any; returnType: any; }) =>{
-                if (r.typeName){
-                  (callableEntity as ENREEntityCollectionCallable).returnType.push(...r.typeName)
-                }else if (r.returnType){
-                  (callableEntity as ENREEntityCollectionCallable).returnType.push(...r.returnType)
+                else{
+                  callableEntity.pointsTo[0].callable[0].returns.push(c.entity);
                 }
-            })
+                //callableEntity.pointsTo[0].callable[0].returns.push(c.entity);
+                
+              }else{
+                //GETRETURN 
+                c.returns.forEach((r: any) => {
+                callableEntity.pointsTo[0].callable[0].returns.push(r);
+              });
+              }
+              callableEntity.pointsTo[0].callable[0].returns.forEach((r: { typeName: any; returnType: any; }) =>{
+                  if (r.typeName){
+                    (callableEntity as ENREEntityCollectionCallable)?.returnType.push(...r.typeName)
+                  }else if (r.returnType){
+                    (callableEntity as ENREEntityCollectionCallable)?.returnType.push(...r.returnType)
+                  }
+              })
 
-            // ENREEntity as symbol
-          });
+              // ENREEntity as symbol
+            });
+          } else{
+            callableEntity.pointsTo[0].callable[0].returns.push(s);
+          }
         });
         // callableEntity.pointsTo[0].callable[0].returns.push(...symbolSnapshot);
         return true;

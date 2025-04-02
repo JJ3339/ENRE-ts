@@ -122,7 +122,7 @@ function recursiveTraverse(
 
     case 'AssignmentPattern': {
       for (const item of recursiveTraverse(id.left, prefix)) {
-        item.default = resolveJSObj(id.right);
+        item.default = resolveJSObj(id.right) as JSMechanism;
         result.push(item);
       }
       break;

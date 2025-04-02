@@ -19,7 +19,7 @@ import {
   recordRelationSet,
   literalTypes
 } from '@enre-ts/data';
-import {ENRELocation} from '@enre-ts/location';
+import {ENRELocation, toENRELocation} from '@enre-ts/location';
 import {ENREContext} from '../context';
 import traverseBindingPattern from './common/binding-pattern-handler';
 import ENREName from '@enre-ts/naming';
@@ -29,7 +29,7 @@ import expressionHandler, {
   AscendPostponedTask,
   DescendPostponedTask
 } from './common/expression-handler';
-import { cloneDeep } from 'lodash';
+import _ from 'lodash';
 
 declare interface raw_type{
   type_id:number,
@@ -152,7 +152,7 @@ export default {
     isScope = false;
     const kind = (path.parent as VariableDeclaration).kind;
     const declarator: VariableDeclarator = path.node as VariableDeclarator;
-    let objRepr: JSMechanism | DescendPostponedTask | undefined = resolveJSObj(declarator.init);
+    let objRepr: JSMechanism | DescendPostponedTask | undefined = resolveJSObj(declarator.init, scope);
     // The init value is not a literal, but an expression.
     let instanceName = undefined;
     if (declarator.init && !objRepr) {
@@ -166,6 +166,38 @@ export default {
     // ForStatement is not supported due to the complexity of the AST structure.
     if (['ForOfStatement', 'ForInStatement'].includes(path.parentPath.parent.type)) {
         objRepr = resolveJSObj((path.parentPath.parent as ForOfStatement).right);
+        if (objRepr && "value" in objRepr){
+          postponedTask.add({
+          type: 'descend',
+          payload: [{
+            operation: 'call',
+            operand1: createJSObjRepr('array'),
+            location: toENRELocation(path.parentPath.parent.loc),
+            iterator: true
+          },{
+            operation: 'access',
+            operand1: objRepr.value,
+            location: toENRELocation(path.parentPath.parent.loc)
+          }],
+          scope: scope.last(),
+          } as DescendPostponedTask);
+        }
+    }
+    if (["ArrayPattern"].includes(declarator.id.type) && declarator.init?.type === 'Identifier'){
+      postponedTask.add({
+        type: 'descend',
+        payload: [{
+          operation: 'call',
+          operand1: createJSObjRepr('array'),
+          location: toENRELocation(declarator.loc),
+          iterator: true
+        },{
+          operation: 'access',
+          operand1: declarator.init.name,
+          location: toENRELocation(path.parentPath.parent.loc)
+        }],
+        scope: scope.last()
+        } as DescendPostponedTask);
     }
 
     const typeAnnotation: TSTypeAnnotation|undefined = Reflect.get(declarator.id, 'typeAnnotation')?.typeAnnotation;
@@ -252,6 +284,7 @@ export default {
             operation: 'assign',
             operand0: returned,
             operand1: objRepr,
+            op1Propagation: _.cloneDeep(objRepr),
             variant,
         }],
         scope: scope.last(),
@@ -284,7 +317,7 @@ export default {
   },
 
   exit: (path: PathType, {scope, modifiers}: ENREContext) => {
-    console.log('exit var');
+    //console.log('exit var');
     if(scope.last().type === 'variable' && isScope){
       scope.pop();
     }

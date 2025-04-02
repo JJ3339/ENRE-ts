@@ -8,6 +8,9 @@ import {
 } from '@enre-ts/location';
 import {BindingPathRest} from './binding-pattern-handler';
 import {ENREEntityFunction, ENREEntityMethod, ENREEntityVariable} from '@enre-ts/data';
+import expressionHander from './expression-handler'
+import { DescendPostponedTask } from './expression-handler';
+import { ENREContext } from '../../context';
 
 export type JSMechanism =
   JSReference
@@ -91,7 +94,7 @@ export function createJSObjRepr(kvInitial: JSObjRepr['kvInitial']): JSObjRepr {
   };
 }
 
-export default function resolve(node: Expression | null | undefined): JSMechanism | undefined {
+export default function resolve(node: Expression | null | undefined, scope?: ENREContext['scope']): JSMechanism | DescendPostponedTask | undefined {
   if (!node) {
     return undefined;
   }
@@ -120,9 +123,27 @@ export default function resolve(node: Expression | null | undefined): JSMechanis
     for (const property of node.properties) {
       if (property.type === 'ObjectProperty') {
         // @ts-ignore
-        const resolved = resolve(property.value);
+        const resolved = resolve(property.value, scope);
         if (resolved) {
-          if (property.key.type === 'Identifier') {
+          if (resolved.type === 'descend'){
+            resolved.onFinish = (resolvedResult) => {
+              resolvedResult = resolvedResult
+              .map((s: { pointsTo: any; }) => s.pointsTo ?? [s]).reduce((p: any, c: any) => [...p, ...c], [])[0];
+              if (resolvedResult){
+                if (property.key.type === 'Identifier') {
+                  objRepr.kv[property.key.name] = resolvedResult;
+                } else if (property.key.type === 'NumericLiteral') {
+                  objRepr.kv[property.key.value] = resolvedResult;
+                } else if (property.key.type === 'StringLiteral') {
+                  objRepr.kv[property.key.value] = resolvedResult;
+                }
+                return true
+              }else{
+                return false
+              }
+            };
+          } 
+          else if (property.key.type === 'Identifier') {
             objRepr.kv[property.key.name] = resolved;
           } else if (property.key.type === 'NumericLiteral') {
             objRepr.kv[property.key.value] = resolved;
@@ -153,6 +174,11 @@ export default function resolve(node: Expression | null | undefined): JSMechanis
       // @ts-ignore
       value: node.value,
     };
+  } else if (node.type === 'CallExpression'){
+    if (scope){
+      return expressionHander(node, scope);
+      //return task
+    }
   }
 
   return undefined;

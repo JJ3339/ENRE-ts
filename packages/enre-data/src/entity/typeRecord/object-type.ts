@@ -29,17 +29,17 @@ export const addAbilityObjectType = (
         )
         .join("; ")} }`;
     },
-    // updateProp(object: { name: string; type: ENRETypeAbilityBase[] }): void {
-    //   if (this.prop.has(object.name)) { 
-    //     const existingTypes = this.prop.get(object.name)!;
-    //     const newTypes = [...existingTypes, ...object.type];
-    //     const uniqueTypes = Array.from(new Set(newTypes.map(t => t.toString())))
-    //       .map(typeRepr => newTypes.find(t => t.toString() === typeRepr)!);
+    updateProp(object: { name: string; type: ENRETypeAbilityBase[] }): void {
+      if (this.prop.has(object.name)) { 
+        const existingTypes = this.prop.get(object.name)!;
+        const newTypes = [...existingTypes, ...object.type];
+        const uniqueTypes = Array.from(new Set(newTypes.map(t => t.toString())))
+          .map(typeRepr => newTypes.find(t => t.toString() === typeRepr)!);
 
-    //     this.prop.set(object.name, uniqueTypes);
-    //   } else {
-    //     this.prop.set(object.name, object.type);
-    //   }
-    // }
+        this.prop.set(object.name, uniqueTypes);
+      } else {
+        this.prop.set(object.name, object.type);
+      }
+    }
   };
 };

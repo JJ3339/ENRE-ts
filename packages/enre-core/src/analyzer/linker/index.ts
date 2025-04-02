@@ -243,6 +243,8 @@ export default () => {
 
                         if (resolved.callable.iterator) {
                           values = resolved.callable.iterator.pointsTo[0].callable[0].returns;
+                        // if (resolved.kv.iterator) {
+                        //   values = resolved.kv.iterator.pointsTo[0].callable[0].returns;
                         } else {
                           values = Object.values(resolved.kv);
                         }
@@ -256,6 +258,12 @@ export default () => {
                             op.operand1.location,
                             {isNew: false},
                           ).isImplicit = true;
+                          // recordRelationCall(
+                          //   task.scope,
+                          //   resolved.kv.iterator,
+                          //   op.operand1.location,
+                          //   {isNew: false},
+                          // ).isImplicit = true;
                         }
                       } else if (op.variant === 'for-await-of') {
                         let values = undefined;
@@ -263,6 +271,9 @@ export default () => {
                         if (resolved.callable.asyncIterator) {
                           values = resolved.callable.asyncIterator.pointsTo[0].callable[0].returns;
                         }
+                        // if (resolved.kv.asyncIterator) {
+                        //   values = resolved.kv.asyncIterator.pointsTo[0].callable[0].returns;
+                        // }
 
                         cursor.push(...values);
 
@@ -273,6 +284,12 @@ export default () => {
                             op.operand1.location,
                             {isNew: false},
                           ).isImplicit = true;
+                          // recordRelationCall(
+                          //   task.scope,
+                          //   resolved.kv.asyncIterator,
+                          //   op.operand1.location,
+                          //   {isNew: false},
+                          // ).isImplicit = true;
                         }
                       } else if (op.variant === 'for-in') {
                         let values = undefined;
@@ -363,7 +380,7 @@ export default () => {
                     if (obj.typeName){
                       bindingRepr.entity.typeName.push(...obj.typeName);
                     }
-                    obj.callable.forEach(element => {
+                    obj.callable?.forEach(element => {
                       if (element.entity) {
                         if (element.entity.typeName){
                             bindingRepr.entity.typeName.push(...element.entity.typeName);
@@ -475,21 +492,25 @@ export default () => {
                     prevSymbol.forEach(s => {
                       let found = undefined;
                       if (token.computed){
-                        value = lookup({
+                        let value = lookup({
                           role: 'value',
                           identifier: token.operand1,
                           at: task.scope,
                           loc: token.location
                         }, true) as ENREEntityCollectionAll;
-                        value.pointsTo.array.forEach(element => {
+                        value?.pointsTo?.forEach(element => {
                           //TODO: 多个赋值情况？（HJJ）
                           if (literalTypes.includes(element.type)){
                             found = lookdown('name', element.value, s)
                           }
                           else {
                             found = undefined
+                            //found = lookdown('name', token.operand1, s);
                           }
                         });
+                        if(!found){
+                          found = lookdown('name', token.operand1, s);
+                        }
                         // found = lookdown('name', found.pointsTo[0], s);
                       }
                       else{
@@ -531,9 +552,13 @@ export default () => {
                       currSymbol.forEach(s => {
                         if (i === task.payload.length - 1) {
                           if (['call', 'new'].includes(nextOperation)) {
+                            let Call_to = s;
+                            if (task.payload[i - 1]?.iterator && s.callable?.iterator){
+                              Call_to = s.callable.iterator
+                            }
                             let created = recordRelationCall(
                               task.scope,
-                              s,
+                              Call_to,
                               token.location,
                               {isNew: nextOperation === 'new'},
                             );
@@ -625,16 +650,28 @@ export default () => {
                     // token.operand0 is AccessToken, its operand1 is the property name
                     if (token.operand0.operand1 === Symbol.iterator) {
                       s.callable.iterator = resolved;
+                      //s.kv.iterator = resolved;
+
                     } else if (token.operand0.operand1 === Symbol.asyncIterator) {
                       s.callable.asyncIterator = resolved;
+                      // s.kv.asyncIterator = resolved;
+
                     } else {
                       if (token.operand0.computed){
-                        const value = lookup({
+                        let value = lookup({
                           role: 'value',
                           identifier: token.operand0.operand1,
                           at: task.scope,
                         }, true) as ENREEntityCollectionAll;
-                        s.kv[value.value] = resolved;
+                        if (value.defaultAlter){
+                          value = value.defaultAlter;
+                        }
+                        //TODO:computed condition
+                        if (value){
+                          s.kv[value.value] = resolved;
+                        } else{
+                          s.kv[token.operand0.operand1] = resolved;
+                        }
                       } else {
                       s.kv[token.operand0.operand1] = resolved;
                       }
@@ -653,12 +690,17 @@ export default () => {
                 } else if (prevSymbol.length !== 0) {
                   prevSymbol.forEach(s => {
                     // TODO: Does prevSymbol holds only JSOBJRepr?
-                    if (s.type === 'object') {
+                    if (token.iterator){
+                      s.callable.iterator && currSymbol.push(s.callable.iterator);
+                    }else {
+                      if (s.type === 'object') {
                       s.callable.forEach(c => currSymbol.push(c.entity));
                     } else {
                       currSymbol.push(s);
                     }
                     // ENREEntity as entity
+                    }
+                    
                   });
 
                   if (prevUpdated === false){// || (token.lastSymbol && !(_.isEqual(currSymbol, token.lastSymbol)))) {
@@ -772,7 +814,7 @@ export default () => {
                             cursor.push({kv: {}});
 
                             const _cursor = [];
-                            cursor.forEach(c => {
+                            cursor?.forEach(c => {
                               let selected = undefined;
 
                               if (segment.key in c.kv) {
@@ -803,9 +845,11 @@ export default () => {
                                 } else if (literalTypes.includes(selected.type)){
                                   // TODO: literal
                                   //param.typeName.push(selected.type);
+
                                   if (!param.typeName.includes(selected.type)){
                                     param.typeName.push(selected.type)
                                   }
+                                  _cursor.push(selected);
                                 } else{
                                   _cursor.push(...selected.pointsTo);
                                 }
@@ -823,7 +867,7 @@ export default () => {
                           if (c.typeName){
                             param.typeName.push(...c.typeName);
                           }
-                          c.callable.array.forEach(element => {
+                          c.callable?.forEach(element => {
                             if(element.entity){
                               param.typeName.push(...element.entity.typeName);
                             }
@@ -844,7 +888,7 @@ export default () => {
                   // Make function's returns currSymbol for next token
                   currSymbol = [];
                   prevSymbol.forEach(s => {
-                    s.callable.forEach(c => {
+                    s.callable?.forEach(c => {
                       // c.returns - ENREEntity as symbol
                       c.returns.forEach(r => {
                         if (task.onFinish && i === 0) {
