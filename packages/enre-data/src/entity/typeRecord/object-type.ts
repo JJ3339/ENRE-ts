@@ -4,7 +4,7 @@ export interface ENRETypeObject extends ENRETypeAbilityBase {
   prop: Map<string, ENRETypeAbilityBase[]>; // 可以删去
   isObject: boolean;
   toString: () => string;
-  //updateProp: (object: { name: string, type: ENRETypeAbilityBase[] }) => void;
+  updateProp: (object: { name: string, type: ENRETypeAbilityBase[] }) => void;
 }
 
 export const addAbilityObjectType = (
@@ -25,21 +25,21 @@ export const addAbilityObjectType = (
     toString(): string {
       return `{ ${[...this.prop.entries()]
         .map(([key, value]) =>
-          `${key}: [${value.map(v => v.toString()).join(', ')}]`
+          `${key}: [${value.map(v => v.toString()).join(", ")}]`
         )
         .join('; ')} }`;
     },
-    // updateProp(object: { name: string; type: ENRETypeAbilityBase[] }): void {
-    //   if (this.prop.has(object.name)) {
-    //     const existingTypes = this.prop.get(object.name)!;
-    //     const newTypes = [...existingTypes, ...object.type];
-    //     const uniqueTypes = Array.from(new Set(newTypes.map(t => t.toString())))
-    //       .map(typeRepr => newTypes.find(t => t.toString() === typeRepr)!);
+    updateProp(object: { name: string; type: ENRETypeAbilityBase[] }): void {
+      if (this.prop.has(object.name)) {
+        const existingTypes = this.prop.get(object.name)!;
+        const newTypes = [...existingTypes, ...object.type];
+        const uniqueTypes = Array.from(new Set(newTypes.map(t => t.toString())))
+          .map(typeRepr => newTypes.find(t => t.toString() === typeRepr)!);
 
-    //     this.prop.set(object.name, uniqueTypes);
-    //   } else {
-    //     this.prop.set(object.name, object.type);
-    //   }
-    // }
+        this.prop.set(object.name, uniqueTypes);
+      } else {
+        this.prop.set(object.name, object.type);
+      }
+    }
   };
 };

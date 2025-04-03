@@ -27,7 +27,7 @@ import {
 import {ENREEntityCollectionAll, ENREEntityCollectionScoping, postponedTask, recordRelationCall, recordEntityFunction} from '@enre-ts/data';
 import {ENRELocation, toENRELocation, ToENRELocationPolicy} from '@enre-ts/location';
 import {ENREContext} from '../../context';
-import resolveJSObj, {createJSObjRepr, JSObjRepr} from './literal-handler';
+import resolveJSObj, {createJSObjRepr, JSMechanism, JSObjRepr} from './literal-handler';
 import { ClassHierarchyAnalyzer as CHAnalyzer } from '../../callgraph/ClassHierarchyAnalysisAlgorithm';
 import { RapidTypeAnalyzer as RTAnalyzer } from '../../callgraph/RapidTypeAnalysisAlgorithm';
 import { PointerAnalyzer as PTAnalyzer } from '../../callgraph/PointerAnalysis';
@@ -115,6 +115,7 @@ interface CallableBaseToken extends BaseToken {
 
 interface CallToken extends BaseToken, CallableBaseToken {
   operation: 'call',
+  iterator?: boolean
 }
 
 interface NewToken extends BaseToken, CallableBaseToken {
@@ -252,10 +253,12 @@ function recursiveTraverse(
         const assignmentTarget = leftTask?.payload.shift();
 
         if (rightTask && assignmentTarget) {
+          let curr = scope.last();
 
           rightTask.onFinish = (symbolSnapshotRight: any) => {
             if(symbolSnapshotRight.length===0) {return false;}
             leftTask.onFinish = (symbolSnapshotLeft: any, idx?: number) => {
+              symbolSnapshotRight = symbolSnapshotRight.map((s: { pointsTo: any; }) => s.pointsTo ?? [s]).reduce((p: any, c: any) => [...p, ...c], []);
               postponedTask.add({
                 type: 'descend',
                 payload: [
@@ -269,7 +272,7 @@ function recursiveTraverse(
                     operand0: symbolSnapshotLeft,
                   }
                 ],
-                scope: scope.last(),
+                scope: curr,
                 onFinish: undefined,
               } as DescendPostponedTask, idx);
 
@@ -408,7 +411,7 @@ function recursiveTraverse(
         // @ts-ignore
         const objRepr = resolveJSObj(arg);
         if (objRepr !== undefined) {
-          argsRepr.kv[index] = objRepr;
+          argsRepr.kv[index] = objRepr as JSMechanism;
           continue;
         }
 
@@ -477,7 +480,7 @@ function recursiveTraverse(
           operation: 'access',
           operand1: propName,
           location: toENRELocation(node.property.loc),
-          computed: node.computed
+          computed: node.computed && node.property.type !== 'StringLiteral'
         }, ...objectTokens);
       } else {
         const propTask = resolve(node.property, scope, undefined);

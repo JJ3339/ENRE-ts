@@ -192,7 +192,7 @@ export default {
   },
 
   exit: (path: PathType, {scope, modifiers}: ENREContext) => {
-    console.log('exit var');
+    //console.log('exit var');
 
     // const varEntity = scope.last<ENREEntityClass>();
     // if (varEntity.pointsTo[0].callable.length === 0) {
