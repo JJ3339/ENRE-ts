@@ -484,6 +484,15 @@ export default () => {
                       if (found) {
                         // ENREEntity as entity for explicit relation
                         currSymbol.push(found);
+                        if(prevUpdated === false && found.pointsTo.length === 0){
+                          let typeCls = lookup({
+                            role: 'value',
+                            identifier: found.typeName[0],
+                            at: task.scope,
+                            loc: token.location
+                          }, true) as ENREEntityCollectionAll;
+                          found.pointsTo.push(...typeCls?.pointsTo);
+                        }
                       }
                     }
                   }
