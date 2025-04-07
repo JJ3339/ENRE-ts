@@ -561,9 +561,14 @@ export default () => {
                       currSymbol.forEach(s => {
                         if (i === task.payload.length - 1) {
                           if (['call', 'new'].includes(nextOperation)) {
+                            // s is `ENTITY`
                             let Call_to = s;
-                            if (task.payload[i - 1]?.iterator && s.callable?.iterator){
-                              Call_to = s.callable.iterator
+                            if (task.payload[i - 1]?.iterator){
+                              if (s.pointsTo[0]?.callable?.iterator){
+                                Call_to = s.pointsTo[0]?.callable?.iterator;
+                              }else {
+                                return;
+                              }
                             }
                             let created = recordRelationCall(
                               task.scope,
