@@ -782,13 +782,18 @@ export default () => {
                       //     break;
                       //   }
                       // }
-                      if(task.payload[i+2]){
+                      if(task.payload[i+2]){//call 传入obj 参数， 模式：obj.func()
                         let cursor = task.payload[i+2].lastSymbol;
                         if (cursor.length !== 0){
                           cursor.forEach(p => {
-                            if (!s.thisPointsTo.includes(p)) {
-                              s.thisPointsTo.push(p);
+                            if (p.callable){
+                              p.callable.forEach( r => {
+                                if (!s.thisPointsTo.includes(r.entity)) {
+                                  s.thisPointsTo.push(r.entity);
+                                }      
+                              });
                             }
+                            
                           });
                         }
                       }
