@@ -11,6 +11,7 @@ import {NodePath} from '@babel/traverse';
 import {
   ClassMethod,
   ClassPrivateMethod,
+  Identifier,
   PrivateName,
   TSDeclareMethod
 } from '@babel/types';
@@ -171,6 +172,23 @@ export default {
               TSVisibility: path.node.accessibility ?? (lang === 'ts' ? 'public' : undefined),
             },
           );
+          break;
+        case 'MemberExpression':
+          if ((key.property as Identifier)?.name == 'hasInstance'){
+            entity = recordEntityMethod(
+              new ENREName('Norm', 'instanceof'),
+              toENRELocation(key.loc),
+              classEntity,
+              {
+                kind: path.node.kind,
+                isStatic: path.node.static,
+                isGenerator: path.node.generator,
+                isAsync: path.node.async,
+                isAbstract: path.node.abstract ?? false,
+                TSVisibility: path.node.accessibility ?? (lang === 'ts' ? 'public' : undefined),
+              },
+            );
+          }
           break;
         default:
         // WONT-FIX: Extract name from dynamic expressions.

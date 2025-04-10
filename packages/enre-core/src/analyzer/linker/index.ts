@@ -222,13 +222,21 @@ export default () => {
           for (const op of task.payload) {
             if (op.operation === 'assign') {
               let resolved = bindRepr2Entity(op.operand1, task.scope);
+              
 
+              // let cp_resolved = undefined;
+              // if (op.op1Propagation){
+              //   bindRepr2Entity(op.op1Propagation, task.scope);
+              // }
               if (literalTypes.includes(resolved.type)){
                 //literal handle
               }
               else if (resolved.type !== 'object') {
                 // literal bug
                 resolved = resolved.pointsTo[0];
+                // if(cp_resolved){
+                //   cp_resolved = cp_resolved.pointsTo[0];
+                // }
               }
 
               for (const bindingRepr of op.operand0) {
@@ -782,7 +790,7 @@ export default () => {
                       //     break;
                       //   }
                       // }
-                      if(task.payload[i+2]){//call 传入obj 参数， 模式：obj.func()
+                      if(task.payload[i+2]){//call 传入obj 参数， 模式：obj.func(), 讲obj对应的pointsTo传入func()中的this参数
                         let cursor = task.payload[i+2].lastSymbol;
                         if (cursor.length !== 0){
                           cursor.forEach(p => {

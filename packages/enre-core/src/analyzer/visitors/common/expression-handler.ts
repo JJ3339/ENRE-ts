@@ -551,6 +551,33 @@ function recursiveTraverse(
     //   //const tokens = recursiveTraverse(node.body, scope, handlers);
     //   break;
     // }
+    case 'BinaryExpression': {
+      //分开建立task
+      const op = node.operator; //类型推断会用
+      const left_token = recursiveTraverse(node.left, scope, handlers);
+      let rightTask = resolve(node.right, scope, handlers);
+      switch (op){
+        case 'instanceof':{
+          rightTask?.payload.unshift({
+            operation: 'call',
+            operand1: createJSObjRepr('array'),
+            location: toENRELocation(node.loc),
+          },
+          {
+            operation: 'access',
+            operand1: 'instanceof',
+            location: toENRELocation(node.loc)
+          }
+        );
+          break;
+        }
+
+      }
+
+      tokenStream.push(...left_token);
+      
+      break;
+    }
     case 'ArrowFunctionExpression':{
       tokenStream.push({
         operation: 'access',
